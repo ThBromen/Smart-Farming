@@ -6,6 +6,7 @@ import { logger } from "./Middleware";
 import cors from "cors";
 import userRouter from "./Routers/users";
 import financialRouter from "./Routers/financial";
+import galleryRouter from "./Routers/gallery";
 import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -45,8 +46,8 @@ app.use(bodyParser.json());
 app.use("/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/api/v1/", userRouter);
 app.use("/financial/", financialRouter);
+app.use("/gallery/", galleryRouter);
 
-// app.use("/booking/", bookingRouter);
 // app.use("/testimony/", testimonyRouter);
 // app.use("/contact/", contactRouter);
 // app.use("/payment/", paymentRouter);
@@ -57,13 +58,13 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandle);
 
-mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-  console.log("online Database connected");
-});
-
-// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-//   console.log(" local Database connected");
+// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+//   console.log("online Database connected");
 // });
+
+mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+  console.log(" local Database connected");
+});
 
 app.listen(port, () => {
   console.log(` app listening on port ${port}`);

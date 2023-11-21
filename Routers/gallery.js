@@ -1,8 +1,9 @@
 import express from "express";
 import { addGallery, getGallery, deleteGallery } from "../Controllers/gallery";
-import { verfyToken, logger } from "../Middleware";
+import { logger, isAdmin } from "../Middleware";
 
-const financialRouter = express.Router();
+
+const galleryRouter = express.Router();
 
 /**
  * @swagger
@@ -228,8 +229,8 @@ const financialRouter = express.Router();
  *          description: Internal Server Error
  */
 
-financialRouter.post("/recordFinancial/", logger, addGallery);
-financialRouter.get("/getFinancial/", verfyToken, getGallery);
-financialRouter.delete("/deleteFinancial/:id", verfyToken, deleteGallery);
+galleryRouter.post("/addGallery/", logger, addGallery);
+galleryRouter.get("/getGallery/", getGallery);
+galleryRouter.delete("/deleteGallery/:id", deleteGallery);
 
-export default financialRouter;
+export default galleryRouter;
