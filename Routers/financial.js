@@ -1,9 +1,8 @@
 import express from "express";
-import { register, login, changepassword, getUser, updateUser, getById, deleteUser } from "../Controllers/Authentication";
+import { recordFinancial, getFinancial, updateFinancial, getFinancialById, deleteFinancial } from "../Controllers/Financial";
 import { verfyToken, logger } from "../Middleware";
 
-const userRouter = express.Router();
-
+const financialRouter = express.Router();
 
 /**
  * @swagger
@@ -14,109 +13,54 @@ const userRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     signUp:
+ *     addfinancial:
  *       type: object
  *       required:
- *         - email
- *         - fullNames
- *         - password
- *         - phoneNo
- *         - location
- *         - role
+ *         - sales
+ *         - litresSold
+ *         - animalEarTag
  *       properties:
- *         email:
+ *         sales:
  *           type: string
- *           description: The email of the user
- *         fullNames:
+ *           description: The sales of the farmer made
+ *         litresSold:
  *           type: string
- *           description: The fullNames of the user
- *         password:
+ *           description: The number of littres sold
+ *         animalEarTag:
  *           type: string
- *           description: The password of the user
- *         phoneNo:
- *           type: string
- *           description: The phoneNo of the user
- *         location:
- *           type: string
- *           description: The location of the user
- *         role:
- *           type: string
- *           description: The role of the user i.e., user or admin
+ *           description: The cow tag for cow which provide that milk
  *       example:
- *         email: hashimwimanatheogene34@gmail.com@gmail.com
- *         fullNames: Hashimwimana Theogene
- *         password: myPassword1
- *         phoneNo: "+25070000000"
- *         location: Kigali, Rwanda
- *     login:
+ *         sales: milk
+ *         litresSold: 10
+ *         animalEarTag: M 23
+ *     financialEdit:
  *       type: object
  *       required:
- *         - email
- *         - password
+ *         - sales
+ *         - litresSold
+ *         - animalEarTag
  *       properties:
- *         email:
+ *         sales:
  *           type: string
- *           description: The email of the user
- *         password:
+ *           description: The sales of the farmer made
+ *         litresSold:
  *           type: string
- *           description: The password of the user
+ *           description: The number of littres sold
+ *         animalEarTag:
+ *           type: string
+ *           description: The cow tag for cow which provide that milk
  *       example:
- *         email: hashimwimana@gmail.com
- *         password: myPassword
- *     userEdit:
- *       type: object
- *       required:
- *         - email
- *         - fullNames
- *         - image
- *         - password
- *         - phoneNo
- *         - location
- *         - role
- *       properties:
- *         email:
- *           type: string
- *           description: The email of the user
- *         fullNames:
- *           type: string
- *           description: The fullNames of the user
- *         image:
- *           type: string
- *           description: The profile picture of the user
- *         password:
- *           type: string
- *           description: The password of the user
- *         phoneNo:
- *           type: string
- *           description: The phoneNo of the user
- *         location:
- *           type: string
- *           description: The location of the user
- *         role:
- *           type: string
- *           description: The role of the user i.e., user or admin
- *       example:
- *         email: hashimwimanatheogene34@gmail.com
- *         fullNames: Hashimwimana Theogene
- *         image: images.jpg
- *         password: myPassword1
- *         phoneNo: "+25070000000"
- *         location: Kigali, Rwanda
+ *         sales: milk
+ *         litresSold: 10
+ *         animalEarTag: M 34
  */
 
 
 /**
  * @swagger
  * tags:
- *   name: Auth
- *   description: The user login and signup managing API
- */
-
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: The user accesibility managing API
+ *   name: Financial
+ *   description: The Financial managing API
  */
 
 /**
@@ -124,7 +68,7 @@ const userRouter = express.Router();
  * /api/v1/getuser:
  *   get:
  *     summary: Returns the list of all the users 
- *     tags: [Users]
+ *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -151,7 +95,7 @@ const userRouter = express.Router();
  * /api/v1/userbyid/{id}:
  *   get:
  *     summary: Get the user by id
- *     tags: [Users]
+ *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -185,7 +129,7 @@ const userRouter = express.Router();
  * /api/v1/register:
  *   post:
  *     summary: Create a new user
- *     tags: [Auth]
+ *     tags: [Financial]
  *     requestBody:
  *          required: true
  *          content:
@@ -203,30 +147,7 @@ const userRouter = express.Router();
  *          description: Internal Server Error
  */
 
-/**
- * @swagger
- * /api/v1/login:
- *   post:
- *     summary: Log into user account
- *     tags: [Auth]
- *     requestBody:
- *          required: true
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/login'
- *     responses:
- *       200:
- *          description: The user was successfully authorised
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/signUp'
- *       403:
- *          description: Wrong email or password
- *       500:
- *          description: Internal Server Error
- */
+
 
 /**
  * @swagger
@@ -307,15 +228,10 @@ const userRouter = express.Router();
  *          description: Internal Server Error
  */
 
+financialRouter.post("/recordFinancial/", logger, recordFinancial);
+financialRouter.get("/getFinancial/", verfyToken, getFinancial);
+financialRouter.get("/financialById/:id", verfyToken, getFinancialById);
+financialRouter.delete("/deleteFinancial/:id", verfyToken, deleteFinancial);
+financialRouter.put("/updateFinancial/:id", verfyToken, updateFinancial);
 
-
-
-userRouter.post("/login/", login);
-userRouter.post("/register/", logger, register);
-userRouter.get("/getUser/", verfyToken, getUser);
-userRouter.get("/userbyid/:id", verfyToken, getById);
-userRouter.delete("/deleteuser/:id", verfyToken, deleteUser);
-userRouter.put("/updateuser/:id", verfyToken, updateUser);
-userRouter.post("/changepassword/:id", verfyToken, changepassword);
-
-export default userRouter;
+export default financialRouter;
