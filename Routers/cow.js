@@ -228,10 +228,10 @@ const cowRouter = express.Router();
  *          description: Internal Server Error
  */
 
-cowRouter.post("/recordFinancial/", logger, recordFinancial);
-cowRouter.get("/getFinancial/", verfyToken, getFinancial);
-cowRouter.get("/financialById/:id", verfyToken, getFinancialById);
-cowRouter.delete("/deleteFinancial/:id", verfyToken, deleteFinancial);
-cowRouter.put("/updateFinancial/:id", verfyToken, updateFinancial);
+// cowRouter.post("/recordCow/", logger, recordCow);
+// cowRouter.get("/getCow/", verfyToken, getCow);
+// cowRouter.get("/getCowById/:id", verfyToken, getCowById);
+// cowRouter.delete("/deleteCow/:id", verfyToken, deleteCow);
+// cowRouter.put("/updateCow/:id", verfyToken, updateCow);
 
 export default cowRouter;

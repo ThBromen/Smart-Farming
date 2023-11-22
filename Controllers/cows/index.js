@@ -1,0 +1,6 @@
+export * from "./addCows"
+export * from "./deleteCows"
+export * from "./getAllCows"
+export * from "./getCowsByType"
+export * from "./updateCows"
+export * from "./getCowsByEarTag"
