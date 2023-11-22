@@ -4,6 +4,7 @@ import cloudinary from "cloudinary";
 import path from "path";
 import { catchAsync } from "../Error/catchAsync";
 
+// inserting cloud for uploading an images
 
 dotenv.config();
 cloudinary.v2;
