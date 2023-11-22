@@ -10,5 +10,5 @@ export const getById = catchAsync(async (req, res) => {
     return next(new AppError("no user found with that ID", 404));
   }
   console.log("the user is selected with ID:", data._id);
-  res.status(200).json(data);
+  return res.status(200).json(data);
 });

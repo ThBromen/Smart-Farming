@@ -58,13 +58,13 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandle);
 
-// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-//   console.log("online Database connected");
-// });
-
-mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-  console.log(" local Database connected");
+mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+  console.log("online Database connected");
 });
+
+// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+//   console.log(" local Database connected");
+// });
 
 app.listen(port, () => {
   console.log(` app listening on port ${port}`);

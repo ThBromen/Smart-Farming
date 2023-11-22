@@ -12,7 +12,7 @@ export const deleteFinancial = catchAsync(async (req, res) => {
 
     const result = await Financial.deleteMany(data);
     console.log("the financial recold is deleted with ID:", data._id);
-    res.send(result);
+    return res.send(result);
 
 
 });

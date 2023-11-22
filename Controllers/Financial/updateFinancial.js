@@ -9,9 +9,9 @@ export const updateFinancial = catchAsync(async (req, res) => {
         { new: true, useFindAndModify: false });
 
     if (!updatedDoc) {
-        return next(new AppError("no financial record found with that ID", 404));
+        next(new AppError("no financial record found with that ID", 404));
     }
     console.log("the financial record is updated with ID:", updatedDoc._id);
-    res.json(updatedDoc);
+    return res.json(updatedDoc);
 
 });

@@ -7,7 +7,7 @@ export const recordFinancial = catchAsync(async (req, res) => {
 
     console.log("new Financial was created successfully");
 
-    res.status(201).json({
+    return res.status(201).json({
         message: " Financial registered successfully",
         newFinancial,
 

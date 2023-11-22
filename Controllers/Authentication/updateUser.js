@@ -9,9 +9,9 @@ export const updateUser = catchAsync(async (req, res) => {
     { new: true, useFindAndModify: false });
 
   if (!updatedDoc) {
-    return next(new AppError("no user found with that ID", 404));
+    next(new AppError("no user found with that ID", 404));
   }
   console.log("the user is updated with ID:", updatedDoc._id);
-  res.json(updatedDoc);
+  return res.json(updatedDoc);
 
 });

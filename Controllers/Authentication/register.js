@@ -87,11 +87,10 @@ export const register = catchAsync(async (req, res) => {
         }
     });
 
-    res.status(201).json({
+    return res.status(201).json({
         message: " user registered successfully",
         access_token: token,
         user: {
-            email: newUser.email,
             location: newUser.location,
             fullNames: newUser.fullNames,
             role: newUser.role,

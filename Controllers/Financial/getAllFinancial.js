@@ -5,41 +5,10 @@ export const getFinancial = catchAsync(async (req, res) => {
     let data = await Financial.find();
     console.log("list of financial record  is selected !!");
 
-    const page = req.query.page;
-    const limit = req.query.limit;
+    return res.status(200).json({
+        message: "list of users !!",
+        data
 
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-
-    const results = {};
-
-    if (endIndex < data.length) {
-        results.next = {
-            page: page + 1,
-            limit: limit
-        };
-    }
-
-    if (startIndex > 0) {
-        results.previous = {
-            page: page - 1,
-            limit: limit
-        };
-    }
-    results.result = data.slice(startIndex, endIndex);
-
-    if (page && limit) {
-        res.status(200).json({
-            message: "list of users by pagination !!",
-            results
-        });
-    }
-    else {
-        res.status(200).json({
-            message: "list of users !!",
-            data
-        });
-    }
-
+    })
 });
 

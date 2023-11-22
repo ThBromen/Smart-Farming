@@ -12,7 +12,7 @@ export const deleteUser = catchAsync(async (req, res) => {
 
   const result = await User.deleteMany(data);
   console.log("the user is deleted with ID:", data._id);
-  res.send(result);
+  return res.send(result);
 
 
 });

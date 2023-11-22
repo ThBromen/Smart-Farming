@@ -29,13 +29,13 @@ export const getGallery = catchAsync(async (req, res) => {
     results.result = data.slice(startIndex, endIndex);
 
     if (page && limit) {
-        res.status(200).json({
+        return res.status(200).json({
             message: "list of users by pagination !!",
             results
         });
     }
     else {
-        res.status(200).json({
+        return res.status(200).json({
             message: "list of users !!",
             data
         });
