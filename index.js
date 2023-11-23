@@ -27,7 +27,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:6000",
+        url: "https://smart-farming-api.onrender.com",
       },
     ],
   },
