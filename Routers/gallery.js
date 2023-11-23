@@ -6,230 +6,133 @@ import { logger, isAdmin } from "../Middleware";
 const galleryRouter = express.Router();
 
 
-
-// /**
-//  * @swagger
-//  * components:
-//  *   securitySchemes:
-//  *     BearerAuth:
-//  *       type: http
-//  *       scheme: bearer
-//  *       bearerFormat: JWT
-//  *   schemas:
-//  *     addfinancial:
-//  *       type: object
-//  *       required:
-//  *         - sales
-//  *         - litresSold
-//  *         - animalEarTag
-//  *       properties:
-//  *         sales:
-//  *           type: string
-//  *           description: The sales of the farmer made
-//  *         litresSold:
-//  *           type: string
-//  *           description: The number of littres sold
-//  *         animalEarTag:
-//  *           type: string
-//  *           description: The cow tag for cow which provide that milk
-//  *       example:
-//  *         sales: milk
-//  *         litresSold: 10
-//  *         animalEarTag: M 23
-//  *     financialEdit:
-//  *       type: object
-//  *       required:
-//  *         - sales
-//  *         - litresSold
-//  *         - animalEarTag
-//  *       properties:
-//  *         sales:
-//  *           type: string
-//  *           description: The sales of the farmer made
-//  *         litresSold:
-//  *           type: string
-//  *           description: The number of littres sold
-//  *         animalEarTag:
-//  *           type: string
-//  *           description: The cow tag for cow which provide that milk
-//  *       example:
-//  *         sales: milk
-//  *         litresSold: 10
-//  *         animalEarTag: M 34
-//  */
-
-
-// /**
-//  * @swagger
-//  * tags:
-//  *   name: Financial
-//  *   description: The Financial managing API
-//  */
-
-// /**
-//  * @swagger
-//  * /api/v1/getuser:
-//  *   get:
-//  *     summary: Returns the list of all the users
-//  *     tags: [Financial]
-//  *     security:
-//  *       - BearerAuth: []
-//  *     responses:
-//  *       200:
-//  *          description: The list of all users
-//  *          content:
-//  *             application/json:
-//  *               schema:
-//  *                 type: array
-//  *                 items:
-//  *                   $ref: '#/components/schemas/userEdit'
-//  *       204:
-//  *          description: No any user in the database
-//  *       403:
-//  *          description: The user not authorised
-//  *       404:
-//  *          description: Not found
-//  *       500:
-//  *          description: Internal Server Error
-//  */
-
-// /**
-//  * @swagger
-//  * /api/v1/userbyid/{id}:
-//  *   get:
-//  *     summary: Get the user by id
-//  *     tags: [Financial]
-//  *     security:
-//  *       - BearerAuth: []
-//  *     parameters:
-//  *        - in: path
-//  *          name: id
-//  *          schema:
-//  *             type: string
-//  *          required: true
-//  *          description: The user id
-//  *        - in: header
-//  *          name: Authorization
-//  *          required: true
-//  *          description: The user access token
-//  *     responses:
-//  *       200:
-//  *          description: The user found by id
-//  *          content:
-//  *             application/json:
-//  *       204:
-//  *          description: No any user in the database
-//  *       403:
-//  *          description: The user not authorised
-//  *       404:
-//  *          description: The user was not found
-//  *       500:
-//  *          description: Internal Server Error
-//  */
-
-// /**
-//  * @swagger
-//  * /api/v1/register:
-//  *   post:
-//  *     summary: Create a new user
-//  *     tags: [Financial]
-//  *     requestBody:
-//  *          required: true
-//  *          content:
-//  *            application/json:
-//  *               schema:
-//  *                   $ref: '#/components/schemas/signUp'
-//  *     responses:
-//  *       201:
-//  *          description: The user was successfully created
-//  *          content:
-//  *             application/json:
-//  *               schema:
-//  *                   $ref: '#/components/schemas/signUp'
-//  *       500:
-//  *          description: Internal Server Error
-//  */
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     addGallery:
+ *       type: object
+ *       required:
+ *         - title
+ *         - backdropImage
+ *         - description
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: The title of the gallery item
+ *         backdropImage:
+ *           type: string
+ *           description: URL or path to the backdrop image
+ *         description:
+ *           type: string
+ *           description: A brief description of the gallery item
+ *       example:
+ *         title: "Beautiful Sunset"
+ *         backdropImage: "https://example.com/sunset.jpg"
+ *         description: "A stunning view of the sunset over the ocean."
+ */
 
 
 
-// /**
-//  * @swagger
-//  * /api/v1/updateuser/{id}:
-//  *   put:
-//  *     summary: update the data of the user by id
-//  *     tags: [Users]
-//  *     security:
-//  *       - BearerAuth: []
-//  *     requestBody:
-//  *          required: true
-//  *          content:
-//  *            application/json:
-//  *               schema:
-//  *                   $ref: '#/components/schemas/userEdit'
-//  *     parameters:
-//  *        - in: path
-//  *          name: id
-//  *          schema:
-//  *             type: string
-//  *          required: true
-//  *          description: The user id
-//  *        - in: header
-//  *          name: Authorization
-//  *          required: true
-//  *          description: The user access token
-//  *     responses:
-//  *       200:
-//  *          description: The user was modified successfully
-//  *          content:
-//  *             application/json:
-//  *               schema:
-//  *                   $ref: '#/components/schemas/userEdit'
-//  *       204:
-//  *          description: No any user in the database
-//  *       401:
-//  *          description: The user not authorised
-//  *       404:
-//  *          description: The user was not found
-//  *       500:
-//  *          description: Internal Server Error
-//  */
+/**
+ * @swagger
+ * tags:
+ *   name: Gallery
+ *   description: API endpoints for managing Gallery 
+ */
+
+/**
+ * @swagger
+ * /gallery/addGallery:
+ *   post:
+ *     summary: Add a new image to the gallery
+ *     tags: [Gallery]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/addGallery'
+ *     responses:
+ *       200:
+ *         description: Image added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/addGallery'
+ *       500:
+ *         description: Internal Server Error
+ */
 
 
-// /**
-//  * @swagger
-//  * /api/v1/deleteuser/{id}:
-//  *   delete:
-//  *     summary: Delete the user by id
-//  *     tags: [Users]
-//  *     security:
-//  *       - BearerAuth: []
-//  *     parameters:
-//  *        - in: path
-//  *          name: id
-//  *          schema:
-//  *             type: string
-//  *          required: true
-//  *          description: The user id
-//  *        - in: header
-//  *          name: Authorization
-//  *          required: true
-//  *          description: The user access token
-//  *     responses:
-//  *       200:
-//  *          description: The user was deleted successfully
-//  *          content:
-//  *             application/json:
-//  *               schema:
-//  *                   $ref: '#/components/schemas/User'
-//  *       204:
-//  *          description: No any user in the database
-//  *       401:
-//  *          description: The user not authorised
-//  *       404:
-//  *          description: The user was not found
-//  *       500:
-//  *          description: Internal Server Error
-//  */
+
+
+/**
+ * @swagger
+ * /gallery/getGallery:
+ *   get:
+ *     summary: Get the list of images in the gallery
+ *     tags: [Gallery]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of images in the gallery
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/addGallery'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+/**
+ * @swagger
+ * /gallery/deleteGallery/{id}:
+ *   delete:
+ *     summary: Delete an image from the gallery by ID
+ *     tags: [Gallery]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The image ID to delete
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
+ *     responses:
+ *       200:
+ *         description: Image deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/addGallery'
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Image not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
 
 galleryRouter.post("/addGallery/", logger, addGallery);
 galleryRouter.get("/getGallery/", getGallery);

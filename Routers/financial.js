@@ -4,6 +4,7 @@ import { verfyToken, logger } from "../Middleware";
 
 const financialRouter = express.Router();
 
+
 /**
  * @swagger
  * components:
@@ -13,7 +14,7 @@ const financialRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     addfinancial:
+ *     addFinancial:
  *       type: object
  *       required:
  *         - sales
@@ -22,13 +23,13 @@ const financialRouter = express.Router();
  *       properties:
  *         sales:
  *           type: string
- *           description: The sales of the farmer made
+ *           description: The sales the farmer made
  *         litresSold:
  *           type: string
- *           description: The number of littres sold
+ *           description: The number of liters sold
  *         animalEarTag:
  *           type: string
- *           description: The cow tag for cow which provide that milk
+ *           description: The cow tag for the cow that provides the milk
  *       example:
  *         sales: milk
  *         litresSold: 10
@@ -42,52 +43,51 @@ const financialRouter = express.Router();
  *       properties:
  *         sales:
  *           type: string
- *           description: The sales of the farmer made
+ *           description: The sales the farmer made
  *         litresSold:
  *           type: string
- *           description: The number of littres sold
+ *           description: The number of liters sold
  *         animalEarTag:
  *           type: string
- *           description: The cow tag for cow which provide that milk
+ *           description: The cow tag for the cow that provides the milk
  *       example:
  *         sales: milk
  *         litresSold: 10
  *         animalEarTag: M 34
  */
 
-
 /**
  * @swagger
  * tags:
  *   name: Financial
- *   description: The Financial managing API
+ *   description: API endpoints for managing financial records
  */
 
 /**
  * @swagger
- * /api/v1/getuser:
+ * /api/v1/getFinancial:
  *   get:
- *     summary: Returns the list of all the users 
+ *     summary: Returns the list of all financial records
  *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     responses:
  *       200:
- *          description: The list of all users 
- *          content:
- *             application/json:
- *               schema:
- *                 type: array
- *                 items:
- *                   $ref: '#/components/schemas/userEdit'
+ *         description: The list of all financial records
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/financialEdit'
  *       204:
- *          description: No any user in the database
+ *         description: No financial records found in the database
  *       403:
- *          description: The user not authorised
+ *         description: Unauthorized access
  *       404:
- *          description: Not found
+ *         description: Not found
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
 
 /**
@@ -123,110 +123,107 @@ const financialRouter = express.Router();
  *       500:
  *          description: Internal Server Error
  */
-
 /**
  * @swagger
- * /api/v1/register:
+ * /api/v1/addFinancial:
  *   post:
- *     summary: Create a new user
+ *     summary: Record financial data
  *     tags: [Financial]
  *     requestBody:
- *          required: true
- *          content:
- *            application/json:
- *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/addFinancial'
  *     responses:
  *       201:
- *          description: The user was successfully created
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *         description: Financial data recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/addFinancial'
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
-
-
 
 /**
  * @swagger
- * /api/v1/updateuser/{id}:
+ * /api/v1/updateFinancial/{id}:
  *   put:
- *     summary: update the data of the user by id
- *     tags: [Users]
+ *     summary: Update financial data by ID
+ *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     requestBody:
- *          required: true
- *          content:
- *            application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/financialEdit'
  *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The financial data ID
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
  *     responses:
  *       200:
- *          description: The user was modified successfully
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
+ *         description: Financial data modified successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/financialEdit'
  *       204:
- *          description: No any user in the database
+ *         description: No financial data found in the database
  *       401:
- *          description: The user not authorised
+ *         description: Unauthorized access
  *       404:
- *          description: The user was not found
+ *         description: Financial data not found
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
-
 
 /**
  * @swagger
- * /api/v1/deleteuser/{id}:
+ * /api/v1/deleteFinancial/{id}:
  *   delete:
- *     summary: Delete the user by id
- *     tags: [Users]
+ *     summary: Delete financial data by ID
+ *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The financial data ID
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
  *     responses:
  *       200:
- *          description: The user was deleted successfully
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/User'
+ *         description: Financial data deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/financialEdit'
  *       204:
- *          description: No any user in the database
+ *         description: No financial data found in the database
  *       401:
- *          description: The user not authorised
+ *         description: Unauthorized access
  *       404:
- *          description: The user was not found
+ *         description: Financial data not found
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
+
 
 financialRouter.post("/recordFinancial/", logger, recordFinancial);
 financialRouter.get("/getFinancial/", verfyToken, getFinancial);

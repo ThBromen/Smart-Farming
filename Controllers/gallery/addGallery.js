@@ -16,12 +16,12 @@ cloudinary.config({
 
 export const addGallery = catchAsync(async (req, res) => {
 
-    const backdropimage = await cloudinary.uploader.upload(
+    const backdropImage = await cloudinary.uploader.upload(
         req.files["backdropimage"][0].path
     );
     const newGallery = await Gallery.create({
         ...req.body,
-        backdropimage: backdropimage.secure_url,
+        backdropImage: backdropImage.secure_url,
     });
 
     console.log("tours is created successfullty");
