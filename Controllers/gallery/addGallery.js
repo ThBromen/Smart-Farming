@@ -14,24 +14,14 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET,
 });
 
-
 export const addGallery = catchAsync(async (req, res) => {
 
-    const tourImagesArray = [];
     const backdropimage = await cloudinary.uploader.upload(
         req.files["backdropimage"][0].path
     );
-    for (let index = 0; index < req.files["gallery"].length; index++) {
-        tourImagesArray.push(
-            await cloudinary.uploader.upload(req.files["gallery"][index].path)
-        );
-    }
-    console.log("images:", tourImagesArray);
-
     const newGallery = await Gallery.create({
         ...req.body,
         backdropimage: backdropimage.secure_url,
-        gallery: tourImagesArray.map((item) => item.secure_url),
     });
 
     console.log("tours is created successfullty");

@@ -2,7 +2,7 @@
 import { Financial } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
-export const deleteFinancial = catchAsync(async (req, res) => {
+export const deleteCow = catchAsync(async (req, res) => {
     const requestId = req.params.id;
     let data = await Financial.findById({ _id: requestId });
 

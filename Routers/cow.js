@@ -1,5 +1,9 @@
 import express from "express";
-import { recordCow, getCow, updateCow, getCowById, deleteCow } from "../Controllers/Financial";
+import {
+    recordCow, recordHeifers, recordCalves, recordBull,
+    deleteCow, getAllCow, getCowBytype, updateCow, getCowByEarTag
+} from "../Controllers/cows";
+
 import { verfyToken, logger } from "../Middleware";
 
 const cowRouter = express.Router();
@@ -228,10 +232,14 @@ const cowRouter = express.Router();
  *          description: Internal Server Error
  */
 
-// cowRouter.post("/recordCow/", logger, recordCow);
-// cowRouter.get("/getCow/", verfyToken, getCow);
-// cowRouter.get("/getCowById/:id", verfyToken, getCowById);
-// cowRouter.delete("/deleteCow/:id", verfyToken, deleteCow);
-// cowRouter.put("/updateCow/:id", verfyToken, updateCow);
+cowRouter.post("/recordCow/", logger, recordCow);
+cowRouter.post("/recordHeifers/", logger, recordHeifers);
+cowRouter.post("/recordCalves/", logger, recordCalves);
+cowRouter.post("/recordBull/", logger, recordBull);
+cowRouter.get("/getCow/", verfyToken, getAllCow);
+cowRouter.get("/getCowBytype/:type", verfyToken, getCowBytype);
+cowRouter.get("/getCowByEarTag/:earTag", verfyToken, getCowByEarTag);
+cowRouter.delete("/deleteCow/:id", verfyToken, deleteCow);
+cowRouter.put("/updateCow/:id", verfyToken, updateCow);
 
 export default cowRouter;

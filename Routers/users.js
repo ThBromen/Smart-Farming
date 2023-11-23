@@ -312,7 +312,7 @@ const userRouter = express.Router();
 
 userRouter.post("/login/", login);
 userRouter.post("/register/", logger, register);
-userRouter.get("/getUser/", verfyToken, getUser);
+userRouter.get("/getUser/", getUser);
 userRouter.get("/userbyid/:id", verfyToken, getById);
 userRouter.delete("/deleteuser/:id", verfyToken, deleteUser);
 userRouter.put("/updateuser/:id", verfyToken, updateUser);
