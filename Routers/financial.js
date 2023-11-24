@@ -225,7 +225,7 @@ const financialRouter = express.Router();
  */
 
 
-financialRouter.post("/recordFinancial/", logger, recordFinancial);
+financialRouter.post("/addFinancial/", logger, recordFinancial);
 financialRouter.get("/getFinancial/", verfyToken, getFinancial);
 financialRouter.get("/financialById/:id", verfyToken, getFinancialById);
 financialRouter.delete("/deleteFinancial/:id", verfyToken, deleteFinancial);
