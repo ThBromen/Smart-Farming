@@ -129,6 +129,8 @@ const financialRouter = express.Router();
  *   post:
  *     summary: Record financial data
  *     tags: [Financial]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
