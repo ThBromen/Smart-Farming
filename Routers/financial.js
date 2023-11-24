@@ -1,5 +1,5 @@
 import express from "express";
-import { recordFinancial, getFinancial, updateFinancial, getFinancialById, deleteFinancial } from "../Controllers/Financial";
+import { addFinancial, getFinancial, updateFinancial, getFinancialById, deleteFinancial } from "../Controllers/Financial";
 import { verfyToken, logger } from "../Middleware";
 
 const financialRouter = express.Router();
@@ -225,7 +225,7 @@ const financialRouter = express.Router();
  */
 
 
-financialRouter.post("/addFinancial/", logger, recordFinancial);
+financialRouter.post("/addFinancial", verfyToken, addFinancial);
 financialRouter.get("/getFinancial/", verfyToken, getFinancial);
 financialRouter.get("/financialById/:id", verfyToken, getFinancialById);
 financialRouter.delete("/deleteFinancial/:id", verfyToken, deleteFinancial);

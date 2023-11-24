@@ -311,7 +311,7 @@ const userRouter = express.Router();
 
 
 userRouter.post("/login/", login);
-userRouter.post("/register/", logger, register);
+userRouter.post("/register/", register);
 userRouter.get("/getUser/", getUser);
 userRouter.get("/userbyid/:id", verfyToken, getById);
 userRouter.delete("/deleteuser/:id", verfyToken, deleteUser);

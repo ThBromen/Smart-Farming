@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 
 app.use("/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/api/v1/", userRouter);
-app.use("/financial/", financialRouter);
+app.use("/financial", financialRouter);
 app.use("/gallery/", galleryRouter);
 app.use("/cow/", cowRouter);
 
@@ -57,13 +57,13 @@ app.use("/cow/", cowRouter);
 
 // app.use(globalErrorHandle);
 
-mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-  console.log("online Database connected");
-});
-
-// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-//   console.log(" local Database connected");
+// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+//   console.log("online Database connected");
 // });
+
+mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+  console.log(" local Database connected");
+});
 
 app.listen(port, () => {
   console.log(` app listening on port ${port}`);

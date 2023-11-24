@@ -134,7 +134,7 @@ const galleryRouter = express.Router();
 
 
 
-galleryRouter.post("/addGallery/", logger, addGallery);
+galleryRouter.post("/addGallery/", addGallery);
 galleryRouter.get("/getGallery/", getGallery);
 galleryRouter.delete("/deleteGallery/:id", deleteGallery);
 
