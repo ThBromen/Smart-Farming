@@ -1,7 +1,6 @@
 import express from "express";
 import { addGallery, getGallery, deleteGallery } from "../Controllers/gallery";
-import { logger, isAdmin } from "../Middleware";
-
+import { logger, isAdmin, verfyToken, galleryImageUpload } from "../Middleware";
 
 const galleryRouter = express.Router();
 
@@ -134,8 +133,9 @@ const galleryRouter = express.Router();
 
 
 
-galleryRouter.post("/addGallery/", addGallery);
-galleryRouter.get("/getGallery/", getGallery);
-galleryRouter.delete("/deleteGallery/:id", deleteGallery);
+
+galleryRouter.post("/addGallery/", galleryImageUpload, verfyToken, addGallery);
+galleryRouter.get("/getGallery/", verfyToken, getGallery);
+galleryRouter.delete("/deleteGallery/:id", verfyToken, deleteGallery);
 
 export default galleryRouter;
