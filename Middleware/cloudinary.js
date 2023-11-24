@@ -1,11 +1,6 @@
 import multer from "multer";
 import path from "path";
 
-import { catchAsync } from "../Controllers/Error/catchAsync";
-
-
-
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "images/")

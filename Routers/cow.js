@@ -8,6 +8,8 @@ import { verfyToken, logger } from "../Middleware";
 
 const cowRouter = express.Router();
 
+
+
 /**
  * @swagger
  * components:
@@ -17,12 +19,14 @@ const cowRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     addfinancial:
+ *     Cows:
  *       type: object
  *       required:
- *         - sales
+ *         - earTag
+ *         - type
+ *         - breedType
+ *         - status
  *         - litresSold
- *         - animalEarTag
  *       properties:
  *         sales:
  *           type: string
@@ -37,12 +41,14 @@ const cowRouter = express.Router();
  *         sales: milk
  *         litresSold: 10
  *         animalEarTag: M 23
- *     financialEdit:
+ *     cowEdit:
  *       type: object
  *       required:
- *         - sales
+ *         - earTag
+ *         - type
+ *         - breedType
+ *         - status
  *         - litresSold
- *         - animalEarTag
  *       properties:
  *         sales:
  *           type: string
@@ -54,10 +60,14 @@ const cowRouter = express.Router();
  *           type: string
  *           description: The cow tag for cow which provide that milk
  *       example:
- *         sales: milk
- *         litresSold: 10
- *         animalEarTag: M 34
+ *         earTag: M 23
+ *         type: Bull
+ *         breedType: 
+ *         litresSold: milk
+ *         dateOfGivingBirth: 10
+ *         calfNumber: M 34
  */
+
 
 
 /**
@@ -67,17 +77,18 @@ const cowRouter = express.Router();
  *   description: The Financial managing API
  */
 
+
 /**
  * @swagger
  * /api/v1/getuser:
  *   get:
- *     summary: Returns the list of all the users 
+ *     summary: Returns the list of all the Cows 
  *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
  *     responses:
  *       200:
- *          description: The list of all users 
+ *          description: The list of all Cows 
  *          content:
  *             application/json:
  *               schema:
@@ -93,6 +104,7 @@ const cowRouter = express.Router();
  *       500:
  *          description: Internal Server Error
  */
+
 
 /**
  * @swagger
@@ -128,6 +140,7 @@ const cowRouter = express.Router();
  *          description: Internal Server Error
  */
 
+
 /**
  * @swagger
  * /api/v1/register:
@@ -150,6 +163,7 @@ const cowRouter = express.Router();
  *       500:
  *          description: Internal Server Error
  */
+
 
 
 
@@ -196,6 +210,7 @@ const cowRouter = express.Router();
  */
 
 
+
 /**
  * @swagger
  * /api/v1/deleteuser/{id}:
@@ -232,10 +247,11 @@ const cowRouter = express.Router();
  *          description: Internal Server Error
  */
 
-cowRouter.post("/recordCow/", logger, recordCow);
-cowRouter.post("/recordHeifers/", logger, recordHeifers);
-cowRouter.post("/recordCalves/", logger, recordCalves);
-cowRouter.post("/recordBull/", logger, recordBull);
+
+cowRouter.post("/recordCow/", recordCow);
+cowRouter.post("/recordHeifers/", recordHeifers);
+cowRouter.post("/recordCalves/", recordCalves);
+cowRouter.post("/recordBull/", recordBull);
 cowRouter.get("/getCow/", verfyToken, getAllCow);
 cowRouter.get("/getCowBytype/:type", verfyToken, getCowBytype);
 cowRouter.get("/getCowByEarTag/:earTag", verfyToken, getCowByEarTag);

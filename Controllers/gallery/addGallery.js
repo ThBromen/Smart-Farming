@@ -15,9 +15,18 @@ cloudinary.config({
 
 export const addGallery = catchAsync(async (req, res) => {
 
+    // Ensure that the request contains the 'backdropImage' file
+    if (!req.files || !req.files["backdropImage"] || req.files["backdropImage"].length === 0) {
+        return res.status(400).json({
+            error: "No backdrop image provided",
+        });
+    }
+
     const result = await cloudinary.uploader.upload(
         req.files["backdropImage"][0].path
     );
+
+
     const newGallery = await Gallery.create({
         ...req.body,
         backdropImage: result.secure_url,

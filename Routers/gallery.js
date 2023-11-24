@@ -131,9 +131,6 @@ const galleryRouter = express.Router();
  */
 
 
-
-
-
 galleryRouter.post("/addGallery/", galleryImageUpload, verfyToken, addGallery);
 galleryRouter.get("/getGallery/", verfyToken, getGallery);
 galleryRouter.delete("/deleteGallery/:id", verfyToken, deleteGallery);

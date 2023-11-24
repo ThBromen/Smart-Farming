@@ -14,7 +14,7 @@ const userRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     signUp:
+ *     User:
  *       type: object
  *       required:
  *         - email
@@ -135,7 +135,7 @@ const userRouter = express.Router();
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/User'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -191,14 +191,14 @@ const userRouter = express.Router();
  *          content:
  *            application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *          description: The user was successfully created
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *       500:
  *          description: Internal Server Error
  */
