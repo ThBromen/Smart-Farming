@@ -51,11 +51,11 @@ app.use("/cow/", cowRouter);
 // app.use("/contact/", contactRouter);
 // app.use("/payment/", paymentRouter);
 
-// app.all("*", (req, res, next) => {
-//   next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
-// });
+app.all("*", (req, res, next) => {
+  next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
+});
 
-// app.use(globalErrorHandle);
+app.use(globalErrorHandle);
 
 mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
   console.log("online Database connected");
