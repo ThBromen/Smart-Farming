@@ -94,7 +94,7 @@ const financialRouter = express.Router();
  * @swagger
  * /financial/userbyid/{id}:
  *   get:
- *     summary: Get the user by id
+ *     summary: Get the Financial by id
  *     tags: [Financial]
  *     security:
  *       - BearerAuth: []
@@ -104,22 +104,22 @@ const financialRouter = express.Router();
  *          schema:
  *             type: string
  *          required: true
- *          description: The user id
+ *          description: The usFinancialer id
  *        - in: header
  *          name: Authorization
  *          required: true
  *          description: The user access token
  *     responses:
  *       200:
- *          description: The user found by id
+ *          description: The Financial found by id
  *          content:
  *             application/json:
  *       204:
- *          description: No any user in the database
+ *          description: No any Financial in the database
  *       403:
  *          description: The user not authorised
  *       404:
- *          description: The user was not found
+ *          description: The Financial was not found
  *       500:
  *          description: Internal Server Error
  */

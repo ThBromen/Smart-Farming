@@ -6,7 +6,7 @@ export const getFinancial = catchAsync(async (req, res) => {
     console.log("list of financial record  is selected !!");
 
     return res.status(200).json({
-        message: "list of users !!",
+        message: "list of financial record  !!",
         data
 
     })
