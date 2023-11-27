@@ -12,12 +12,12 @@ const cowSchema = mongoose.Schema({
     status: { type: String, required: true },
 
     dateOfGivingBirth: String,
-    calfNumber: string,
+    calfNumber: String,
     lactating: String,
-    numberOfCalving: string,
-    litresOfMilkItProduces: string,
-    dateOfBirth: string,
-    mothersEarTag: string,
+    numberOfCalving: String,
+    litresOfMilkItProduces: String,
+    dateOfBirth: String,
+    mothersEarTag: String,
     silesEarTag: { type: String },
     weightAtBirth: { type: String },
     wearningPeriod: { type: String },
@@ -58,13 +58,13 @@ export const Breed = mongoose.model("Breed", breedSchema);
 
 
 
-Category.find()
-    .populate("categoryType")
-    .then(p => console.log(p))
-    .catch(error => console.log(error));
+// Category.find()
+//     .populate("categoryType")
+//     .then(p => console.log(p))
+//     .catch(error => console.log(error));
 
 
-Breed.find()
-    .populate("breedType")
-    .then(p => console.log(p))
-    .catch(error => console.log(error)); 
+// Breed.find()
+//     .populate("breedType")
+//     .then(p => console.log(p))
+//     .catch(error => console.log(error)); 

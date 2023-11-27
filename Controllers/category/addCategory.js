@@ -27,8 +27,14 @@ export const deleteCowCategory = catchAsync(async (req, res) => {
     return res.send(result);
 });
 
+
 export const getCowCategory = catchAsync(async (req, res) => {
     let data = await Category.find();
+
+    if (!data) {
+        return next(new AppError("no Cow Category found ", 404));
+    }
+
     console.log("list of Cow Category is selected !!");
 
     return res.status(200).json({
@@ -37,6 +43,7 @@ export const getCowCategory = catchAsync(async (req, res) => {
 
     })
 });
+
 
 export const getCowCategoryById = catchAsync(async (req, res) => {
 
