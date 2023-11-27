@@ -1,8 +1,8 @@
-import { Cow } from "../../Models";
+import { Cow, Category, Breed } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordCow = catchAsync(async (req, res) => {
-    const { earTag, type, breedType, status, dateOfGivingBirth,
+    const { earTag, categoryType, breedType, status, dateOfGivingBirth,
         calfNumber, lactating, numberOfCalving, litresOfMilkItProduces } = req.body;
 
     const newCow = await Cow.create(req.body);
@@ -14,6 +14,13 @@ export const recordCow = catchAsync(async (req, res) => {
         newCow,
     });
 });
+
+
+
+
+
+
+
 
 
 export const recordHeifers = catchAsync(async (req, res) => {
