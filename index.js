@@ -29,7 +29,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:6000/",
+        url: "https://smart-farming-api.onrender.com",
       },
     ],
   },
@@ -37,8 +37,6 @@ const options = {
 };
 const specs = swaggerJSDoc(options);
 const app = express();
-
-
 
 
 app.use(logger);
@@ -57,21 +55,23 @@ app.use("/CawCategory/", categoryRouter);
 
 
 
-
-
 app.all("*", (req, res, next) => {
   next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
 });
 
 app.use(globalErrorHandle);
 
-// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-//   console.log("online Database connected");
+mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+  console.log("online Database connected");
+});
+
+
+
+// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+//   console.log(" local Database connected");
 // });
 
-mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-  console.log(" local Database connected");
-});
+
 
 app.listen(port, () => {
   console.log(` app listening on port ${port}`);

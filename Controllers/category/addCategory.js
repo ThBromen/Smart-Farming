@@ -32,7 +32,7 @@ export const getCowCategory = catchAsync(async (req, res) => {
     console.log("list of Cow Category is selected !!");
 
     return res.status(200).json({
-        message: "list of Cow Category is selected  !!",
+        message: "list of Cow Categoryn is selected  !!",
         data
 
     })
