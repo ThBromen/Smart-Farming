@@ -4,12 +4,13 @@ import express from "express";
 import "dotenv/config";
 import { logger } from "./Middleware";
 import cors from "cors";
+
 import userRouter from "./Routers/users";
 import financialRouter from "./Routers/financial";
 import galleryRouter from "./Routers/gallery";
-import cowRouter from "./Routers/cow"
-import breedRouter from "./Routers/breedType"
-import categoryRouter from "./Routers/categoryType"
+import cowRouter from "./Routers/cow";
+import breedRouter from "./Routers/breedType";
+import categoryRouter from "./Routers/categoryType";
 import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -48,8 +49,8 @@ app.use("/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/api/v1/", userRouter);
 app.use("/financial", financialRouter);
 app.use("/gallery/", galleryRouter);
-app.use("/cow/", cowRouter);
-app.use("/cawBread/", breedRouter);
+app.use("/createCow/", cowRouter);
+app.use("/cowBread/", breedRouter);
 app.use("/CawCategory/", categoryRouter);
 
 

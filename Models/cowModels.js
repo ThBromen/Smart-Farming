@@ -1,13 +1,38 @@
 
 import mongoose from "mongoose";
 
+const categorySchema = mongoose.Schema({
+
+    categoryType: String,
+    description: String
+});
+export const Category = mongoose.model("Category", categorySchema);
+
+
+
+const breedSchema = mongoose.Schema({
+
+
+    breedType: String,
+    description: String
+});
+
+export const Breed = mongoose.model("Breed", breedSchema);
+
+
 const cowSchema = mongoose.Schema({
 
     earTag: { type: String, required: true },
 
-    categoryType: { type: String, required: true },
+    categoryType: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+    },
 
-    breedType: { type: String, required: true },
+    breedType: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Breed"
+    },
 
     status: { type: String, required: true },
 
@@ -31,30 +56,6 @@ const cowSchema = mongoose.Schema({
 export const Cow = mongoose.model("Cow", cowSchema);
 
 
-
-const categorySchema = mongoose.Schema({
-
-    categoryType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cow"
-    },
-    description: String
-});
-export const Category = mongoose.model("Category", categorySchema);
-
-
-
-const breedSchema = mongoose.Schema({
-
-
-    breedType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cow"
-    },
-    description: String
-});
-
-export const Breed = mongoose.model("Breed", breedSchema);
 
 
 
