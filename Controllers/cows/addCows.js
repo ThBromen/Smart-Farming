@@ -7,9 +7,10 @@ export const recordCow = catchAsync(async (req, res) => {
 
     const { categoryId } = req.params;
     const { breedId } = req.params;
-
     const categoryType = await Category.findById(categoryId);
     const breedType = await Breed.findById(breedId);
+
+
     console.log("object", breedType, categoryType)
     const newCow = await Cow.create(req.body);
 

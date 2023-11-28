@@ -33,8 +33,8 @@ const breedRouter = express.Router();
 /**
  * @swagger
  * tags:
- *   name: Breed
- *   description: API endpoints for managing cow breeds
+ *   name: BreedCategory
+ *   description: API endpoints for managing cow BreedCategorys
  */
 
 /**
@@ -42,7 +42,7 @@ const breedRouter = express.Router();
  * /cowBreed/getCowBreed:
  *   get:
  *     summary: Returns the list of all cow breeds
- *     tags: [Breed]
+ *     tags: [BreedCategory]
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -69,7 +69,7 @@ const breedRouter = express.Router();
  * /cowBreed/getCowBreedById/{id}:
  *   get:
  *     summary: Get cow breed by ID
- *     tags: [Breed]
+ *     tags: [BreedCategory]
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -105,7 +105,7 @@ const breedRouter = express.Router();
  * /cowBreed/addCowBreed:
  *   post:
  *     summary: Add a new cow breed
- *     tags: [Breed]
+ *     tags: [BreedCategory]
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -130,7 +130,7 @@ const breedRouter = express.Router();
  * /cowBreed/deleteCowBreed/{id}:
  *   delete:
  *     summary: Delete cow breed by ID
- *     tags: [Breed]
+ *     tags: [BreedCategory]
  *     security:
  *       - BearerAuth: []
  *     parameters:

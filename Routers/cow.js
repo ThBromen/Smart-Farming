@@ -23,49 +23,186 @@ const cowRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - type
+ *         - categoryType
  *         - breedType
- *         - status
- *         - litresSold
+ *         - dateOfBirth
+ *         - calfNumber
+ *         - lactating
+ *         - numberOfCalving
+ *         - litresOfMilkItProduces
+ *         - mothersEarTag
+ *         - silesEarTag
+ *         - weightAtBirth
+ *         - weaningPeriod
+ *         - castrationPeriod
+ *         - inseminationPeriod
+ *         - whereItWasPurchased
+ *         - purchasedDate
+ *         - weight
  *       properties:
- *         sales:
+ *         earTag:
  *           type: string
- *           description: The sales of the farmer made
- *         litresSold:
+ *           description: The ear tag of the cow
+ *         categoryType:
  *           type: string
- *           description: The number of littres sold
- *         animalEarTag:
+ *           description: The category type of the cow (e.g., Dairy, Beef)
+ *         breedType:
  *           type: string
- *           description: The cow tag for cow which provide that milk
+ *           description: The breed type of the cow
+ *         dateOfBirth:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the cow
+ *         calfNumber:
+ *           type: string
+ *           description: The calf number of the cow
+ *         lactating:
+ *           type: string
+ *           description: Indicates if the cow is lactating (Yes/No)
+ *         numberOfCalving:
+ *           type: integer
+ *           description: The number of calving events
+ *         litresOfMilkItProduces:
+ *           type: integer
+ *           description: The amount of milk the cow produces
+ *         mothersEarTag:
+ *           type: string
+ *           description: The ear tag of the mother cow
+ *         silesEarTag:
+ *           type: string
+ *           description: The ear tag of the sire (father) cow
+ *         weightAtBirth:
+ *           type: string
+ *           description: The weight of the cow at birth
+ *         weaningPeriod:
+ *           type: string
+ *           description: The weaning period of the cow
+ *         castrationPeriod:
+ *           type: string
+ *           description: The castration period of the cow (Yes/No)
+ *         inseminationPeriod:
+ *           type: string
+ *           description: The insemination period of the cow (Yes/No)
+ *         whereItWasPurchased:
+ *           type: string
+ *           description: The place where the cow was purchased
+ *         purchasedDate:
+ *           type: string
+ *           format: date
+ *           description: The date when the cow was purchased
+ *         weight:
+ *           type: string
+ *           description: The current weight of the cow
  *       example:
- *         sales: milk
- *         litresSold: 10
- *         animalEarTag: M 23
+ *         earTag: "C001"
+ *         categoryType: "Dairy"
+ *         breedType: "Holstein"
+ *         dateOfBirth: "2022-01-01"
+ *         calfNumber: "CN001"
+ *         lactating: "Yes"
+ *         numberOfCalving: 1
+ *         litresOfMilkItProduces: 20
+ *         mothersEarTag: "M001"
+ *         silesEarTag: "S001"
+ *         weightAtBirth: "50 kg"
+ *         weaningPeriod: "3 months"
+ *         castrationPeriod: "No"
+ *         inseminationPeriod: "Yes"
+ *         whereItWasPurchased: "Farm A"
+ *         purchasedDate: "2021-12-01"
+ *         weight: "500 kg"
  *     cowEdit:
  *       type: object
  *       required:
  *         - earTag
- *         - type
+ *         - categoryType
  *         - breedType
- *         - status
- *         - litresSold
+ *         - dateOfBirth
+ *         - calfNumber
+ *         - lactating
+ *         - numberOfCalving
+ *         - litresOfMilkItProduces
+ *         - mothersEarTag
+ *         - silesEarTag
+ *         - weightAtBirth
+ *         - weaningPeriod
+ *         - castrationPeriod
+ *         - inseminationPeriod
+ *         - whereItWasPurchased
+ *         - purchasedDate
+ *         - weight
  *       properties:
- *         sales:
+ *         earTag:
  *           type: string
- *           description: The sales of the farmer made
- *         litresSold:
+ *           description: The ear tag of the cow
+ *         categoryType:
  *           type: string
- *           description: The number of littres sold
- *         animalEarTag:
+ *           description: The category type of the cow (e.g., Cow, Bull)
+ *         breedType:
  *           type: string
- *           description: The cow tag for cow which provide that milk
+ *           description: The breed type of the cow
+ *         dateOfBirth:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the cow
+ *         calfNumber:
+ *           type: string
+ *           description: The calf number of the cow
+ *         lactating:
+ *           type: string
+ *           description: Indicates if the cow is lactating (Yes/No)
+ *         numberOfCalving:
+ *           type: integer
+ *           description: The number of calving events
+ *         litresOfMilkItProduces:
+ *           type: integer
+ *           description: The amount of milk the cow produces
+ *         mothersEarTag:
+ *           type: string
+ *           description: The ear tag of the mother cow
+ *         silesEarTag:
+ *           type: string
+ *           description: The ear tag of the sire (father) cow
+ *         weightAtBirth:
+ *           type: string
+ *           description: The weight of the cow at birth
+ *         weaningPeriod:
+ *           type: string
+ *           description: The weaning period of the cow
+ *         castrationPeriod:
+ *           type: string
+ *           description: The castration period of the cow (Yes/No)
+ *         inseminationPeriod:
+ *           type: string
+ *           description: The insemination period of the cow (Yes/No)
+ *         whereItWasPurchased:
+ *           type: string
+ *           description: The place where the cow was purchased
+ *         purchasedDate:
+ *           type: string
+ *           format: date
+ *           description: The date when the cow was purchased
+ *         weight:
+ *           type: string
+ *           description: The current weight of the cow
  *       example:
- *         earTag: M 23
- *         type: Bull
- *         breedType: 
- *         litresSold: milk
- *         dateOfGivingBirth: 10
- *         calfNumber: M 34
+ *         earTag: "C001"
+ *         categoryType: "Dairy"
+ *         breedType: "Holstein"
+ *         dateOfBirth: "2022-01-01"
+ *         calfNumber: "CN001"
+ *         lactating: "Yes"
+ *         numberOfCalving: 1
+ *         litresOfMilkItProduces: 20
+ *         mothersEarTag: "M001"
+ *         silesEarTag: "S001"
+ *         weightAtBirth: "50 kg"
+ *         weaningPeriod: "3 months"
+ *         castrationPeriod: "No"
+ *         inseminationPeriod: "Yes"
+ *         whereItWasPurchased: "Farm A"
+ *         purchasedDate: "2021-12-01"
+ *         weight: "500 kg"
  */
 
 
@@ -73,179 +210,291 @@ const cowRouter = express.Router();
 /**
  * @swagger
  * tags:
- *   name: Financial
- *   description: The Financial managing API
+ *   name: Cow
+ *   description: The Cow managing API
  */
 
 
 /**
  * @swagger
- * /api/v1/getuser:
- *   get:
- *     summary: Returns the list of all the Cows 
- *     tags: [Financial]
- *     security:
- *       - BearerAuth: []
- *     responses:
- *       200:
- *          description: The list of all Cows 
- *          content:
- *             application/json:
- *               schema:
- *                 type: array
- *                 items:
- *                   $ref: '#/components/schemas/userEdit'
- *       204:
- *          description: No any user in the database
- *       403:
- *          description: The user not authorised
- *       404:
- *          description: Not found
- *       500:
- *          description: Internal Server Error
- */
-
-
-/**
- * @swagger
- * /api/v1/userbyid/{id}:
- *   get:
- *     summary: Get the user by id
- *     tags: [Financial]
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
- *     responses:
- *       200:
- *          description: The user found by id
- *          content:
- *             application/json:
- *       204:
- *          description: No any user in the database
- *       403:
- *          description: The user not authorised
- *       404:
- *          description: The user was not found
- *       500:
- *          description: Internal Server Error
- */
-
-
-/**
- * @swagger
- * /api/v1/register:
+ * /createCow/recordCow:
  *   post:
- *     summary: Create a new user
- *     tags: [Financial]
+ *     summary: Record cow data
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
- *          required: true
- *          content:
- *            application/json:
- *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cows'
  *     responses:
  *       201:
- *          description: The user was successfully created
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *         description: Cow data recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
-
-
-
 
 /**
  * @swagger
- * /api/v1/updateuser/{id}:
- *   put:
- *     summary: update the data of the user by id
- *     tags: [Users]
+ * /createCow/recordHeifers:
+ *   post:
+ *     summary: Record heifers data
+ *     tags: [Cow]
  *     security:
  *       - BearerAuth: []
  *     requestBody:
- *          required: true
- *          content:
- *            application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
- *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cows'
  *     responses:
- *       200:
- *          description: The user was modified successfully
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/userEdit'
- *       204:
- *          description: No any user in the database
- *       401:
- *          description: The user not authorised
- *       404:
- *          description: The user was not found
+ *       201:
+ *         description: Heifers data recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
-
-
 
 /**
  * @swagger
- * /api/v1/deleteuser/{id}:
- *   delete:
- *     summary: Delete the user by id
- *     tags: [Users]
+ * /createCow/recordCalves:
+ *   post:
+ *     summary: Record calves data
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cows'
+ *     responses:
+ *       201:
+ *         description: Calves data recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /createCow/recordBull:
+ *   post:
+ *     summary: Record bull data
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cows'
+ *     responses:
+ *       201:
+ *         description: Bull data recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /createCow/getCow:
+ *   get:
+ *     summary: Returns the list of all cows
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: The list of all cows
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/cowEdit'
+ *       204:
+ *         description: No cows found in the database
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /createCow/getCowBytype/{type}:
+ *   get:
+ *     summary: Get cows by type
+ *     tags: [Cow]
  *     security:
  *       - BearerAuth: []
  *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
+ *       - in: path
+ *         name: type
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The cow type
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
  *     responses:
  *       200:
- *          description: The user was deleted successfully
- *          content:
- *             application/json:
- *               schema:
- *                   $ref: '#/components/schemas/User'
+ *         description: The list of cows by type
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/cowEdit'
  *       204:
- *          description: No any user in the database
- *       401:
- *          description: The user not authorised
+ *         description: No cows found for the given type
+ *       403:
+ *         description: Unauthorized access
  *       404:
- *          description: The user was not found
+ *         description: Cow not found
  *       500:
- *          description: Internal Server Error
+ *         description: Internal Server Error
  */
+
+/**
+ * @swagger
+ * /createCow/getCowByEarTag/{earTag}:
+ *   get:
+ *     summary: Get cow by ear tag
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: earTag
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The cow ear tag
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
+ *     responses:
+ *       200:
+ *         description: The cow found by ear tag
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
+ *       204:
+ *         description: No cow found for the given ear tag
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Cow not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /createCow/deleteCow/{id}:
+ *   delete:
+ *     summary: Delete cow by ID
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The cow ID
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
+ *     responses:
+ *       200:
+ *         description: Cow deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
+ *       204:
+ *         description: No cow found in the database
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Cow not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /createCow/updateCow/{id}:
+ *   put:
+ *     summary: Update cow by ID
+ *     tags: [Cow]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The cow ID
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cows'
+ *     responses:
+ *       200:
+ *         description: Cow updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/cowEdit'
+ *       204:
+ *         description: No cow found in the database
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Cow not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
 
 
 cowRouter.post("/recordCow/", recordCow);
