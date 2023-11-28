@@ -3,12 +3,12 @@ import { catchAsync } from "../Error/catchAsync";
 
 export const getCowBytype = catchAsync(async (req, res) => {
 
-    let requestType = req.params.type;
-    let data = await Cow.find({ type: requestType });
+    let requestCategoryType = req.params.categoryType;
+    let data = await Cow.find({ type: requestCategoryType });
 
     if (!data) {
-        return next(new AppError("no cow  found with that ID", 404));
+        return next(new AppError("no cow  found with that categoryType", 404));
     }
-    console.log("the Cow is selected with ID:", data._id);
+    console.log("the Cow is selected with categoryType:", data._id);
     return res.status(200).json(data);
 });

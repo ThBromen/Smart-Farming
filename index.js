@@ -9,8 +9,12 @@ import userRouter from "./Routers/users";
 import financialRouter from "./Routers/financial";
 import galleryRouter from "./Routers/gallery";
 import cowRouter from "./Routers/cow";
-import breedRouter from "./Routers/breedType";
-import categoryRouter from "./Routers/categoryType";
+import breedRouter from "./Routers/cowBreedType";
+import categoryRouter from "./Routers/cowCategoryType";
+import activityTypeRouter from "./Routers/activityCategoryType";
+import activityRouter from "./Routers/activity";
+
+
 import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -52,8 +56,8 @@ app.use("/gallery/", galleryRouter);
 app.use("/createCow/", cowRouter);
 app.use("/cowBread/", breedRouter);
 app.use("/CawCategory/", categoryRouter);
-
-
+app.use("/activityCategory/", activityTypeRouter);
+app.use("/Activity/", activityRouter);
 
 
 app.all("*", (req, res, next) => {
@@ -62,16 +66,15 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandle);
 
-mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-  console.log("online Database connected");
-});
-
-
-
-// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-//   console.log(" local Database connected");
+// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+//   console.log("online Database connected");
 // });
 
+
+
+mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+  console.log(" local Database connected");
+});
 
 
 app.listen(port, () => {

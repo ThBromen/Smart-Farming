@@ -4,7 +4,7 @@ import {
     deleteCow, getAllCow, getCowBytype, updateCow, getCowByEarTag
 } from "../Controllers/cows";
 
-import { verfyToken, logger } from "../Middleware";
+import { verfyToken } from "../Middleware";
 
 const cowRouter = express.Router();
 
@@ -25,20 +25,7 @@ const cowRouter = express.Router();
  *         - earTag
  *         - categoryType
  *         - breedType
- *         - dateOfBirth
- *         - calfNumber
- *         - lactating
- *         - numberOfCalving
- *         - litresOfMilkItProduces
- *         - mothersEarTag
- *         - silesEarTag
- *         - weightAtBirth
- *         - weaningPeriod
- *         - castrationPeriod
- *         - inseminationPeriod
- *         - whereItWasPurchased
- *         - purchasedDate
- *         - weight
+ *         - status
  *       properties:
  *         earTag:
  *           type: string
@@ -117,20 +104,7 @@ const cowRouter = express.Router();
  *         - earTag
  *         - categoryType
  *         - breedType
- *         - dateOfBirth
- *         - calfNumber
- *         - lactating
- *         - numberOfCalving
- *         - litresOfMilkItProduces
- *         - mothersEarTag
- *         - silesEarTag
- *         - weightAtBirth
- *         - weaningPeriod
- *         - castrationPeriod
- *         - inseminationPeriod
- *         - whereItWasPurchased
- *         - purchasedDate
- *         - weight
+ *         - status
  *       properties:
  *         earTag:
  *           type: string
@@ -497,10 +471,10 @@ const cowRouter = express.Router();
 
 
 
-cowRouter.post("/recordCow/", recordCow);
-cowRouter.post("/recordHeifers/", recordHeifers);
-cowRouter.post("/recordCalves/", recordCalves);
-cowRouter.post("/recordBull/", recordBull);
+cowRouter.post("/recordCow/", verfyToken, recordCow);
+cowRouter.post("/recordHeifers/", verfyToken, recordHeifers);
+cowRouter.post("/recordCalves/", verfyToken, recordCalves);
+cowRouter.post("/recordBull/", verfyToken, recordBull);
 cowRouter.get("/getCow/", verfyToken, getAllCow);
 cowRouter.get("/getCowBytype/:type", verfyToken, getCowBytype);
 cowRouter.get("/getCowByEarTag/:earTag", verfyToken, getCowByEarTag);

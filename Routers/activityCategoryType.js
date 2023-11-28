@@ -1,9 +1,8 @@
 import express from "express";
-import { addCowCategory, getCowCategory, getCowCategoryById, deleteCowCategory } from "../Controllers/category";
-import { verfyToken } from "../Middleware";
+import { addActivityCategory, deleteActivityCategory, getActivityCategory, getActivityCategoryById } from "../Controllers/activityCategory";
+import { verifyToken } from "../Middleware";
 
-const categoryRouter = express.Router();
-
+const activityTypeRouter = express.Router();
 
 /**
  * @swagger
@@ -22,28 +21,28 @@ const categoryRouter = express.Router();
  *       properties:
  *         categoryType:
  *           type: string
- *           description: Type of cow category
+ *           description: Type of the activity category (e.g., "milk")
  *         description:
  *           type: string
- *           description: Description of the cow category
+ *           description: Description of the activity category (e.g., "Category for milk-related activities")
  *       example:
- *         categoryType: milk
- *         description: 10
+ *         categoryType: "milk"
+ *         description: "Category for milk-related activities"
  */
 
 /**
  * @swagger
  * tags:
- *   name: CowCategory
- *   description: API endpoints for managing cow categories
+ *   name: ActivityCategory
+ *   description: API endpoints for managing activity categories
  */
 
 /**
  * @swagger
- * /cowCategory/addCowCategory:
+ * /activityCategory/addActivityCategory:
  *   post:
- *     summary: Add a new cow category
- *     tags: [CowCategory]
+ *     summary: Add a new activity category
+ *     tags: [ActivityCategory]
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -54,7 +53,7 @@ const categoryRouter = express.Router();
  *             $ref: '#/components/schemas/addCategory'
  *     responses:
  *       201:
- *         description: Cow category added successfully
+ *         description: Activity category added successfully
  *         content:
  *           application/json:
  *             schema:
@@ -65,15 +64,15 @@ const categoryRouter = express.Router();
 
 /**
  * @swagger
- * /cowCategory/getCowCategory:
+ * /activityCategory/getActivityCategory:
  *   get:
- *     summary: Returns the list of all cow categories
- *     tags: [CowCategory]
+ *     summary: Returns the list of all activity categories
+ *     tags: [ActivityCategory]
  *     security:
  *       - BearerAuth: []
  *     responses:
  *       200:
- *         description: The list of all cow categories
+ *         description: The list of all activity categories
  *         content:
  *           application/json:
  *             schema:
@@ -81,7 +80,7 @@ const categoryRouter = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/addCategory'
  *       204:
- *         description: No cow categories found in the database
+ *         description: No activity categories found in the database
  *       403:
  *         description: Unauthorized access
  *       404:
@@ -92,10 +91,10 @@ const categoryRouter = express.Router();
 
 /**
  * @swagger
- * /cowCategory/getCowCategoryById/{id}:
+ * /activityCategory/getActivityCategoryById/{id}:
  *   get:
- *     summary: Get cow category by ID
- *     tags: [CowCategory]
+ *     summary: Get activity category by ID
+ *     tags: [ActivityCategory]
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -104,34 +103,34 @@ const categoryRouter = express.Router();
  *          schema:
  *             type: string
  *          required: true
- *          description: The cow category ID
+ *          description: The activity category ID
  *        - in: header
  *          name: Authorization
  *          required: true
  *          description: The user access token
  *     responses:
  *       200:
- *          description: The cow category found by ID
+ *          description: The activity category found by ID
  *          content:
  *             application/json:
  *               schema:
  *                 $ref: '#/components/schemas/addCategory'
  *       204:
- *          description: No cow category found in the database
+ *          description: No activity category found in the database
  *       403:
  *          description: Unauthorized access
  *       404:
- *          description: Cow category not found
+ *          description: Activity category not found
  *       500:
  *          description: Internal Server Error
  */
 
 /**
  * @swagger
- * /cowCategory/deleteCowCategory/{id}:
+ * /activityCategory/deleteActivityCategory/{id}:
  *   delete:
- *     summary: Delete cow category by ID
- *     tags: [CowCategory]
+ *     summary: Delete activity category by ID
+ *     tags: [ActivityCategory]
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -140,34 +139,31 @@ const categoryRouter = express.Router();
  *         schema:
  *           type: string
  *         required: true
- *         description: The cow category ID
+ *         description: The activity category ID
  *       - in: header
  *         name: Authorization
  *         required: true
  *         description: The user access token
  *     responses:
  *       200:
- *         description: Cow category deleted successfully
+ *         description: Activity category deleted successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/addCategory'
  *       204:
- *         description: No cow category found in the database
+ *         description: No activity category found in the database
  *       401:
  *         description: Unauthorized access
  *       404:
- *         description: Cow category not found
+ *         description: Activity category not found
  *       500:
  *         description: Internal Server Error
  */
 
+activityTypeRouter.post("/addActivityCategory/", addActivityCategory);
+activityTypeRouter.get("/getActivityCategory/", getActivityCategory);
+activityTypeRouter.get("/getActivityCategoryById/:id", getActivityCategoryById);
+activityTypeRouter.delete("/deleteActivityCategory/:id", deleteActivityCategory);
 
-
-categoryRouter.post("/addCowCategory/", addCowCategory);
-categoryRouter.get("/getCowCategory/", getCowCategory);
-categoryRouter.get("/getCowCategoryById/:id", getCowCategoryById);
-categoryRouter.delete("/deleteCowCategory/:id", deleteCowCategory);
-
-
-export default categoryRouter;
+export default activityTypeRouter;
