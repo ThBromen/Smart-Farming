@@ -25,16 +25,26 @@ const cowSchema = mongoose.Schema({
     earTag: { type: String, required: true },
 
     categoryType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category"
+        type: String,
+        required: true
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Category"
     },
 
     breedType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Breed"
+
+        type: String,
+        required: true
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Breed"
+    },
+    lifeStatus: {
+        type: String, required: true, default: "user"
     },
 
-    status: { type: String, required: true },
+    status: {
+        type: String, required: true
+    },
 
     dateOfGivingBirth: String,
     calfNumber: String,
@@ -46,11 +56,15 @@ const cowSchema = mongoose.Schema({
     silesEarTag: { type: String },
     weightAtBirth: { type: String },
     wearningPeriod: { type: String },
+    wearningWeight: { type: String },
     castrationPeriod: { type: String },
     inseminatioPeriod: String,
     whereItWasPurchased: String,
     purchasedDate: String,
-    weight: String
+    purchasedPrice: String,
+    purchasedWeight: String,
+    yearlingDate: String,
+    yearlingWeight: String
 
 });
 export const Cow = mongoose.model("Cow", cowSchema);

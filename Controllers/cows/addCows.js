@@ -2,18 +2,18 @@ import { Cow, Category, Breed } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordCow = catchAsync(async (req, res) => {
-    const { earTag, status, dateOfGivingBirth,
-        calfNumber, lactating, numberOfCalving, litresOfMilkItProduces } = req.body;
+    const { earTag, categoryType, breedType, lifeStatus, status, dateOfGivingBirth,
+        calfNumber, lactating, numberOfCalving, litresOfMilkItProduces, whereItWasPurchased,
+        purchasedDate, purchasedPrice, purchasedWeight, yearlingDate, yearlingWeight, dateOfBirth,
+        wearningPeriod, wearningWeight, castrationPeriod, inseminatioPeriod
+    } = req.body;
 
-    const { categoryId } = req.params;
-    const { breedId } = req.params;
-    const categoryType = await Category.findById(categoryId);
-    const breedType = await Breed.findById(breedId);
+    // const { categoryId } = req.params;
+    // const { breedId } = req.params;
+    // const categoryType = await Category.findById(categoryId);
+    // const breedType = await Breed.findById(breedId);
 
-
-    console.log("object", breedType, categoryType)
     const newCow = await Cow.create(req.body);
-
     console.log("New Cow was created successfully");
 
     return res.status(201).json({

@@ -80,7 +80,7 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         activityType: "Dairy"
+ *         activityType: "Weaning"
  *         treatmentDate: "2023-01-01"
  *         diseaseDiagnosed: "Fever"
  *         dosageInml: "5"
@@ -130,7 +130,7 @@ const activityRouter = express.Router();
  *           description: Administered vaccine
  *       example:
  *         earTag: "C001"
- *         activityType: "Dairy"
+ *         activityType: "Weaning"
  *         treatmentDate: "2023-01-01"
  *         diseaseDiagnosed: "Fever"
  *         dosageInml: "5"
@@ -191,7 +191,7 @@ const activityRouter = express.Router();
  *           description: Weight at weaning
  *       example:
  *         earTag: "C001"
- *         activityType: "Dairy"
+ *         activityType: "Weaning"
  *         weaningDate: "2023-04-01"
  *         WeaningWeight: "150"
  * 
@@ -219,9 +219,9 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         activityType: "Dairy"
+ *         activityType: "Weaning"
  *         breedingDate: "2023-05-01"
- *         methodOfBreeding: "Artificial Insemination"
+ *         methodOfBreeding: "Artificial Breeding"
  *         endDate: "2023-06-01"
  * 
  */

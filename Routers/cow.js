@@ -239,7 +239,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CowEdit'
+ *               $ref: '#/components/schemas/Cows'
  *       500:
  *         description: Internal Server Error
  */
