@@ -77,86 +77,7 @@ const cowRouter = express.Router();
  *           description: The date when the cow was purchased
  *         weight:
  *           type: string
- *           description: The current weight of the cow
- *       example:
- *         earTag: "C001"
- *         categoryType: "Dairy"
- *         breedType: "Holstein"
- *         dateOfBirth: "2022-01-01"
- *         calfNumber: "CN001"
- *         lactating: "Yes"
- *         numberOfCalving: 1
- *         litresOfMilkItProduces: 20
- *         mothersEarTag: "M001"
- *         siresEarTag: "S001"
- *         weightAtBirth: "50 kg"
- *         weaningPeriod: "3 months"
- *         castrationPeriod: "No"
- *         inseminationPeriod: "Yes"
- *         whereItWasPurchased: "Farm A"
- *         purchasedDate: "2021-12-01"
- *         weight: "500 kg"
- *     CowEdit:
- *       type: object
- *       required:
- *         - earTag
- *         - categoryType
- *         - breedType
- *         - status
- *       properties:
- *         earTag:
- *           type: string
- *           description: The ear tag of the cow
- *         categoryType:
- *           type: string
- *           description: The category type of the cow (e.g., Cow, Bull)
- *         breedType:
- *           type: string
- *           description: The breed type of the cow
- *         dateOfBirth:
- *           type: string
- *           format: date
- *           description: The date of birth of the cow
- *         calfNumber:
- *           type: string
- *           description: The calf number of the cow
- *         lactating:
- *           type: string
- *           description: Indicates if the cow is lactating (Yes/No)
- *         numberOfCalving:
- *           type: integer
- *           description: The number of calving events
- *         litresOfMilkItProduces:
- *           type: integer
- *           description: The amount of milk the cow produces
- *         mothersEarTag:
- *           type: string
- *           description: The ear tag of the mother cow
- *         siresEarTag:
- *           type: string
- *           description: The ear tag of the sire (father) cow
- *         weightAtBirth:
- *           type: string
- *           description: The weight of the cow at birth
- *         weaningPeriod:
- *           type: string
- *           description: The weaning period of the cow
- *         castrationPeriod:
- *           type: string
- *           description: The castration period of the cow (Yes/No)
- *         inseminationPeriod:
- *           type: string
- *           description: The insemination period of the cow (Yes/No)
- *         whereItWasPurchased:
- *           type: string
- *           description: The place where the cow was purchased
- *         purchasedDate:
- *           type: string
- *           format: date
- *           description: The date when the cow was purchased
- *         weight:
- *           type: string
- *           description: The current weight of the cow
+ *           description: The purchased  weight of the cow
  *       example:
  *         earTag: "C001"
  *         categoryType: "Dairy"
@@ -570,7 +491,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Cows'
  *       204:
  *         description: No cow found in the database
  *       401:
