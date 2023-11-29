@@ -336,7 +336,7 @@ const cowRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cows'
+ *             $ref: '#/components/schemas/Heifers'
  *     responses:
  *       201:
  *         description: Heifers data recorded successfully
@@ -361,7 +361,7 @@ const cowRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cows'
+ *             $ref: '#/components/schemas/Calves'
  *     responses:
  *       201:
  *         description: Calves data recorded successfully
@@ -386,7 +386,7 @@ const cowRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cows'
+ *             $ref: '#/components/schemas/Bull'
  *     responses:
  *       201:
  *         description: Bull data recorded successfully
