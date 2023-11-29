@@ -221,7 +221,7 @@ const userRouter = express.Router();
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *       403:
  *          description: Wrong email or password
  *       500:
