@@ -18,7 +18,7 @@ const activityRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     Cow:
+ *     Activity:
  *       type: object
  *       required:
  *         - earTag
@@ -96,6 +96,134 @@ const activityRouter = express.Router();
  *         breedingDate: "2023-05-01"
  *         methodOfBreeding: "Artificial Insemination"
  *         endDate: "2023-06-01"
+ *     Treatment:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - activityType
+ *         - treatmentDate
+ *         - diseaseDiagnosed
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         activityType:
+ *           type: string
+ *           description: The category type of the cow (e.g., Dairy, Beef)
+ *         treatmentDate:
+ *           type: string
+ *           description: Date of treatment
+ *         diseaseDiagnosed:
+ *           type: string
+ *           description: Diagnosed disease
+ *         dosageInml:
+ *           type: string
+ *           description: Dosage in milliliters
+ *         routeType:
+ *           type: string
+ *           description: Type of administration route
+ *         vaccinationDate:
+ *           type: string
+ *           description: Date of vaccination
+ *         vaccineAdministered:
+ *           type: string
+ *           description: Administered vaccine
+ *       example:
+ *         earTag: "C001"
+ *         activityType: "Dairy"
+ *         treatmentDate: "2023-01-01"
+ *         diseaseDiagnosed: "Fever"
+ *         dosageInml: "5"
+ *         routeType: "Oral"
+ *         vaccinationDate: "2023-02-01"
+ *         vaccineAdministered: " Hitimana"
+ *     Castration:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - activityType
+ *         - treatmentDate
+ *         - diseaseDiagnosed
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         activityType:
+ *           type: string
+ *           description: The category type of the cow (e.g., Dairy, Beef)
+ *         castrationdDate:
+ *           type: string
+ *           description: Date of castration
+ *         CastratedBy:
+ *           type: string
+ *           description: Person who performed castration
+ *         castrationdMethod:
+ *           type: string
+ *           description: Method of castration
+ *         howItWent:
+ *           type: string
+ *           default: Successful
+ *           description: Outcome description
+ *       example:
+ *         earTag: "C001"
+ *         activityType: "Dairy"
+ *         castrationdDate: "2023-03-01"
+ *         CastratedBy: "Veterinarian X"
+ *         castrationdMethod: "Surgical"
+ *         howItWent: "Successful"
+ *     Weaning:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - activityType
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         activityType:
+ *           type: string
+ *           description: The category type of the cow (e.g., Dairy, Beef)
+ *         weaningDate:
+ *           type: string
+ *           description: Date of weaning
+ *         WeaningWeight:
+ *           type: string
+ *           description: Weight at weaning
+ *       example:
+ *         earTag: "C001"
+ *         activityType: "Dairy"
+ *         weaningDate: "2023-04-01"
+ *         WeaningWeight: "150"
+ * 
+ * 
+ *     Breeding:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - activityType
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         activityType:
+ *           type: string
+ *           description: The category type of the cow 
+ *         breedingDate:
+ *           type: string
+ *           description: Date of breeding
+ *         methodOfBreeding:
+ *           type: string
+ *           description: Breeding method
+ *         endDate:
+ *           type: string
+ *           description: End date of the activity
+ *       example:
+ *         earTag: "C001"
+ *         activityType: "Dairy"
+ *         breedingDate: "2023-05-01"
+ *         methodOfBreeding: "Artificial Insemination"
+ *         endDate: "2023-06-01"
+ * 
  */
 
 
@@ -120,14 +248,14 @@ const activityRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cow'
+ *             $ref: '#/components/schemas/Treatment'
  *     responses:
  *       201:
  *         description: Cow treatment activity recorded successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Cow'
+ *               $ref: '#/components/schemas/Treatment'
  *       500:
  *         description: Internal Server Error
  */
@@ -145,14 +273,14 @@ const activityRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cow'
+ *             $ref: '#/components/schemas/Castration'
  *     responses:
  *       201:
  *         description: Cow castration activity recorded successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Cow'
+ *               $ref: '#/components/schemas/Castration'
  *       500:
  *         description: Internal Server Error
  */
@@ -170,14 +298,14 @@ const activityRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cow'
+ *             $ref: '#/components/schemas/Weaning'
  *     responses:
  *       201:
  *         description: Cow weaning activity recorded successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Cow'
+ *               $ref: '#/components/schemas/Weaning'
  *       500:
  *         description: Internal Server Error
  */
@@ -195,14 +323,14 @@ const activityRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Cow'
+ *             $ref: '#/components/schemas/Breeding'
  *     responses:
  *       201:
  *         description: Cow breeding activity recorded successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Cow'
+ *               $ref: '#/components/schemas/Breeding'
  *       500:
  *         description: Internal Server Error
  */
@@ -225,7 +353,7 @@ const activityRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Cow'
+ *                 $ref: '#/components/schemas/Activity'
  *       204:
  *         description: No cow activities found in the database
  *       403:
@@ -266,7 +394,7 @@ const activityRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/cowEdit'
+ *                 $ref: '#/components/schemas/Activity'
  *       204:
  *         description: No cows found for the given type
  *       403:
@@ -303,7 +431,7 @@ const activityRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Activity'
  *       204:
  *         description: No cow found in the database
  *       401:
@@ -338,14 +466,14 @@ const activityRouter = express.Router();
 //  *       content:
 //  *         application/json:
 //  *           schema:
-//  *             $ref: '#/components/schemas/Cows'
+//  *             $ref: '#/components/schemas/Activity'
 //  *     responses:
 //  *       200:
 //  *         description: Cow updated successfully
 //  *         content:
 //  *           application/json:
 //  *             schema:
-//  *               $ref: '#/components/schemas/cowEdit'
+//  *               $ref: '#/components/schemas/Activity'
 //  *       204:
 //  *         description: No cow found in the database
 //  *       401:
