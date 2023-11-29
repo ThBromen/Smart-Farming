@@ -31,7 +31,7 @@ export const recordCow = catchAsync(async (req, res) => {
 
 
 export const recordHeifers = catchAsync(async (req, res) => {
-    const { earTag, type, breedType, status, calfNumber, lactating,
+    const { earTag, categoryType, breedType, status, calfNumber, lactating,
         numberOfCalving, litresOfMilkItProduces, inseminatioPeriod } = req.body;
 
     const newHeifer = await Cow.create(req.body);
@@ -48,7 +48,7 @@ export const recordHeifers = catchAsync(async (req, res) => {
 
 
 export const recordCalves = catchAsync(async (req, res) => {
-    const { earTag, type, breedType, mothersEarTag, dateOfBirth,
+    const { earTag, mothersEarTag, dateOfBirth,
         silesEarTag, weightAtBirth, wearningPeriod } = req.body;
 
     const newCalve = await Cow.create(req.body);
@@ -63,8 +63,8 @@ export const recordCalves = catchAsync(async (req, res) => {
 
 
 export const recordBull = catchAsync(async (req, res) => {
-    const { earTag, type, breedType, mothersEarTag, dateOfBirth,
-        silesEarTag, weightAtBirth, wearningPeriod } = req.body;
+    const { earTag, mothersEarTag, dateOfBirth,
+        silesEarTag, weightAtBirth, castrationPeriod } = req.body;
 
     const newBull = await Cow.create(req.body);
 

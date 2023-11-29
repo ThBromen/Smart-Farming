@@ -8,8 +8,6 @@ import { verfyToken } from "../Middleware";
 
 const cowRouter = express.Router();
 
-
-
 /**
  * @swagger
  * components:
@@ -55,7 +53,7 @@ const cowRouter = express.Router();
  *         mothersEarTag:
  *           type: string
  *           description: The ear tag of the mother cow
- *         silesEarTag:
+ *         siresEarTag:
  *           type: string
  *           description: The ear tag of the sire (father) cow
  *         weightAtBirth:
@@ -90,7 +88,7 @@ const cowRouter = express.Router();
  *         numberOfCalving: 1
  *         litresOfMilkItProduces: 20
  *         mothersEarTag: "M001"
- *         silesEarTag: "S001"
+ *         siresEarTag: "S001"
  *         weightAtBirth: "50 kg"
  *         weaningPeriod: "3 months"
  *         castrationPeriod: "No"
@@ -98,7 +96,7 @@ const cowRouter = express.Router();
  *         whereItWasPurchased: "Farm A"
  *         purchasedDate: "2021-12-01"
  *         weight: "500 kg"
- *     cowEdit:
+ *     CowEdit:
  *       type: object
  *       required:
  *         - earTag
@@ -134,7 +132,7 @@ const cowRouter = express.Router();
  *         mothersEarTag:
  *           type: string
  *           description: The ear tag of the mother cow
- *         silesEarTag:
+ *         siresEarTag:
  *           type: string
  *           description: The ear tag of the sire (father) cow
  *         weightAtBirth:
@@ -169,7 +167,7 @@ const cowRouter = express.Router();
  *         numberOfCalving: 1
  *         litresOfMilkItProduces: 20
  *         mothersEarTag: "M001"
- *         silesEarTag: "S001"
+ *         siresEarTag: "S001"
  *         weightAtBirth: "50 kg"
  *         weaningPeriod: "3 months"
  *         castrationPeriod: "No"
@@ -177,9 +175,121 @@ const cowRouter = express.Router();
  *         whereItWasPurchased: "Farm A"
  *         purchasedDate: "2021-12-01"
  *         weight: "500 kg"
+ *     Heifers:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - categoryType
+ *         - breedType
+ *         - status
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         categoryType:
+ *           type: string
+ *           description: The category type of the cow (e.g., Cow, Bull)
+ *         breedType:
+ *           type: string
+ *           description: The breed type of the cow
+ *         status:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the cow
+ *         calfNumber:
+ *           type: string
+ *           description: The calf number of the cow
+ *         lactating:
+ *           type: string
+ *           description: Indicates if the cow is lactating (Yes/No)
+ *         numberOfCalving:
+ *           type: integer
+ *           description: The number of calving events
+ *         litresOfMilkItProduces:
+ *           type: integer
+ *           description: The amount of milk the cow produces
+ *         inseminationPeriod:
+ *           type: string
+ *           description: The insemination period of the cow (Yes/No)
+ *       example:
+ *         earTag: "C001"
+ *         categoryType: "Dairy"
+ *         breedType: "Holstein"
+ *         status: "Pregnancy"
+ *         calfNumber: "CN001"
+ *         lactating: "Yes"
+ *         numberOfCalving: 4
+ *         litresOfMilkItProduces: 20
+ *         inseminationPeriod: "Yes"
+ *     Calves:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - categoryType
+ *         - breedType
+ *         - status
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the Calve
+ *         dateOfBirth:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the Calve
+ *         mothersEarTag:
+ *           type: string
+ *           description: The ear tag of the mother Calve
+ *         siresEarTag:
+ *           type: string
+ *           description: The ear tag of the sire (father) Calve
+ *         weightAtBirth:
+ *           type: string
+ *           description: The weight of the cow at birth
+ *         weaningPeriod:
+ *           type: string
+ *           description: The weaning period of the Calve
+ *       example:
+ *         earTag: "C001"
+ *         dateOfBirth: "2022-01-01"
+ *         mothersEarTag: "M001"
+ *         siresEarTag: "S001"
+ *         weightAtBirth: "50 kg"
+ *         weaningPeriod: "3 months"
+ *     Bull:
+ *       type: object
+ *       required:
+ *         - earTag
+ *         - categoryType
+ *         - breedType
+ *         - status
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the bull
+ *         dateOfBirth:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the bull
+ *         mothersEarTag:
+ *           type: string
+ *           description: The ear tag of the mother bull
+ *         siresEarTag:
+ *           type: string
+ *           description: The ear tag of the sire (father) bull
+ *         weightAtBirth:
+ *           type: string
+ *           description: The weight of the cow at birth
+ *         castrationPeriod:
+ *           type: string
+ *           description: The Castration period of the bull
+ *       example:
+ *         earTag: "C001"
+ *         dateOfBirth: "2022-01-01"
+ *         mothersEarTag: "M001"
+ *         siresEarTag: "S001"
+ *         weightAtBirth: "50 kg"
+ *         castrationPeriod: "3 months"
  */
-
-
 
 /**
  * @swagger
@@ -187,7 +297,6 @@ const cowRouter = express.Router();
  *   name: Cow
  *   description: The Cow managing API
  */
-
 
 /**
  * @swagger
@@ -209,7 +318,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/CowEdit'
  *       500:
  *         description: Internal Server Error
  */
@@ -234,7 +343,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Heifers'
  *       500:
  *         description: Internal Server Error
  */
@@ -259,7 +368,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Calves'
  *       500:
  *         description: Internal Server Error
  */
@@ -284,7 +393,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Bull'
  *       500:
  *         description: Internal Server Error
  */
@@ -305,7 +414,7 @@ const cowRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/cowEdit'
+ *                 $ref: '#/components/schemas/CowEdit'
  *       204:
  *         description: No cows found in the database
  *       403:
@@ -315,6 +424,7 @@ const cowRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
 
 /**
  * @swagger
@@ -353,6 +463,9 @@ const cowRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
+
+
 
 /**
  * @swagger
