@@ -335,7 +335,7 @@ const cowRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/CowEdit'
+ *                 $ref: '#/components/schemas/Cows'
  *       204:
  *         description: No cows found in the database
  *       403:
@@ -374,7 +374,7 @@ const cowRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/cowEdit'
+ *                 $ref: '#/components/schemas/Cows'
  *       204:
  *         description: No cows found for the given type
  *       403:
@@ -413,7 +413,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Cows'
  *       204:
  *         description: No cow found for the given ear tag
  *       403:
@@ -449,7 +449,7 @@ const cowRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/cowEdit'
+ *               $ref: '#/components/schemas/Cows'
  *       204:
  *         description: No cow found in the database
  *       401:
