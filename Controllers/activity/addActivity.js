@@ -1,6 +1,25 @@
 import { Activity, ActivityType } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
+export const recordActivity = catchAsync(async (req, res) => {
+    const { earTag, activityType, treatmentDate, diseaseDiagnosed, dosageInml,
+        routeType, vaccinationDate, vaccineAdministered, } = req.body;
+
+    const newActivity = await Activity.create(req.body);
+
+    console.log("New  activity was created successfully");
+
+    return res.status(201).json({
+        message: "New  activity created successfully",
+        newActivity,
+    });
+});
+
+
+
+
+
+
 export const recordTreatment = catchAsync(async (req, res) => {
     const { earTag, treatmentDate, diseaseDiagnosed, dosageInml,
         routeType, vaccinationDate, vaccineAdministered, } = req.body;

@@ -89,6 +89,7 @@ export const register = catchAsync(async (req, res) => {
 
     return res.status(201).json({
         message: " user registered successfully",
+        access_token: token,
         user: {
             location: newUser.location,
             fullNames: newUser.fullNames,

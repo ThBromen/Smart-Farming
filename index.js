@@ -54,10 +54,11 @@ app.use("/api/v1/", userRouter);
 app.use("/financial", financialRouter);
 app.use("/gallery/", galleryRouter);
 app.use("/createCow/", cowRouter);
-app.use("/cowBread/", breedRouter);
-// app.use("/CawCategory/", categoryRouter);
-app.use("/activityCategory/", activityTypeRouter);
 app.use("/Activity/", activityRouter);
+// app.use("/cowBread/", breedRouter);
+// app.use("/CawCategory/", categoryRouter);
+// app.use("/activityCategory/", activityTypeRouter);
+
 
 
 app.all("*", (req, res, next) => {

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const activityTypeSchema = mongoose.Schema({
 
     activityType: String,
-    description: String
+    description: String,
 });
 export const ActivityType = mongoose.model("ActivityType", activityTypeSchema);
 
@@ -17,9 +17,12 @@ const activitySchema = mongoose.Schema({
     },
 
     activityType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ActivityType",
+        type: String,
         required: true
+
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "ActivityType",
+        // required: true
     },
     treatmentDate: String,
     diseaseDiagnosed: String,
