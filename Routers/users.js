@@ -1,11 +1,8 @@
 import express from "express";
-import { register, login, changepassword } from "../Controllers/Authentication";
-// import { getUser, updateUser, getById, deleteUser } from "../Controller/tours";
+import { register, login, changepassword, getUser, updateUser, getById, deleteUser } from "../Controllers/Authentication";
 import { verfyToken, logger } from "../Middleware";
 
 const userRouter = express.Router();
-
-
 
 
 /**
@@ -17,7 +14,7 @@ const userRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     signUp:
+ *     User:
  *       type: object
  *       required:
  *         - email
@@ -138,7 +135,7 @@ const userRouter = express.Router();
  *               schema:
  *                 type: array
  *                 items:
- *                   $ref: '#/components/schemas/userEdit'
+ *                   $ref: '#/components/schemas/User'
  *       204:
  *          description: No any user in the database
  *       403:
@@ -194,14 +191,14 @@ const userRouter = express.Router();
  *          content:
  *            application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *          description: The user was successfully created
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *       500:
  *          description: Internal Server Error
  */
@@ -224,7 +221,7 @@ const userRouter = express.Router();
  *          content:
  *             application/json:
  *               schema:
- *                   $ref: '#/components/schemas/signUp'
+ *                   $ref: '#/components/schemas/User'
  *       403:
  *          description: Wrong email or password
  *       500:
@@ -314,12 +311,11 @@ const userRouter = express.Router();
 
 
 userRouter.post("/login/", login);
-userRouter.post("/register/", logger, register);
-
-// userRouter.get("/getUser/",verfyToken, getUser);
-// userRouter.get("/userbyid/:id",verfyToken,getById);
-// userRouter.delete("/deleteuser/:id",verfyToken,deleteUser);
-// userRouter.put("/updateuser/:id",verfyToken,updateUser);
-// userRouter.post("/changepassword/:id",verfyToken,changepassword);
+userRouter.post("/register/", register);
+userRouter.get("/getUser/", getUser);
+userRouter.get("/userbyid/:id", verfyToken, getById);
+userRouter.delete("/deleteuser/:id", verfyToken, deleteUser);
+userRouter.put("/updateuser/:id", verfyToken, updateUser);
+userRouter.post("/changepassword/:id", verfyToken, changepassword);
 
 export default userRouter;

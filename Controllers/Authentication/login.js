@@ -24,11 +24,10 @@ export const login = catchAsync(async (req, res) => {
     _id: user._id,
   });
 
-  res.status(200).json({
+  return res.status(200).json({
     message: "User logged in successfully",
     access_token: token,
     user: {
-      email: user.email,
       location: user.location,
       fullNames: user.fullNames
     },

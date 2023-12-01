@@ -23,7 +23,7 @@ export const changepassword = catchAsync(async (req, res) => {
     user.password = hashedPassword;
     user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
         message: "password changed successfully",
     });
 });
