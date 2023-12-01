@@ -64,15 +64,15 @@ export const register = catchAsync(async (req, res) => {
   </head>
   <body>
       <div class="container">
-          <h1><i class="icon fas fa-globe"></i> Welcome to Holiday Planner</h1>
+          <h1><i class="icon fas fa-globe"></i> Welcome to Smart Farming</h1>
           <p>Dear ${newUser.fullNames} ,</p>
-          <p>Thank you for signing up for Holiday Planner. We are excited to have you as a member of our community.</p>
-          <p>With Holiday Planner, you can explore amazing destinations, plan your dream vacations, and more.</p>
-          <p>Get started now and discover your next adventure!</p>
-          <a href="[Your App URL]">Explore Holiday Planner</a>
+          <p>Thank you for signing up for Smart Farming. We are excited to have you as a member of our community.</p>
+          <p>With Smart Farming, you can manage your livestock, plan for your future dreamz, and more.</p>
+          <p>Get started now and discover your next Improvement!</p>
+          <a href="[Your App URL]">Explore Smart Farming </a>
           <p>If you have any questions or need assistance, feel free to <a href="mailto:support@holidayplanner.com">contact our support team</a>.</p>
-          <p>Happy planning!</p>
-          <p>Sincerely,<br>Your Holiday Planner Team</p>
+          <p>Smart Farming!</p>
+          <p>Sincerely,<br>Your Smart Farming Team</p>
       </div>
   </body>
   </html>  
