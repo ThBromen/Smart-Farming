@@ -26,7 +26,6 @@ export const recordTreatment = catchAsync(async (req, res) => {
             routeType, vaccinationDate, vaccineAdministered, treatmentCost } = req.body;
 
 
-
         const newTreatment = await Activity.create(req.body);
 
         console.log("New Treatment activity was created successfully");
@@ -51,8 +50,8 @@ export const recordTreatment = catchAsync(async (req, res) => {
 
 
 export const recordCastration = catchAsync(async (req, res) => {
-    const { earTag, castrationdDate, CastratedBy, castrationdMethod,
-        howItWent } = req.body;
+    const { earTag, castrationdDate, CastratedBy, castrationdMethod
+    } = req.body;
 
 
     const newCastration = await Activity.create(req.body);
@@ -84,7 +83,7 @@ export const recordWeaning = catchAsync(async (req, res) => {
 
 
 export const recordBreeding = catchAsync(async (req, res) => {
-    const { earTag, breedingDate, methodOfBreeding, endDate, howItWent } = req.body;
+    const { earTag, breedingDate, methodOfBreeding, endDate } = req.body;
 
 
     const newBreeding = await Activity.create(req.body);

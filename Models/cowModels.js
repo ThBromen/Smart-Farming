@@ -9,7 +9,6 @@ const categorySchema = mongoose.Schema({
 export const Category = mongoose.model("Category", categorySchema);
 
 
-
 const breedSchema = mongoose.Schema({
 
 
@@ -18,6 +17,9 @@ const breedSchema = mongoose.Schema({
 });
 
 export const Breed = mongoose.model("Breed", breedSchema);
+
+
+
 
 
 const cowSchema = mongoose.Schema({
@@ -39,7 +41,7 @@ const cowSchema = mongoose.Schema({
         // ref: "Breed"
     },
     lifeStatus: {
-        type: String, required: true, default: "user"
+        type: String, required: true, default: "Active"
     },
 
     status: {
