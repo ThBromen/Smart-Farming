@@ -18,24 +18,31 @@ export const recordActivity = catchAsync(async (req, res) => {
 
 
 
-
-
 export const recordTreatment = catchAsync(async (req, res) => {
-    const { earTag, treatmentDate, diseaseDiagnosed, dosageInml,
-        routeType, vaccinationDate, vaccineAdministered, } = req.body;
+    try {
+        const { earTag, treatmentDate, diseaseDiagnosed, dosageInml,
+            routeType, vaccinationDate, vaccineAdministered, } = req.body;
 
-    const { activityId } = req.params;
-    const activityType = await ActivityType.findById(activityId);
+        const { activityId } = req.params;
+        const activityType = await ActivityType.findById(activityId);
 
-    const newTreatment = await Activity.create(req.body);
+        const newTreatment = await Activity.create(req.body);
 
-    console.log("New Treatment activity was created successfully");
+        console.log("New Treatment activity was created successfully");
 
-    return res.status(201).json({
-        message: "New Treatment activity created successfully",
-        newTreatment,
-    });
+        return res.status(201).json({
+            message: "New Treatment activity created successfully",
+            newTreatment,
+        });
+    } catch (error) {
+        console.error("Error creating treatment activity:", error);
+        return res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
 });
+
 
 
 

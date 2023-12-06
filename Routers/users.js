@@ -121,7 +121,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/getuser:
+ * /api/v1/user/getuser:
  *   get:
  *     summary: Returns the list of all the users 
  *     tags: [Users]
@@ -148,7 +148,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/userbyid/{id}:
+ * /api/v1/user/userbyid/{id}:
  *   get:
  *     summary: Get the user by id
  *     tags: [Users]
@@ -182,7 +182,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/register:
+ * /api/v1/user/register:
  *   post:
  *     summary: Create a new user
  *     tags: [Auth]
@@ -205,7 +205,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/login:
+ * /api/v1/user/login:
  *   post:
  *     summary: Log into user account
  *     tags: [Auth]
@@ -230,7 +230,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/updateuser/{id}:
+ * /api/v1/user/updateuser/{id}:
  *   put:
  *     summary: update the data of the user by id
  *     tags: [Users]
@@ -273,7 +273,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/deleteuser/{id}:
+ * /api/v1/user/deleteuser/{id}:
  *   delete:
  *     summary: Delete the user by id
  *     tags: [Users]

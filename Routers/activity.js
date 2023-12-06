@@ -1,7 +1,7 @@
 import express from "express";
 import {
-    recordTreatment, recordCastration, recordWeaning, recordBreeding,
-    deleteActivity, getActivityBytype, getAllActivity
+    recordActivity, recordTreatment, recordCastration, recordWeaning, recordBreeding,
+    deleteActivity, getActivityBytype, getAllActivity, updateActivity, getActivityById
 } from "../Controllers/activity";
 
 import { verfyToken } from "../Middleware";
@@ -237,7 +237,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/recordTreatment:
+ * /api/v1/Activity/recordActivity:
  *   post:
  *     summary: Record cow treatment activity
  *     tags: [Activity]
@@ -262,7 +262,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/recordCastration:
+ * /api/v1/Activity/recordCastration:
  *   post:
  *     summary: Record cow castration activity
  *     tags: [Activity]
@@ -287,7 +287,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/recordWeaning:
+ * /api/v1/Activity/recordWeaning:
  *   post:
  *     summary: Record cow weaning activity
  *     tags: [Activity]
@@ -312,7 +312,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/recordBreeding:
+ * /api/v1/Activity/recordBreeding:
  *   post:
  *     summary: Record cow breeding activity
  *     tags: [Activity]
@@ -339,7 +339,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/getAllActivity:
+ * /api/v1/Activity/getAllActivity:
  *   get:
  *     summary: Returns the list of all cow activities
  *     tags: [Activity]
@@ -369,7 +369,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/getActivityBytype/{activityType}:
+ * /api/v1/Activity/getActivityBytype/{activityType}:
  *   get:
  *     summary: Get cow activities by type
  *     tags: [Activity]
@@ -408,7 +408,7 @@ const activityRouter = express.Router();
 
 /**
  * @swagger
- * /Activity/deleteActivity/{id}:
+ * /api/v1/Activity/deleteActivity/{id}:
  *   delete:
  *     summary: Delete Activity by ID
  *     tags: [Activity]
@@ -437,63 +437,64 @@ const activityRouter = express.Router();
  *       401:
  *         description: Unauthorized access
  *       404:
+ *         description: activity not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /api/v1/Activity/updateActivity/{id}:
+ *   put:
+ *     summary: Update cow by ID
+ *     tags: [Activity]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The cow ID
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         description: The user access token
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Activity'
+ *     responses:
+ *       200:
+ *         description: Cow updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Activity'
+ *       204:
+ *         description: No cow found in the database
+ *       401:
+ *         description: Unauthorized access
+ *       404:
  *         description: Cow not found
  *       500:
  *         description: Internal Server Error
  */
 
-// /**
-//  * @swagger
-//  * /Activity/updateCow/{id}:
-//  *   put:
-//  *     summary: Update cow by ID
-//  *     tags: [Activity]
-//  *     security:
-//  *       - BearerAuth: []
-//  *     parameters:
-//  *       - in: path
-//  *         name: id
-//  *         schema:
-//  *           type: string
-//  *         required: true
-//  *         description: The cow ID
-//  *       - in: header
-//  *         name: Authorization
-//  *         required: true
-//  *         description: The user access token
-//  *     requestBody:
-//  *       required: true
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             $ref: '#/components/schemas/Activity'
-//  *     responses:
-//  *       200:
-//  *         description: Cow updated successfully
-//  *         content:
-//  *           application/json:
-//  *             schema:
-//  *               $ref: '#/components/schemas/Activity'
-//  *       204:
-//  *         description: No cow found in the database
-//  *       401:
-//  *         description: Unauthorized access
-//  *       404:
-//  *         description: Cow not found
-//  *       500:
-//  *         description: Internal Server Error
-//  */
 
 
-
-
+activityRouter.post("/recordActivity/", verfyToken, recordActivity);
+activityRouter.get("/getAllActivity/", verfyToken, getAllActivity);
+activityRouter.get("/getActivityBytype/:activityType", verfyToken, getActivityBytype);
+activityRouter.delete("/deleteActivity/:id", verfyToken, deleteActivity);
+activityRouter.put("/updateActivity/:id", verfyToken, updateActivity);
+activityRouter.get("/getActivityById/:id", verfyToken, getActivityById);
 activityRouter.post("/recordTreatment/", verfyToken, recordTreatment);
 activityRouter.post("/recordCastration/", verfyToken, recordCastration);
 activityRouter.post("/recordWeaning/", verfyToken, recordWeaning);
 activityRouter.post("/recordBreeding/", verfyToken, recordBreeding);
-activityRouter.get("/getAllActivity/", verfyToken, getAllActivity);
-activityRouter.get("/getActivityBytype/:activityType", verfyToken, getActivityBytype);
-activityRouter.delete("/deleteActivity/:id", verfyToken, deleteActivity);
-// activityRouter.put("/updateCow/:id", verfyToken, updateCow);
 
 export default activityRouter;

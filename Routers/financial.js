@@ -65,7 +65,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /financial/getFinancial:
+ * /api/v1/financial/getFinancial:
  *   get:
  *     summary: Returns the list of all financial records
  *     tags: [Financial]
@@ -92,7 +92,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /financial/userbyid/{id}:
+ * /api/v1/financial/userbyid/{id}:
  *   get:
  *     summary: Get the Financial by id
  *     tags: [Financial]
@@ -125,7 +125,7 @@ const financialRouter = express.Router();
  */
 /**
  * @swagger
- * /financial/addFinancial:
+ * /api/v1/financial/addFinancial:
  *   post:
  *     summary: Record financial data
  *     tags: [Financial]
@@ -150,7 +150,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /financial/updateFinancial/{id}:
+ * /api/v1/financial/updateFinancial/{id}:
  *   put:
  *     summary: Update financial data by ID
  *     tags: [Financial]
@@ -192,7 +192,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /financial/deleteFinancial/{id}:
+ * /api/v1/financial/deleteFinancial/{id}:
  *   delete:
  *     summary: Delete financial data by ID
  *     tags: [Financial]
