@@ -221,7 +221,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/recordCow:
+ * /api/v1/createCow/recordCow:
  *   post:
  *     summary: Record cow data
  *     tags: [Cow]
@@ -246,7 +246,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/recordHeifers:
+ * /api/v1/createCow/recordHeifers:
  *   post:
  *     summary: Record heifers data
  *     tags: [Cow]
@@ -271,7 +271,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/recordCalves:
+ * /api/v1/createCow/recordCalves:
  *   post:
  *     summary: Record calves data
  *     tags: [Cow]
@@ -296,7 +296,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/recordBull:
+ * /api/v1/createCow/recordBull:
  *   post:
  *     summary: Record bull data
  *     tags: [Cow]
@@ -321,7 +321,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/getCow:
+ * /api/v1/createCow/getCow:
  *   get:
  *     summary: Returns the list of all cows
  *     tags: [Cow]
@@ -349,7 +349,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/getCowBytype/{type}:
+ * /api/v1/createCow/getCowBytype/{type}:
  *   get:
  *     summary: Get cows by type
  *     tags: [Cow]
@@ -390,7 +390,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/getCowByEarTag/{earTag}:
+ * /api/v1/createCow/getCowByEarTag/{earTag}:
  *   get:
  *     summary: Get cow by ear tag
  *     tags: [Cow]
@@ -426,7 +426,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/deleteCow/{id}:
+ * /api/v1/createCow/deleteCow/{id}:
  *   delete:
  *     summary: Delete cow by ID
  *     tags: [Cow]
@@ -462,7 +462,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /createCow/updateCow/{id}:
+ * /api/v1/createCow/updateCow/{id}:
  *   put:
  *     summary: Update cow by ID
  *     tags: [Cow]

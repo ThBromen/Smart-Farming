@@ -48,15 +48,15 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use("/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
-app.use("/api/v1/", userRouter);
-app.use("/financial", financialRouter);
-app.use("/gallery/", galleryRouter);
-app.use("/createCow/", cowRouter);
-app.use("/Activity/", activityRouter);
-// app.use("/cowBread/", breedRouter);
-// app.use("/CawCategory/", categoryRouter);
-// app.use("/activityCategory/", activityTypeRouter);
+app.use("/api/v1/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api/v1/user/", userRouter);
+app.use("/api/v1/financial", financialRouter);
+app.use("/api/v1/gallery/", galleryRouter);
+app.use("/api/v1/createCow/", cowRouter);
+app.use("/api/v1/Activity/", activityRouter);
+// app.use("/api/v1/cowBread/", breedRouter);
+// app.use("/api/v1/CawCategory/", categoryRouter);
+// app.use("/api/v1/activityCategory/", activityTypeRouter);
 
 
 

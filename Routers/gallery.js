@@ -47,7 +47,7 @@ const galleryRouter = express.Router();
 
 /**
  * @swagger
- * /gallery/addGallery:
+ * /api/v1/gallery/addGallery:
  *   post:
  *     summary: Add a new image to the gallery
  *     tags: [Gallery]
@@ -75,7 +75,7 @@ const galleryRouter = express.Router();
 
 /**
  * @swagger
- * /gallery/getGallery:
+ * /api/v1/gallery/getGallery:
  *   get:
  *     summary: Get the list of images in the gallery
  *     tags: [Gallery]
@@ -98,7 +98,7 @@ const galleryRouter = express.Router();
 
 /**
  * @swagger
- * /gallery/deleteGallery/{id}:
+ * /api/v1/gallery/deleteGallery/{id}:
  *   delete:
  *     summary: Delete an image from the gallery by ID
  *     tags: [Gallery]
