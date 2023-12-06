@@ -48,21 +48,21 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use("/api/v1/api-docs/", swaggerUI.serve, swaggerUI.setup(specs));
-app.use("/api/v1/user/", userRouter);
+app.use("/api/v1/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api/v1/user", userRouter);
 app.use("/api/v1/financial", financialRouter);
-app.use("/api/v1/gallery/", galleryRouter);
-app.use("/api/v1/createCow/", cowRouter);
-app.use("/api/v1/Activity/", activityRouter);
-// app.use("/api/v1/cowBread/", breedRouter);
-// app.use("/api/v1/CawCategory/", categoryRouter);
-// app.use("/api/v1/activityCategory/", activityTypeRouter);
+app.use("/api/v1/gallery", galleryRouter);
+app.use("/api/v1/createCow", cowRouter);
+app.use("/api/v1/Activity", activityRouter);
+// app.use("/api/v1/cowBread", breedRouter);
+// app.use("/api/v1/CawCategory", categoryRouter);
+// app.use("/api/v1/activityCategory", activityTypeRouter);
 
 
 
-app.all("*", (req, res, next) => {
-  next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
-});
+// app.all("*", (req, res, next) => {
+//   next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
+// });
 
 app.use(globalErrorHandle);
 
