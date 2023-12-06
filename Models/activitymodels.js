@@ -11,9 +11,12 @@ export const ActivityType = mongoose.model("ActivityType", activityTypeSchema);
 const activitySchema = mongoose.Schema({
 
     earTag: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Cow",
-        required: true
+        type: String,
+        required: true,
+
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Cow",
+        // required: true
     },
 
     activityType: {
@@ -39,6 +42,7 @@ const activitySchema = mongoose.Schema({
     breedingDate: String,
     methodOfBreeding: String,
     endDate: String,
+    treatmentCost: String
 
 });
 export const Activity = mongoose.model("Activity", activitySchema);
