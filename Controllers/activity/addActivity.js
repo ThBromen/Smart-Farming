@@ -1,10 +1,9 @@
-import { Activity, Cow } from "../../Models";
+import { Activity, Cow, Breeding, Castration, Treatment, Weaning } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
     const { earTag, activityType, treatmentDate, diseaseDiagnosed, dosageInml,
         routeType, vaccinationDate, vaccineAdministered, treatmentCost } = req.body;
-
 
 
     const newActivity = await Activity.create(req.body);
@@ -18,16 +17,14 @@ export const recordActivity = catchAsync(async (req, res) => {
 });
 
 
-
-
 export const recordTreatment = catchAsync(async (req, res) => {
     try {
-        const { earTag, activityType, treatmentDate, diseaseDiagnosed, dosageInml,
+        const { earTag, treatmentDate, diseaseDiagnosed, dosageInml,
             routeType, vaccinationDate, vaccineAdministered, treatmentCost } = req.body;
 
 
-
-        const newTreatment = await Activity.create(req.body);
+        const newTreatment = await Treatment.create(req.body);
+        const newActivity = await Activity.create(req.body);
 
         console.log("New Treatment activity was created successfully");
 
@@ -48,14 +45,13 @@ export const recordTreatment = catchAsync(async (req, res) => {
 
 
 
-
-
 export const recordCastration = catchAsync(async (req, res) => {
-    const { earTag, castrationdDate, CastratedBy, castrationdMethod,
-        howItWent } = req.body;
+    const { earTag, castrationdDate, CastratedBy, castrationdMethod, Note
+    } = req.body;
 
 
-    const newCastration = await Activity.create(req.body);
+    const newCastration = await Castration.create(req.body);
+    const newActivity = await Activity.create(req.body);
 
     console.log("New Castration activity was created successfully");
 
@@ -67,12 +63,12 @@ export const recordCastration = catchAsync(async (req, res) => {
 });
 
 
-
 export const recordWeaning = catchAsync(async (req, res) => {
     const { earTag, weaningDate, WeaningWeight } = req.body;
 
 
-    const newWeaning = await Activity.create(req.body);
+    const newWeaning = await Weaning.create(req.body);
+    const newActivity = await Activity.create(req.body);
 
     console.log("New weaning activity was created successfully");
 
@@ -84,10 +80,13 @@ export const recordWeaning = catchAsync(async (req, res) => {
 
 
 export const recordBreeding = catchAsync(async (req, res) => {
-    const { earTag, breedingDate, methodOfBreeding, endDate, howItWent } = req.body;
+    const { earTag, breedingDate, methodOfBreeding, endDate } = req.body;
 
 
-    const newBreeding = await Activity.create(req.body);
+    const newBreeding = await Breeding.create(req.body);
+    const newActivity = await Activity.create(req.body);
+
+
 
     console.log("New Breeding activity was created successfully");
 

@@ -75,9 +75,29 @@ const cowRouter = express.Router();
  *           type: string
  *           format: date
  *           description: The date when the cow was purchased
- *         weight:
+ *         purchasedWeight:
  *           type: string
- *           description: The purchased  weight of the cow
+ *           description: The purchased weight of the cow
+ *         dateOfGivingBirth:
+ *           type: string
+ *           format: date
+ *           description: The date when the cow gave birth
+ *         lifeStatus:
+ *           type: string
+ *           description: The life status of the cow (e.g., Alive, Deceased)
+ *         status:
+ *           type: string
+ *           description: The current status of the cow
+ *         purchasedPrice:
+ *           type: string
+ *           description: The price at which the cow was purchased
+ *         yearlingDate:
+ *           type: string
+ *           format: date
+ *           description: The date when the cow becomes a yearling
+ *         yearlingWeight:
+ *           type: string
+ *           description: The weight of the cow when it becomes a yearling
  *       example:
  *         earTag: "C001"
  *         categoryType: "Dairy"
@@ -95,7 +115,13 @@ const cowRouter = express.Router();
  *         inseminationPeriod: "Yes"
  *         whereItWasPurchased: "Farm A"
  *         purchasedDate: "2021-12-01"
- *         weight: "500 kg"
+ *         purchasedWeight: "500 kg"
+ *         dateOfGivingBirth: "2023-01-15"
+ *         lifeStatus: "Alive"
+ *         status: "Healthy"
+ *         purchasedPrice: "$1000"
+ *         yearlingDate: "2023-12-01"
+ *         yearlingWeight: "600 kg"
  *     Heifers:
  *       type: object
  *       required:
@@ -115,8 +141,7 @@ const cowRouter = express.Router();
  *           description: The breed type of the cow
  *         status:
  *           type: string
- *           format: date
- *           description: The date of birth of the cow
+ *           description: The current status of the cow
  *         calfNumber:
  *           type: string
  *           description: The calf number of the cow
