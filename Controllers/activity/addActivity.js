@@ -5,9 +5,7 @@ export const recordActivity = catchAsync(async (req, res) => {
     const { earTag, activityType, treatmentDate, diseaseDiagnosed, dosageInml,
         routeType, vaccinationDate, vaccineAdministered, treatmentCost } = req.body;
 
-    // const { earTagId } = req.params;
-    // const earTagep = await Cow.findById(earTagId);
-    // earTag = earTagep.earTage;
+
 
     const newActivity = await Activity.create(req.body);
 
@@ -56,9 +54,6 @@ export const recordCastration = catchAsync(async (req, res) => {
     const { earTag, castrationdDate, CastratedBy, castrationdMethod,
         howItWent } = req.body;
 
-    const { earTagId } = req.params;
-    const earTagep = await Cow.findById(earTagId);
-    earTag = earTagep.earTage;
 
     const newCastration = await Activity.create(req.body);
 
@@ -76,10 +71,6 @@ export const recordCastration = catchAsync(async (req, res) => {
 export const recordWeaning = catchAsync(async (req, res) => {
     const { earTag, weaningDate, WeaningWeight } = req.body;
 
-    const { earTagId } = req.params;
-    const earTagep = await Cow.findById(earTagId);
-
-    earTag = earTagep.earTage;
 
     const newWeaning = await Activity.create(req.body);
 
@@ -95,10 +86,6 @@ export const recordWeaning = catchAsync(async (req, res) => {
 export const recordBreeding = catchAsync(async (req, res) => {
     const { earTag, breedingDate, methodOfBreeding, endDate, howItWent } = req.body;
 
-    const { earTagId } = req.params;
-    const earTagep = await Cow.findById(earTagId);
-
-    earTag = earTagep.earTage;
 
     const newBreeding = await Activity.create(req.body);
 

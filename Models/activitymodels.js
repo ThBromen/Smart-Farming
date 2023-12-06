@@ -21,7 +21,6 @@ const activitySchema = mongoose.Schema({
 
     activityType: {
         type: String,
-        required: true
 
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "ActivityType",
@@ -42,7 +41,8 @@ const activitySchema = mongoose.Schema({
     breedingDate: String,
     methodOfBreeding: String,
     endDate: String,
-    treatmentCost: String
+    treatmentCost: String,
+    notes: String
 
 });
 export const Activity = mongoose.model("Activity", activitySchema);
