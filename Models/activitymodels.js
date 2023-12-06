@@ -1,12 +1,19 @@
 
 import mongoose from "mongoose";
 
-const activityTypeSchema = mongoose.Schema({
+const salesSchema = mongoose.Schema({
 
-    activityType: String,
-    description: String,
+    earTag: String,
+    SaleDate: String,
+    SalePrice: String,
+    SoldTo: String,
+    notes: String,
+
 });
-export const ActivityType = mongoose.model("ActivityType", activityTypeSchema);
+
+export const Sales = mongoose.model("Sales", salesSchema);
+
+
 
 const activitySchema = mongoose.Schema({
 
@@ -21,6 +28,7 @@ const activitySchema = mongoose.Schema({
 
     activityType: {
         type: String,
+
 
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "ActivityType",
@@ -42,11 +50,68 @@ const activitySchema = mongoose.Schema({
     methodOfBreeding: String,
     endDate: String,
     treatmentCost: String,
-    notes: String
+    Note: String
 
 });
 export const Activity = mongoose.model("Activity", activitySchema);
 
+
+
+
+
+const breedingSchema = mongoose.Schema({
+
+    earTag: String,
+    activityType: { type: String, default: "Breeding" },
+    breedingDate: String,
+    methodOfBreeding: String,
+    endDate: String
+});
+export const Breeding = mongoose.model("Breeding", breedingSchema);
+
+
+
+
+const treatmentSchema = mongoose.Schema({
+
+    activityType: { type: String, default: "Treatment" },
+    description: String,
+    earTag: String,
+    activityType: String,
+    treatmentDate: String,
+    diseaseDiagnosed: String,
+    dosageInml: String,
+    routeType: String,
+    vaccinationDate: String,
+    vaccineAdministered: String
+});
+export const Treatment = mongoose.model("Treatment", treatmentSchema);
+
+
+
+
+const castrationSchema = mongoose.Schema({
+
+    earTag: String,
+    activityType: { type: String, default: "Castration" },
+    castrationdDate: String,
+    CastratedBy: String,
+    castrationdMethod: String,
+    howItWent: { type: String, default: "Successful" },
+    Note: String
+});
+export const Castration = mongoose.model("Castration", castrationSchema);
+
+
+
+const weaningSchema = mongoose.Schema({
+
+    earTag: String,
+    activityType: { type: String, default: "weaning" },
+    weaningDate: String,
+    WeaningWeight: String
+});
+export const Weaning = mongoose.model("Weaning", weaningSchema);
 
 
 
