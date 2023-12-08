@@ -13,6 +13,7 @@ import breedRouter from "./Routers/cowBreedType";
 import categoryRouter from "./Routers/cowCategoryType";
 import activityTypeRouter from "./Routers/activityCategoryType";
 import activityRouter from "./Routers/activity";
+import pastureRouter from "./Routers/Pasture";
 
 
 import morgan from "morgan";
@@ -20,6 +21,7 @@ import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 import AppError from "./utils/appError";
 import globalErrorHandle from "./Controllers/Error/errorController";
+
 
 const port = 6000;
 
@@ -43,6 +45,8 @@ const options = {
 const specs = swaggerJSDoc(options);
 const app = express();
 
+
+
 app.use(logger);
 app.use(express.json());
 app.use(cors());
@@ -54,6 +58,9 @@ app.use("/api/v1/financial", financialRouter);
 app.use("/api/v1/gallery", galleryRouter);
 app.use("/api/v1/createCow", cowRouter);
 app.use("/api/v1/Activity", activityRouter);
+app.use("/api/v1/pasture", pastureRouter);
+
+
 // app.use("/api/v1/cowBread", breedRouter);
 // app.use("/api/v1/CawCategory", categoryRouter);
 // app.use("/api/v1/activityCategory", activityTypeRouter);

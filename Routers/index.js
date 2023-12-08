@@ -1,5 +1,6 @@
 export * from "./users"
 export * from "./financial"
+export * from "./Pasture"
 export * from "./gallery"
 export * from "./cow"
 export * from "./cowBreedType"

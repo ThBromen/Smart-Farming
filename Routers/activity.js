@@ -1,7 +1,8 @@
 import express from "express";
 import {
     recordActivity, recordTreatment, recordCastration, recordWeaning, recordBreeding,
-    deleteActivity, getActivityBytype, getAllActivity, updateActivity, getActivityById
+    deleteActivity, getActivityBytype, getAllActivity, updateActivity, getActivityById,
+    recordSales, recordNewbirth,
 } from "../Controllers/activity";
 
 import { verfyToken } from "../Middleware";
@@ -31,7 +32,7 @@ const activityRouter = express.Router();
  *           description: The ear tag of the cow
  *         activityType:
  *           type: string
- *           description: The category type of the cow (e.g., Dairy, Beef)
+ *           description: The category type of the cow (e.g., Bull, Cow)
  *         treatmentDate:
  *           type: string
  *           description: Date of treatment
@@ -109,7 +110,7 @@ const activityRouter = express.Router();
  *           description: The ear tag of the cow
  *         activityType:
  *           type: string
- *           description: The category type of the cow (e.g., Dairy, Beef)
+ *           description: The category type of the cow (e.g., Bull, Cow)
  *         treatmentDate:
  *           type: string
  *           description: Date of treatment
@@ -194,8 +195,6 @@ const activityRouter = express.Router();
  *         activityType: "Weaning"
  *         weaningDate: "2023-04-01"
  *         WeaningWeight: "150"
- * 
- * 
  *     Breeding:
  *       type: object
  *       required:
@@ -239,6 +238,32 @@ const activityRouter = express.Router();
  * @swagger
  * /api/v1/Activity/recordActivity:
  *   post:
+ *     summary: Record cow  activity
+ *     tags: [Activity]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Treatment'
+ *     responses:
+ *       201:
+ *         description: Cow treatment activity recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Activity'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/Activity/recordTreatment:
+ *   post:
  *     summary: Record cow treatment activity
  *     tags: [Activity]
  *     security:
@@ -259,6 +284,7 @@ const activityRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
 
 /**
  * @swagger
@@ -486,15 +512,21 @@ const activityRouter = express.Router();
 
 
 
-activityRouter.post("/recordActivity/", verfyToken, recordActivity);
-activityRouter.get("/getAllActivity/", verfyToken, getAllActivity);
+
+
+
+
+activityRouter.post("/recordActivity", verfyToken, recordActivity);
+activityRouter.get("/getAllActivity", verfyToken, getAllActivity);
 activityRouter.get("/getActivityBytype/:activityType", verfyToken, getActivityBytype);
 activityRouter.delete("/deleteActivity/:id", verfyToken, deleteActivity);
 activityRouter.put("/updateActivity/:id", verfyToken, updateActivity);
-activityRouter.get("/getActivityById/:id", verfyToken, getActivityById);
-activityRouter.post("/recordTreatment/", verfyToken, recordTreatment);
-activityRouter.post("/recordCastration/", verfyToken, recordCastration);
-activityRouter.post("/recordWeaning/", verfyToken, recordWeaning);
-activityRouter.post("/recordBreeding/", verfyToken, recordBreeding);
+activityRouter.get("/getActivityById:id", verfyToken, getActivityById);
+activityRouter.post("/recordTreatment", verfyToken, recordTreatment);
+activityRouter.post("/recordCastration", verfyToken, recordCastration);
+activityRouter.post("/recordWeaning", verfyToken, recordWeaning);
+activityRouter.post("/recordBreeding", verfyToken, recordBreeding);
+activityRouter.post("/recordSales", verfyToken, recordSales);
+activityRouter.post("/recordNewbirth", verfyToken, recordNewbirth);
 
 export default activityRouter;

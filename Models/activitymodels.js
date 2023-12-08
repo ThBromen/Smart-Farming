@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const salesSchema = mongoose.Schema({
 
     earTag: String,
+    activityType: { type: String, default: "Sales" },
     SaleDate: String,
     SalePrice: String,
     SoldTo: String,
@@ -28,11 +29,6 @@ const activitySchema = mongoose.Schema({
 
     activityType: {
         type: String,
-
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "ActivityType",
-        // required: true
     },
     treatmentDate: String,
     diseaseDiagnosed: String,
@@ -107,13 +103,27 @@ export const Castration = mongoose.model("Castration", castrationSchema);
 const weaningSchema = mongoose.Schema({
 
     earTag: String,
-    activityType: { type: String, default: "weaning" },
+    activityType: { type: String, default: "Weaning" },
     weaningDate: String,
     WeaningWeight: String
 });
 export const Weaning = mongoose.model("Weaning", weaningSchema);
 
 
+
+
+const NewBirthSchema = mongoose.Schema({
+
+    earTag: String,
+    activityType: { type: String, default: "Newbirth" },
+    BirthDate: String,
+    BirthWeight: String,
+    notes: String
+});
+export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
+
+
+// Newbirth: EarTag, BirthDate, Birth weight, Notes
 
 
 // Category.find()

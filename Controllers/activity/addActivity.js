@@ -1,4 +1,4 @@
-import { Activity, Cow, Breeding, Castration, Treatment, Weaning } from "../../Models";
+import { Activity, Cow, Breeding, Castration, Treatment, Weaning, Sales, Newbirth } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
@@ -96,3 +96,46 @@ export const recordBreeding = catchAsync(async (req, res) => {
 
     });
 });
+
+
+
+
+
+export const recordSales = catchAsync(async (req, res) => {
+    const { earTag, SaleDate, SalePrice, SoldTo, notes
+    } = req.body;
+
+
+    const newSales = await Sales.create(req.body);
+    const newActivity = await Activity.create(req.body);
+
+
+
+    console.log("New Sales  was created successfully");
+
+    return res.status(201).json({
+        message: "New Sales  created successfully",
+        newSales,
+
+    });
+});
+
+
+export const recordNewbirth = catchAsync(async (req, res) => {
+    const { earTag, SaleDate, SalePrice, SoldTo, notes
+    } = req.body;
+
+
+    const newBirth = await Newbirth.create(req.body);
+    const newActivity = await Activity.create(req.body);
+
+
+
+    console.log("New Newbirth  was created successfully");
+
+    return res.status(201).json({
+        message: "New Newbirth  created successfully",
+        newBirth
+    });
+});
+

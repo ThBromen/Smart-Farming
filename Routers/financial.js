@@ -14,7 +14,7 @@ const financialRouter = express.Router();
  *       scheme: bearer
  *       bearerFormat: JWT
  *   schemas:
- *     addFinancial:
+ *     Financial:
  *       type: object
  *       required:
  *         - sales
@@ -79,7 +79,7 @@ const financialRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/financialEdit'
+ *                 $ref: '#/components/schemas/Financial'
  *       204:
  *         description: No financial records found in the database
  *       403:
@@ -92,7 +92,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/financial/userbyid/{id}:
+ * /api/v1/financial/getFinancialById/{id}:
  *   get:
  *     summary: Get the Financial by id
  *     tags: [Financial]
@@ -104,7 +104,7 @@ const financialRouter = express.Router();
  *          schema:
  *             type: string
  *          required: true
- *          description: The usFinancialer id
+ *          description: The financial ID
  *        - in: header
  *          name: Authorization
  *          required: true
@@ -115,14 +115,15 @@ const financialRouter = express.Router();
  *          content:
  *             application/json:
  *       204:
- *          description: No any Financial in the database
+ *          description: No financial data found in the database
  *       403:
- *          description: The user not authorised
+ *          description: Unauthorized access
  *       404:
- *          description: The Financial was not found
+ *          description: Financial data not found
  *       500:
  *          description: Internal Server Error
  */
+
 /**
  * @swagger
  * /api/v1/financial/addFinancial:
@@ -136,14 +137,14 @@ const financialRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/addFinancial'
+ *             $ref: '#/components/schemas/Financial'
  *     responses:
  *       201:
  *         description: Financial data recorded successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/addFinancial'
+ *               $ref: '#/components/schemas/Financial'
  *       500:
  *         description: Internal Server Error
  */
@@ -215,7 +216,7 @@ const financialRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/financialEdit'
+ *               $ref: '#/components/schemas/Financial'
  *       204:
  *         description: No financial data found in the database
  *       401:
@@ -225,6 +226,7 @@ const financialRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
 
 
 financialRouter.post("/addFinancial", verfyToken, addFinancial);
