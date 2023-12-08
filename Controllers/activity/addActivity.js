@@ -122,7 +122,7 @@ export const recordSales = catchAsync(async (req, res) => {
 
 
 export const recordNewbirth = catchAsync(async (req, res) => {
-    const { earTag, SaleDate, SalePrice, SoldTo, notes
+    const { earTag, BirthDate, BirthWeight, SoldTo, notes
     } = req.body;
 
 

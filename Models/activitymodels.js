@@ -21,10 +21,6 @@ const activitySchema = mongoose.Schema({
     earTag: {
         type: String,
         required: true,
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Cow",
-        // required: true
     },
 
     activityType: {
@@ -64,7 +60,6 @@ const breedingSchema = mongoose.Schema({
     endDate: String
 });
 export const Breeding = mongoose.model("Breeding", breedingSchema);
-
 
 
 
