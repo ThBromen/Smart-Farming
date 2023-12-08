@@ -220,7 +220,6 @@ const activityRouter = express.Router();
  *         breedingDate: "2023-05-01"
  *         methodOfBreeding: "Artificial Breeding"
  *         endDate: "2023-06-01"
- * 
  *     Sales:
  *       type: object
  *       required:
@@ -243,11 +242,10 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         breedingDate: "2023-05-01"
- *         methodOfBreeding: "Artificial Breeding"
- *         endDate: "2023-06-01"
- * 
- * 
+ *         SaleDate: "2023-05-01"
+ *         SalePrice: "Artificial Breeding"
+ *         SoldTo: "2023-06-01"
+ *         notes: "2023-06-01"
  *     NewBirth:
  *       type: object
  *       required:
