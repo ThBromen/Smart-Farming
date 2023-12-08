@@ -23,16 +23,10 @@ const activityRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - activityType
- *         - treatmentDate
- *         - diseaseDiagnosed
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         activityType:
- *           type: string
- *           description: The category type of the cow (e.g., Bull, Cow)
  *         treatmentDate:
  *           type: string
  *           description: Date of treatment
@@ -81,7 +75,6 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         activityType: "Weaning"
  *         treatmentDate: "2023-01-01"
  *         diseaseDiagnosed: "Fever"
  *         dosageInml: "5"
@@ -101,16 +94,12 @@ const activityRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - activityType
  *         - treatmentDate
  *         - diseaseDiagnosed
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         activityType:
- *           type: string
- *           description: The category type of the cow (e.g., Bull, Cow)
  *         treatmentDate:
  *           type: string
  *           description: Date of treatment
@@ -131,7 +120,6 @@ const activityRouter = express.Router();
  *           description: Administered vaccine
  *       example:
  *         earTag: "C001"
- *         activityType: "Weaning"
  *         treatmentDate: "2023-01-01"
  *         diseaseDiagnosed: "Fever"
  *         dosageInml: "5"
@@ -142,16 +130,12 @@ const activityRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - activityType
  *         - treatmentDate
  *         - diseaseDiagnosed
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         activityType:
- *           type: string
- *           description: The category type of the cow (e.g., Dairy, Beef)
  *         castrationdDate:
  *           type: string
  *           description: Date of castration
@@ -167,7 +151,6 @@ const activityRouter = express.Router();
  *           description: Outcome description
  *       example:
  *         earTag: "C001"
- *         activityType: "Dairy"
  *         castrationdDate: "2023-03-01"
  *         CastratedBy: "Veterinarian X"
  *         castrationdMethod: "Surgical"
@@ -176,14 +159,10 @@ const activityRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - activityType
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         activityType:
- *           type: string
- *           description: The category type of the cow (e.g., Dairy, Beef)
  *         weaningDate:
  *           type: string
  *           description: Date of weaning
@@ -199,14 +178,10 @@ const activityRouter = express.Router();
  *       type: object
  *       required:
  *         - earTag
- *         - activityType
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         activityType:
- *           type: string
- *           description: The category type of the cow 
  *         breedingDate:
  *           type: string
  *           description: Date of breeding
@@ -218,7 +193,6 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         activityType: "Weaning"
  *         breedingDate: "2023-05-01"
  *         methodOfBreeding: "Artificial Breeding"
  *         endDate: "2023-06-01"

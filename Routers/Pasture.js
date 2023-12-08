@@ -18,13 +18,13 @@ const pastureRouter = express.Router();
  *       type: object
  *       required:
  *         - pastureName
- *         - owner
+ *         - Owner
  *         - area
  *       properties:
  *         pastureName:
  *           type: string
  *           description: The name of the pasture
- *         owner:
+ *         Owner:
  *           type: string
  *           description: The owner of the pasture
  *         area:
@@ -35,7 +35,7 @@ const pastureRouter = express.Router();
  *           description: The number of cattle in the pasture
  *       example:
  *         pastureName: Meadow
- *         owner: John Doe
+ *         Owner: John Doe
  *         area: 10 acres
  *         numberOfCattles: 50
  */
