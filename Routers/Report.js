@@ -41,7 +41,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Financia'
+ *                 $ref: '#/components/schemas/Financial'
  *       204:
  *         description: No financial records found in the database
  *       403:
@@ -70,7 +70,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Financia'
+ *                 $ref: '#/components/schemas/Activity'
  *       204:
  *         description: No Activity records found in the database
  *       403:
@@ -97,7 +97,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Breading'
+ *                 $ref: '#/components/schemas/Breeding'
  *       204:
  *         description: No Breading records found in the database
  *       403:
@@ -155,7 +155,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Weanning'
+ *                 $ref: '#/components/schemas/Weaning'
  *       204:
  *         description: No Weanning Activity records found in the database
  *       403:
@@ -184,7 +184,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Breading'
+ *                 $ref: '#/components/schemas/Breeding'
  *       204:
  *         description: No Breading Activity records found in the database
  *       403:
@@ -242,7 +242,7 @@ const reportRouter = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/newBirth'
+ *                 $ref: '#/components/schemas/Newbirth'
  *       204:
  *         description: No newBirth Activity records found in the database
  *       403:
