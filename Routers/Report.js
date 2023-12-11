@@ -22,7 +22,7 @@ const reportRouter = express.Router();
  * @swagger
  * tags:
  *   name: Report
- *   description: API endpoints for managing Report records
+ *   description: API endpoints for managing Report 
  */
 
 /**

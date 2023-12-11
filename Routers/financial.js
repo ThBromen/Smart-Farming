@@ -20,6 +20,12 @@ const financialRouter = express.Router();
  *         - sales
  *         - litresSold
  *         - animalEarTag
+ *         - financeType
+ *         - notes
+ *         - dateOfRecord
+ *         - paymentDate
+ *         - amount
+ *         - administrator
  *       properties:
  *         sales:
  *           type: string
@@ -30,30 +36,36 @@ const financialRouter = express.Router();
  *         animalEarTag:
  *           type: string
  *           description: The cow tag for the cow that provides the milk
+ *         financeType:
+ *           type: string
+ *           description: Type of financial record (e.g., expense, income)
+ *         notes:
+ *           type: string
+ *           description: Additional notes or details about the financial record
+ *         dateOfRecord:
+ *           type: string
+ *           format: date
+ *           description: Date when the financial record was recorded
+ *         paymentDate:
+ *           type: string
+ *           format: date
+ *           description: Date when the payment is due or received
+ *         amount:
+ *           type: number
+ *           description: The financial amount associated with the record
+ *         administrator:
+ *           type: string
+ *           description: Administrator responsible for the financial record
  *       example:
  *         sales: milk
  *         litresSold: 10
  *         animalEarTag: M 23
- *     financialEdit:
- *       type: object
- *       required:
- *         - sales
- *         - litresSold
- *         - animalEarTag
- *       properties:
- *         sales:
- *           type: string
- *           description: The sales the farmer made
- *         litresSold:
- *           type: string
- *           description: The number of liters sold
- *         animalEarTag:
- *           type: string
- *           description: The cow tag for the cow that provides the milk
- *       example:
- *         sales: milk
- *         litresSold: 10
- *         animalEarTag: M 34
+ *         financeType: income
+ *         notes: Milk sales revenue
+ *         dateOfRecord: 2023-01-01
+ *         paymentDate: 2023-01-15
+ *         amount: 1000
+ *         administrator: John Doe
  */
 
 /**
@@ -162,7 +174,7 @@ const financialRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/financialEdit'
+ *             $ref: '#/components/schemas/Financial'
  *     parameters:
  *       - in: path
  *         name: id
@@ -180,7 +192,7 @@ const financialRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/financialEdit'
+ *               $ref: '#/components/schemas/Financial'
  *       204:
  *         description: No financial data found in the database
  *       401:

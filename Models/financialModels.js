@@ -2,8 +2,14 @@
 import mongoose from "mongoose";
 
 const financialSchema = mongoose.Schema({
-    sales: { type: String, required: true },
-    litresSold: { type: String, required: true },
-    animalEarTag: { type: String, required: true }
+    sales: String,
+    litresSold: String,
+    animalEarTag: String,
+    financeType: String,
+    notes: String,
+    dateOfRecord: String,
+    paymentDate: String,
+    amount: String,
+    adminstrator: String
 });
 export const Financial = mongoose.model("Financial", financialSchema);
