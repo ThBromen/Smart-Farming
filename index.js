@@ -39,11 +39,6 @@ const options = {
         url: "https://smart-farming-api.onrender.com",
       },
     ],
-    servers: [
-      {
-        url: "http://localhost:6000",
-      },
-    ],
   },
   apis: ["./Routers/*.js"],
 };
