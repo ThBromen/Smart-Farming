@@ -146,6 +146,8 @@ const userRouter = express.Router();
  *          description: Internal Server Error
  */
 
+
+
 /**
  * @swagger
  * /api/v1/user/userbyid/{id}:
@@ -170,15 +172,18 @@ const userRouter = express.Router();
  *          description: The user found by id
  *          content:
  *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/User'  # Adjust with your actual schema
  *       204:
- *          description: No any user in the database
+ *          description: No user found in the database
  *       403:
- *          description: The user not authorised
+ *          description: The user is not authorized
  *       404:
  *          description: The user was not found
  *       500:
  *          description: Internal Server Error
  */
+
 
 
 
@@ -230,6 +235,47 @@ const userRouter = express.Router();
  *          description: Internal Server Error
  */
 
+
+
+/**
+ * @swagger
+ * /api/v1/user/changepassword/{id}:
+ *   post:
+ *     summary: Change user password
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: User ID
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               currentpassword:
+ *                 type: string
+ *                 description: Current password
+ *               newpassword:
+ *                 type: string
+ *                 description: New password
+ *     responses:
+ *       201:
+ *         description: Password changed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
 /**
  * @swagger
  * /api/v1/user/updateuser/{id}:
@@ -251,10 +297,6 @@ const userRouter = express.Router();
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was modified successfully

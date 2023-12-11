@@ -14,6 +14,7 @@ import categoryRouter from "./Routers/cowCategoryType";
 import activityTypeRouter from "./Routers/activityCategoryType";
 import activityRouter from "./Routers/activity";
 import pastureRouter from "./Routers/Pasture";
+import reportRouter from "./Routers/Report"
 
 
 import morgan from "morgan";
@@ -59,6 +60,7 @@ app.use("/api/v1/gallery", galleryRouter);
 app.use("/api/v1/createCow", cowRouter);
 app.use("/api/v1/Activity", activityRouter);
 app.use("/api/v1/pasture", pastureRouter);
+app.use("/api/v1/report", reportRouter);
 
 
 // app.use("/api/v1/cowBread", breedRouter);
