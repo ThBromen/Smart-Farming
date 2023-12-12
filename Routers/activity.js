@@ -509,10 +509,6 @@ const activityRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The activity type
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
  *       200:
  *         description: The list of cows by type
@@ -548,10 +544,6 @@ const activityRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The cow ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
  *       200:
  *         description: Cow deleted successfully
@@ -584,10 +576,6 @@ const activityRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The cow ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     requestBody:
  *       required: true
  *       content:

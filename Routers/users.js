@@ -163,10 +163,6 @@ const userRouter = express.Router();
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user found by id
@@ -330,10 +326,6 @@ const userRouter = express.Router();
  *             type: string
  *          required: true
  *          description: The user id
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The user was deleted successfully

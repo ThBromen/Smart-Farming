@@ -1,1 +1,1 @@
-export * from "./addaPasture"
+export * from "./addPasture"

@@ -111,10 +111,6 @@ const galleryRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The image ID to delete
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
  *       200:
  *         description: Image deleted successfully

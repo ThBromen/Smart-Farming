@@ -8,3 +8,4 @@ export * from "./cowCategoryType"
 export * from "./activity";
 export * from "./activityCategoryType"
 export * from "./Report"
+export * from "./Worker"

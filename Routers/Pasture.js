@@ -89,10 +89,6 @@ const pastureRouter = express.Router();
  *             type: string
  *          required: true
  *          description: The pasture ID
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
  *     responses:
  *       200:
  *          description: The Pasture found by id
@@ -154,10 +150,6 @@ const pastureRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The Pasture data ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
  *       200:
  *         description: Pasture data modified successfully
@@ -190,10 +182,6 @@ const pastureRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The Pasture data ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
  *       200:
  *         description: Pasture data deleted successfully

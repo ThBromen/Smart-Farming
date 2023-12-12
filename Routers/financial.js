@@ -71,8 +71,8 @@ const financialRouter = express.Router();
 /**
  * @swagger
  * tags:
- *   name: Financial
- *   description: API endpoints for managing financial records
+ *   - name: Financial
+ *     description: API endpoints for managing financial records
  */
 
 /**
@@ -80,11 +80,12 @@ const financialRouter = express.Router();
  * /api/v1/financial/getFinancial:
  *   get:
  *     summary: Returns the list of all financial records
- *     tags: [Financial]
+ *     tags:
+ *       - Financial
  *     security:
  *       - BearerAuth: []
  *     responses:
- *       200:
+ *       '200':
  *         description: The list of all financial records
  *         content:
  *           application/json:
@@ -92,13 +93,13 @@ const financialRouter = express.Router();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Financial'
- *       204:
+ *       '204':
  *         description: No financial records found in the database
- *       403:
+ *       '403':
  *         description: Unauthorized access
- *       404:
+ *       '404':
  *         description: Not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 
@@ -106,34 +107,33 @@ const financialRouter = express.Router();
  * @swagger
  * /api/v1/financial/getFinancialById/{id}:
  *   get:
- *     summary: Get the Financial by id
- *     tags: [Financial]
+ *     summary: Get the Financial by ID
+ *     tags:
+ *       - Financial
  *     security:
  *       - BearerAuth: []
  *     parameters:
- *        - in: path
- *          name: id
- *          schema:
- *             type: string
- *          required: true
- *          description: The financial ID
- *        - in: header
- *          name: Authorization
- *          required: true
- *          description: The user access token
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The financial ID
  *     responses:
- *       200:
- *          description: The Financial found by id
- *          content:
- *             application/json:
- *       204:
- *          description: No financial data found in the database
- *       403:
- *          description: Unauthorized access
- *       404:
- *          description: Financial data not found
- *       500:
- *          description: Internal Server Error
+ *       '200':
+ *         description: The Financial found by ID
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Financial'
+ *       '204':
+ *         description: No financial data found in the database
+ *       '403':
+ *         description: Unauthorized access
+ *       '404':
+ *         description: Financial data not found
+ *       '500':
+ *         description: Internal Server Error
  */
 
 /**
@@ -141,7 +141,8 @@ const financialRouter = express.Router();
  * /api/v1/financial/addFinancial:
  *   post:
  *     summary: Record financial data
- *     tags: [Financial]
+ *     tags:
+ *       - Financial
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -151,13 +152,13 @@ const financialRouter = express.Router();
  *           schema:
  *             $ref: '#/components/schemas/Financial'
  *     responses:
- *       201:
+ *       '201':
  *         description: Financial data recorded successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Financial'
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 
@@ -166,7 +167,8 @@ const financialRouter = express.Router();
  * /api/v1/financial/updateFinancial/{id}:
  *   put:
  *     summary: Update financial data by ID
- *     tags: [Financial]
+ *     tags:
+ *       - Financial
  *     security:
  *       - BearerAuth: []
  *     requestBody:
@@ -182,24 +184,20 @@ const financialRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The financial data ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
- *       200:
+ *       '200':
  *         description: Financial data modified successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Financial'
- *       204:
+ *       '204':
  *         description: No financial data found in the database
- *       401:
+ *       '401':
  *         description: Unauthorized access
- *       404:
+ *       '404':
  *         description: Financial data not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 
@@ -208,7 +206,8 @@ const financialRouter = express.Router();
  * /api/v1/financial/deleteFinancial/{id}:
  *   delete:
  *     summary: Delete financial data by ID
- *     tags: [Financial]
+ *     tags:
+ *       - Financial
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -218,27 +217,22 @@ const financialRouter = express.Router();
  *           type: string
  *         required: true
  *         description: The financial data ID
- *       - in: header
- *         name: Authorization
- *         required: true
- *         description: The user access token
  *     responses:
- *       200:
+ *       '200':
  *         description: Financial data deleted successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Financial'
- *       204:
+ *       '204':
  *         description: No financial data found in the database
- *       401:
+ *       '401':
  *         description: Unauthorized access
- *       404:
+ *       '404':
  *         description: Financial data not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
-
 
 
 financialRouter.post("/addFinancial", verfyToken, addFinancial);
