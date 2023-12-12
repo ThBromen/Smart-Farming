@@ -105,7 +105,7 @@ const financialRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/financial/getFinancialById/{id}:
+ * /api/v1/financial/financialById/{id}:
  *   get:
  *     summary: Get the Financial by ID
  *     tags:
