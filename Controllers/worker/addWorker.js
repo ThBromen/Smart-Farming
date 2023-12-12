@@ -7,7 +7,7 @@ export const addWorker = catchAsync(async (req, res) => {
 
     const newWorker = await Worker.create(req.body);
 
-    console.log("new Worker was created successfully", newFinancial);
+    console.log("new Worker was created successfully", newWorker);
 
     return res.status(201).json({
         message: " Worker Added successfully",
