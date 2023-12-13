@@ -2,7 +2,7 @@ import express from "express";
 import {
     recordActivity, recordTreatment, recordCastration, recordWeaning, recordBreeding,
     deleteActivity, getActivityBytype, getAllActivity, updateActivity, getActivityById,
-    recordSales, recordNewbirth,
+    recordSales, recordNewbirth, recordDead
 } from "../Controllers/activity";
 
 import { verfyToken } from "../Middleware";
@@ -268,8 +268,29 @@ const activityRouter = express.Router();
  *         BirthDate: "2023-05-01"
  *         BirthWeight: "Artificial Breeding"
  *         notes: "2023-06-01"
- * 
- * 
+ *     DeadActivity:
+ *       type: object
+ *       required:
+ *         - earTag
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         deathCause:
+ *           type: string
+ *           description: The cause of death of the cow
+ *         deathDate:
+ *           type: string
+ *           format: date
+ *           description: The date of the cow's death
+ *         notes:
+ *           type: string
+ *           description: Additional notes about the cow's death
+ *       example:
+ *         earTag: "C001"
+ *         deathCause: "Disease"
+ *         deathDate: "2023-05-01"
+ *         notes: "Cow showed symptoms of illness and passed away on this date."
  */
 
 
@@ -357,6 +378,37 @@ const activityRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
+
+
+/**
+ * @swagger
+ * /api/v1/Activity/recordDeadActivity:
+ *   post:
+ *     summary: Record cow Dead Cow activity
+ *     tags: [Activity]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/DeadActivity'
+ *     responses:
+ *       201:
+ *         description: Cow castration activity recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/DeadActivity'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+
 
 /**
  * @swagger
@@ -617,5 +669,7 @@ activityRouter.post("/recordWeaning", verfyToken, recordWeaning);
 activityRouter.post("/recordBreeding", verfyToken, recordBreeding);
 activityRouter.post("/recordSales", verfyToken, recordSales);
 activityRouter.post("/recordNewBirth", verfyToken, recordNewbirth);
+activityRouter.post("/recordDeadActivity", verfyToken, recordDead);
+
 
 export default activityRouter;

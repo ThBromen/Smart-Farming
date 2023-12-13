@@ -118,6 +118,16 @@ const NewBirthSchema = mongoose.Schema({
 export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
 
 
+const DeadActivitySchema = mongoose.Schema({
+
+    earTag: String,
+    deathCouse: { type: String },
+    Deathdate: String,
+    notes: String,
+    type: { type: String, default: "DeadCow" },
+});
+export const DeadActivity = mongoose.model("DeadActivity", DeadActivitySchema);
+
 // Newbirth: EarTag, BirthDate, Birth weight, Notes
 
 

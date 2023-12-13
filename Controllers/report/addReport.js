@@ -2,7 +2,8 @@
 import {
     Financial, User, Activity, Gallery, Pasture, Cow,
     Treatment, Breeding, Castration, Weaning, Newbirth,
-    Sales
+    Sales,
+    DeadActivity
 } from "../../Models"
 
 import { catchAsync } from "../Error/catchAsync";
@@ -151,4 +152,15 @@ export const getBreeding = catchAsync(async (req, res) => {
 
     })
 });
-Breeding
+
+
+export const getDeadCow = catchAsync(async (req, res) => {
+    let data = await DeadActivity.find();
+    console.log("list of Dead cow   !!");
+
+    return res.status(200).json({
+        message: "list of Dead cow:",
+        data
+
+    })
+});

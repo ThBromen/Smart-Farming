@@ -66,7 +66,10 @@ const cowSchema = mongoose.Schema({
     purchasedPrice: String,
     purchasedWeight: String,
     yearlingDate: String,
-    yearlingWeight: String
+    yearlingWeight: String,
+    deathCouse: { type: String },
+    Deathdate: String,
+    notes: String,
 
 });
 export const Cow = mongoose.model("Cow", cowSchema);

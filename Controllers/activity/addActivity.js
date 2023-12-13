@@ -1,10 +1,9 @@
-import { Activity, Cow, Breeding, Castration, Treatment, Weaning, Sales, Newbirth } from "../../Models";
+import { Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth, DeadActivity, Cow } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
     const { earTag, activityType, treatmentDate, diseaseDiagnosed, dosageInml,
         routeType, vaccinationDate, vaccineAdministered, treatmentCost } = req.body;
-
 
     const newActivity = await Activity.create(req.body);
 
@@ -58,6 +57,25 @@ export const recordCastration = catchAsync(async (req, res) => {
     return res.status(201).json({
         message: "New Castration activity created successfully",
         newCastration,
+
+    });
+});
+
+export const recordDead = catchAsync(async (req, res) => {
+    const { earTag, deathCouse, Deathdate, Note
+    } = req.body;
+
+
+    const newDeath = await DeadActivity.create(req.body);
+    const newActivity = await Activity.create(req.body);
+
+
+
+    console.log("New dead activity was created successfully");
+
+    return res.status(201).json({
+        message: "New dead activity created successfully",
+        newDeath,
 
     });
 });

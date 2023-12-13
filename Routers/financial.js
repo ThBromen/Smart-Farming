@@ -1,6 +1,6 @@
 import express from "express";
 import { addFinancial, getFinancial, updateFinancial, getFinancialById, deleteFinancial } from "../Controllers/Financial";
-import { verfyToken, logger } from "../Middleware";
+import { verfyToken } from "../Middleware";
 
 const financialRouter = express.Router();
 

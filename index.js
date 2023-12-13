@@ -65,13 +65,9 @@ app.use("/api/v1/pasture", pastureRouter);
 app.use("/api/v1/report", reportRouter);
 app.use("/api/v1/Worker", workerRouter);
 
-
 // app.use("/api/v1/cowBread", breedRouter);
 // app.use("/api/v1/CawCategory", categoryRouter);
 // app.use("/api/v1/activityCategory", activityTypeRouter);
-
-
-
 
 
 app.use(globalErrorHandle);
@@ -79,7 +75,6 @@ app.use(globalErrorHandle);
 mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
   console.log("online Database connected");
 });
-
 
 
 // mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {

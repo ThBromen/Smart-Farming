@@ -1,7 +1,7 @@
 import express from "express";
 import {
     getFinancial, getActivity, getBreeding, getCastration, getNewbirth,
-    getSales, getTreatment, getWeaning, getCow, getPasture, getUsers,
+    getSales, getTreatment, getWeaning, getCow, getPasture, getUsers, getDeadCow,
 } from "../Controllers/report";
 import { verfyToken, isAdmin } from "../Middleware";
 
@@ -309,6 +309,32 @@ const reportRouter = express.Router();
  *         description: Internal Server Error
  */
 
+/**
+ * @swagger
+ * /api/v1/Report/getDeadCow:
+ *   get:
+ *     summary: Returns the list of dead cows
+ *     tags: [Report]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: The list of all dead cows
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/DeadActivity'
+ *       204:
+ *         description: No Pasture  records found in the database
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal Server Error
+ */
 
 
 reportRouter.get("/getFinancial", verfyToken, isAdmin, getFinancial);
@@ -321,5 +347,6 @@ reportRouter.get("/getSales", verfyToken, isAdmin, getSales);
 reportRouter.get("/getNewbirth", verfyToken, isAdmin, getNewbirth);
 reportRouter.get("/getTreatment", verfyToken, isAdmin, getTreatment);
 reportRouter.get("/getPasture", verfyToken, isAdmin, getPasture);
+reportRouter.get("/getDeadCow", verfyToken, isAdmin, getDeadCow);
 
 export default reportRouter;
