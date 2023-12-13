@@ -276,10 +276,10 @@ const activityRouter = express.Router();
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         deathCause:
+ *         deathCouse:
  *           type: string
  *           description: The cause of death of the cow
- *         deathDate:
+ *         Deathdate:
  *           type: string
  *           format: date
  *           description: The date of the cow's death
@@ -288,8 +288,8 @@ const activityRouter = express.Router();
  *           description: Additional notes about the cow's death
  *       example:
  *         earTag: "C001"
- *         deathCause: "Disease"
- *         deathDate: "2023-05-01"
+ *         deathCouse: "Disease"
+ *         Deathdate: "2023-05-01"
  *         notes: "Cow showed symptoms of illness and passed away on this date."
  */
 
