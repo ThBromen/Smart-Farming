@@ -24,11 +24,14 @@ export const Breed = mongoose.model("Breed", breedSchema);
 
 const cowSchema = mongoose.Schema({
 
-    earTag: { type: String, required: true },
+    earTag: {
+        type: String,
+        required: true
+    },
 
     categoryType: {
         type: String,
-        required: true
+        // required: true
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "Category"
     },
@@ -36,16 +39,19 @@ const cowSchema = mongoose.Schema({
     breedType: {
 
         type: String,
-        required: true
+        // required: true
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "Breed"
     },
     lifeStatus: {
-        type: String, required: true, default: "Active"
+        type: String,
+        // required: true,
+        default: "Active"
     },
 
     status: {
-        type: String, required: true
+        type: String,
+        // required: true
     },
 
     dateOfGivingBirth: String,
