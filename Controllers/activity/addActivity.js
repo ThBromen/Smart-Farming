@@ -1,4 +1,7 @@
-import { Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth, DeadActivity, Cow, Purginacy, PromotedToBull } from "../../Models";
+import {
+    Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth,
+    DeadActivity, Cow, Purginacy, PromotedToBull
+} from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
@@ -197,7 +200,7 @@ export const recordPromoted = catchAsync(async (req, res) => {
     } = req.body;
 
 
-    const PromotedToBull = await PromotedToBull.create(req.body);
+    const Promoted = await PromotedToBull.create(req.body);
     const newActivity = await Activity.create(req.body);
     const updatedCow = await Cow.findOneAndUpdate(
         { earTag },
@@ -215,7 +218,8 @@ export const recordPromoted = catchAsync(async (req, res) => {
 
     return res.status(201).json({
         message: "New cow Promoted To Bull  successfully",
-        PromotedToBull
+        Promoted
+
     });
 });
 

@@ -2,6 +2,7 @@ import express from "express";
 import {
     getFinancial, getActivity, getBreeding, getCastration, getNewbirth,
     getSales, getTreatment, getWeaning, getCow, getPasture, getUsers, getDeadCow,
+    getPromoted, getPagination
 } from "../Controllers/report";
 import { verfyToken, isAdmin } from "../Middleware";
 
@@ -337,6 +338,63 @@ const reportRouter = express.Router();
  */
 
 
+
+/**
+ * @swagger
+ * /api/v1/Report/getPagination:
+ *   get:
+ *     summary: Returns the list of Purginacy ckeck 
+ *     tags: [Report]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: The list of all Purginacy ckeck 
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Purginacy'
+ *       204:
+ *         description: No Purginacy ckeck  records found in the database
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+/**
+ * @swagger
+ * /api/v1/Report/getPromoted:
+ *   get:
+ *     summary: Returns the list of  cows promoted to bull
+ *     tags: [Report]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: The list of cows promoted to bull
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Promoted'
+ *       204:
+ *         description: No cows promoted to bull   found in the database
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
 reportRouter.get("/getFinancial", verfyToken, isAdmin, getFinancial);
 reportRouter.get("/getActivity", verfyToken, isAdmin, getActivity);
 reportRouter.get("/getBreeding", verfyToken, isAdmin, getBreeding);
@@ -348,5 +406,8 @@ reportRouter.get("/getNewbirth", verfyToken, isAdmin, getNewbirth);
 reportRouter.get("/getTreatment", verfyToken, isAdmin, getTreatment);
 reportRouter.get("/getPasture", verfyToken, isAdmin, getPasture);
 reportRouter.get("/getDeadCow", verfyToken, isAdmin, getDeadCow);
+reportRouter.get("/getPagination", verfyToken, isAdmin, getPagination);
+reportRouter.get("/getPromoted", verfyToken, isAdmin, getPromoted);
+
 
 export default reportRouter;

@@ -2,8 +2,8 @@
 import {
     Financial, User, Activity, Gallery, Pasture, Cow,
     Treatment, Breeding, Castration, Weaning, Newbirth,
-    Sales,
-    DeadActivity
+    Sales, Purginacy,
+    DeadActivity, PromotedToBull
 } from "../../Models"
 
 import { catchAsync } from "../Error/catchAsync";
@@ -160,6 +160,28 @@ export const getDeadCow = catchAsync(async (req, res) => {
 
     return res.status(200).json({
         message: "list of Dead cow:",
+        data
+
+    })
+});
+
+export const getPromoted = catchAsync(async (req, res) => {
+    let data = await PromotedToBull.find();
+    console.log("list of cow Promoted To Bull!!");
+
+    return res.status(200).json({
+        message: "list of cow Promoted To Bull:",
+        data
+
+    })
+});
+
+export const getPagination = catchAsync(async (req, res) => {
+    let data = await Purginacy.find();
+    console.log("list of Purginacy !!");
+
+    return res.status(200).json({
+        message: "list of Purginacy:",
         data
 
     })
