@@ -42,7 +42,11 @@ const activitySchema = mongoose.Schema({
     methodOfBreeding: String,
     endDate: String,
     treatmentCost: String,
-    Note: String
+    Notes: String,
+    promotionDate: String,
+    checkDate: { type: String },
+    method: String,
+    result: String,
 
 });
 export const Activity = mongoose.model("Activity", activitySchema);
@@ -68,7 +72,6 @@ const treatmentSchema = mongoose.Schema({
     activityType: { type: String, default: "Treatment" },
     description: String,
     earTag: String,
-    activityType: String,
     treatmentDate: String,
     diseaseDiagnosed: String,
     dosageInml: String,
@@ -89,7 +92,7 @@ const castrationSchema = mongoose.Schema({
     CastratedBy: String,
     castrationdMethod: String,
     howItWent: { type: String, default: "Successful" },
-    Note: String
+    Notes: String
 });
 export const Castration = mongoose.model("Castration", castrationSchema);
 
@@ -113,7 +116,7 @@ const NewBirthSchema = mongoose.Schema({
     activityType: { type: String, default: "Newbirth" },
     BirthDate: String,
     BirthWeight: String,
-    notes: String
+    Notes: String
 });
 export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
 
@@ -123,13 +126,32 @@ const DeadActivitySchema = mongoose.Schema({
     earTag: String,
     deathCouse: { type: String },
     Deathdate: String,
-    notes: String,
-    type: { type: String, default: "DeadCow" },
+    Notes: String,
+    activityType: { type: String, default: "DeadCow" },
 });
 export const DeadActivity = mongoose.model("DeadActivity", DeadActivitySchema);
 
-// Newbirth: EarTag, BirthDate, Birth weight, Notes
+// Promote TO Bull: promotion date, note, EarTag
+const PromotedToBullSchema = mongoose.Schema({
 
+    earTag: String,
+    promotionDate: { type: String },
+    Notes: String,
+    activityType: { type: String, default: "PromotedToBull" },
+});
+export const PromotedToBull = mongoose.model("PromotedToBull", PromotedToBullSchema);
+
+// Purginacy check: checkDate, method, result, note
+const PurginacySchema = mongoose.Schema({
+
+    earTag: String,
+    checkDate: { type: String },
+    method: String,
+    result: String,
+    Notes: String,
+    activityType: { type: String, default: "Purginacy" },
+});
+export const Purginacy = mongoose.model("Purginacy", PurginacySchema);
 
 // Category.find()
 //     .populate("categoryType")

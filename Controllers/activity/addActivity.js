@@ -1,4 +1,4 @@
-import { Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth, DeadActivity, Cow } from "../../Models";
+import { Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth, DeadActivity, Cow, Purginacy, PromotedToBull } from "../../Models";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
@@ -45,7 +45,7 @@ export const recordTreatment = catchAsync(async (req, res) => {
 
 
 export const recordCastration = catchAsync(async (req, res) => {
-    const { earTag, castrationdDate, CastratedBy, castrationdMethod, Note
+    const { earTag, castrationdDate, CastratedBy, castrationdMethod, Notes
     } = req.body;
 
 
@@ -62,7 +62,7 @@ export const recordCastration = catchAsync(async (req, res) => {
 });
 
 export const recordDead = catchAsync(async (req, res) => {
-    const { earTag, deathCouse, Deathdate, Note
+    const { earTag, deathCouse, Deathdate, Notes
     } = req.body;
 
 
@@ -117,10 +117,8 @@ export const recordBreeding = catchAsync(async (req, res) => {
 
 
 
-
-
 export const recordSales = catchAsync(async (req, res) => {
-    const { earTag, SaleDate, SalePrice, SoldTo, notes
+    const { earTag, SaleDate, SalePrice, SoldTo, Notes
     } = req.body;
 
 
@@ -139,8 +137,44 @@ export const recordSales = catchAsync(async (req, res) => {
 });
 
 
+export const recordPurginacy = catchAsync(async (req, res) => {
+    const { earTag, checkDate, method, result, Notes
+    } = req.body;
+
+
+    const newPurginacy = await Purginacy.create(req.body);
+    const newActivity = await Activity.create(req.body);
+
+    const updatedCow = await Cow.findOneAndUpdate(
+        { earTag },
+        {
+            $set: {
+                earTag,
+                checkDate,
+                method,
+                result,
+                Notes,
+            },
+        },
+        { new: true, upsert: true }
+    );
+
+    console.log("Cow updated successfully");
+
+
+
+
+    console.log("New Purginacy check was created successfully");
+
+    return res.status(201).json({
+        message: "New Purginacy check  created successfully",
+        newPurginacy
+    });
+});
+
+
 export const recordNewbirth = catchAsync(async (req, res) => {
-    const { earTag, BirthDate, BirthWeight, SoldTo, notes
+    const { earTag, BirthDate, BirthWeight, SoldTo, Notes
     } = req.body;
 
 
@@ -156,6 +190,36 @@ export const recordNewbirth = catchAsync(async (req, res) => {
         newBirth
     });
 });
+
+
+export const recordPromoted = catchAsync(async (req, res) => {
+    const { earTag, promotionDate, Notes
+    } = req.body;
+
+
+    const PromotedToBull = await PromotedToBull.create(req.body);
+    const newActivity = await Activity.create(req.body);
+    const updatedCow = await Cow.findOneAndUpdate(
+        { earTag },
+        {
+            $set: {
+                earTag,
+                promotionDate,
+            },
+        },
+        { new: true, upsert: true }
+    );
+
+    console.log("Cow updated successfully");
+    console.log("New  cow Promoted To Bull  successfully");
+
+    return res.status(201).json({
+        message: "New cow Promoted To Bull  successfully",
+        PromotedToBull
+    });
+});
+
+
 
 export const deleteActivity = catchAsync(async (req, res) => {
     const requestId = req.params.id;

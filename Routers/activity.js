@@ -2,7 +2,7 @@ import express from "express";
 import {
     recordActivity, recordTreatment, recordCastration, recordWeaning, recordBreeding,
     deleteActivity, getActivityBytype, getAllActivity, updateActivity, getActivityById,
-    recordSales, recordNewbirth, recordDead
+    recordSales, recordNewbirth, recordDead, recordPromoted, recordPurginacy
 } from "../Controllers/activity";
 
 import { verfyToken } from "../Middleware";
@@ -45,13 +45,13 @@ const activityRouter = express.Router();
  *         vaccineAdministered:
  *           type: string
  *           description: Administered vaccine
- *         castrationdDate:
+ *         castrationDate:
  *           type: string
  *           description: Date of castration
  *         castratedBy:
  *           type: string
  *           description: Person who performed castration
- *         castrationdMethod:
+ *         castrationMethod:
  *           type: string
  *           description: Method of castration
  *         howItWent:
@@ -91,6 +91,18 @@ const activityRouter = express.Router();
  *         birthWeight:
  *           type: string
  *           description: Birth weight of the calf
+ *         checkDate:
+ *           type: string
+ *           description: Date of activity check
+ *         method:
+ *           type: string
+ *           description: Method used in the activity
+ *         result:
+ *           type: string
+ *           description: Result of the activity
+ *         promotionDate:
+ *           type: string
+ *           description: Date of promotion
  *       example:
  *         earTag: "C001"
  *         treatmentDate: "2023-01-01"
@@ -99,9 +111,9 @@ const activityRouter = express.Router();
  *         routeType: "Oral"
  *         vaccinationDate: "2023-02-01"
  *         vaccineAdministered: "Vaccine A"
- *         castrationdDate: "2023-03-01"
+ *         castrationDate: "2023-03-01"
  *         castratedBy: "Veterinarian X"
- *         castrationdMethod: "Surgical"
+ *         castrationMethod: "Surgical"
  *         howItWent: "Successful"
  *         weaningDate: "2023-04-01"
  *         weaningWeight: "150"
@@ -114,6 +126,10 @@ const activityRouter = express.Router();
  *         notes: "Additional notes"
  *         birthDate: "2023-08-01"
  *         birthWeight: "30"
+ *         checkDate: "2023-09-01"
+ *         method: "Observation"
+ *         result: "Healthy"
+ *         promotionDate: "2023-10-01"
  *     Treatment:
  *       type: object
  *       required:
@@ -149,24 +165,24 @@ const activityRouter = express.Router();
  *         dosageInml: "5"
  *         routeType: "Oral"
  *         vaccinationDate: "2023-02-01"
- *         vaccineAdministered: " Hitimana"
+ *         vaccineAdministered: "Hitimana"
  *     Castration:
  *       type: object
  *       required:
  *         - earTag
- *         - treatmentDate
- *         - diseaseDiagnosed
+ *         - castrationDate
+ *         - castratedBy
  *       properties:
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         castrationdDate:
+ *         castrationDate:
  *           type: string
  *           description: Date of castration
- *         CastratedBy:
+ *         castratedBy:
  *           type: string
  *           description: Person who performed castration
- *         castrationdMethod:
+ *         castrationMethod:
  *           type: string
  *           description: Method of castration
  *         howItWent:
@@ -175,9 +191,9 @@ const activityRouter = express.Router();
  *           description: Outcome description
  *       example:
  *         earTag: "C001"
- *         castrationdDate: "2023-03-01"
- *         CastratedBy: "Veterinarian X"
- *         castrationdMethod: "Surgical"
+ *         castrationDate: "2023-03-01"
+ *         castratedBy: "Veterinarian X"
+ *         castrationMethod: "Surgical"
  *         howItWent: "Successful"
  *     Weaning:
  *       type: object
@@ -190,14 +206,13 @@ const activityRouter = express.Router();
  *         weaningDate:
  *           type: string
  *           description: Date of weaning
- *         WeaningWeight:
+ *         weaningWeight:
  *           type: string
  *           description: Weight at weaning
  *       example:
  *         earTag: "C001"
- *         activityType: "Weaning"
  *         weaningDate: "2023-04-01"
- *         WeaningWeight: "150"
+ *         weaningWeight: "150"
  *     Breeding:
  *       type: object
  *       required:
@@ -228,13 +243,13 @@ const activityRouter = express.Router();
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         SaleDate:
+ *         saleDate:
  *           type: string
  *           description: Date of breeding
- *         SalePrice:
+ *         salePrice:
  *           type: string
  *           description: Breeding method
- *         SoldTo:
+ *         soldTo:
  *           type: string
  *           description: End date of the activity
  *         notes:
@@ -242,9 +257,9 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         SaleDate: "2023-05-01"
- *         SalePrice: "Artificial Breeding"
- *         SoldTo: "2023-06-01"
+ *         saleDate: "2023-05-01"
+ *         salePrice: "Artificial Breeding"
+ *         soldTo: "2023-06-01"
  *         notes: "2023-06-01"
  *     NewBirth:
  *       type: object
@@ -254,10 +269,10 @@ const activityRouter = express.Router();
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         BirthDate:
+ *         birthDate:
  *           type: string
  *           description: Date of breeding
- *         BirthWeight:
+ *         birthWeight:
  *           type: string
  *           description: Breeding method
  *         notes:
@@ -265,8 +280,8 @@ const activityRouter = express.Router();
  *           description: End date of the activity
  *       example:
  *         earTag: "C001"
- *         BirthDate: "2023-05-01"
- *         BirthWeight: "Artificial Breeding"
+ *         birthDate: "2023-05-01"
+ *         birthWeight: "Artificial Breeding"
  *         notes: "2023-06-01"
  *     DeadActivity:
  *       type: object
@@ -276,10 +291,10 @@ const activityRouter = express.Router();
  *         earTag:
  *           type: string
  *           description: The ear tag of the cow
- *         deathCouse:
+ *         deathCause:
  *           type: string
  *           description: The cause of death of the cow
- *         Deathdate:
+ *         deathDate:
  *           type: string
  *           format: date
  *           description: The date of the cow's death
@@ -288,11 +303,56 @@ const activityRouter = express.Router();
  *           description: Additional notes about the cow's death
  *       example:
  *         earTag: "C001"
- *         deathCouse: "Disease"
- *         Deathdate: "2023-05-01"
+ *         deathCause: "Disease"
+ *         deathDate: "2023-05-01"
  *         notes: "Cow showed symptoms of illness and passed away on this date."
+ *     Promoted:
+ *       type: object
+ *       required:
+ *         - earTag
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         promotionDate:
+ *           type: string
+ *           description: promoted to bull date
+ *         notes:
+ *           type: string
+ *           description: Additional notes about promotion
+ *       example:
+ *         earTag: "C001"
+ *         promotionDate: "Disease"
+ *         notes: "Cow showed symptoms of illness and passed away on this date."
+ *     Purginacy:
+ *       type: object
+ *       required:
+ *         - earTag
+ *       properties:
+ *         earTag:
+ *           type: string
+ *           description: The ear tag of the cow
+ *         checkDate:
+ *           type: string
+ *           description: The date
+ *         method:
+ *           type: string
+ *           format: date
+ *           description: method used
+ *         result:
+ *           type: string
+ *           format: date
+ *           description: haw pagination went
+ *         notes:
+ *           type: string
+ *           description: pugination processs
+ *       example:
+ *         earTag: "C001"
+ *         checkDate: "2023-05-01"
+ *         method: "method used"
+ *         result: "the result"
+ *         notes: "haw pugination check done."
  */
-
 
 
 /**
@@ -459,6 +519,62 @@ const activityRouter = express.Router();
  *       500:
  *         description: Internal Server Error
  */
+
+/**
+ * @swagger
+ * /api/v1/Activity/recordPromoted:
+ *   post:
+ *     summary: Record cow Promoted to bull activity
+ *     tags: [Activity]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Promoted'
+ *     responses:
+ *       201:
+ *         description: Cow breeding Promoted to bull successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Promoted'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+/**
+ * @swagger
+ * /api/v1/Activity/recordPurginacy:
+ *   post:
+ *     summary: Record cow Purginacy activity
+ *     tags: [Activity]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Purginacy'
+ *     responses:
+ *       201:
+ *         description: Cow Purginacy activity recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Purginacy'
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+
 
 
 /**
@@ -670,6 +786,8 @@ activityRouter.post("/recordBreeding", verfyToken, recordBreeding);
 activityRouter.post("/recordSales", verfyToken, recordSales);
 activityRouter.post("/recordNewBirth", verfyToken, recordNewbirth);
 activityRouter.post("/recordDeadActivity", verfyToken, recordDead);
+activityRouter.post("/recordPurginacy", verfyToken, recordPurginacy);
+activityRouter.post("/recordPromoted", verfyToken, recordPromoted);
 
 
 export default activityRouter;
