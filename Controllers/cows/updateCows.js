@@ -8,7 +8,14 @@ export const updateCow = catchAsync(async (req, res, next) => {
         const updatedDoc = await Cow.findOneAndUpdate(
             { earTag: requestEarTag },
             req.body,
-            { new: true, useFindAndModify: false }
+            { new: true, useFindAndModify: false },
+            (error, doc) => {
+                if (error) {
+                    console.error(error);
+                    return res.status(500).json({ status: "error", message: 'Internal Server Error' });
+                }
+                return doc;
+            }
         );
 
         if (!updatedDoc) {
@@ -27,6 +34,6 @@ export const updateCow = catchAsync(async (req, res, next) => {
 
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        return res.status(500).json({ status: "error", message: 'Internal Server Error' });
     }
 });
