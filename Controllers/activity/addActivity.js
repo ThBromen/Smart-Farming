@@ -2,6 +2,7 @@ import {
     Activity, Breeding, Castration, Treatment, Weaning, Sales, Newbirth,
     DeadActivity, Cow, Purginacy, PromotedToBull
 } from "../../Models";
+import mongoose from "mongoose";
 import { catchAsync } from "../Error/catchAsync";
 
 export const recordActivity = catchAsync(async (req, res) => {
@@ -223,25 +224,6 @@ export const recordPromoted = catchAsync(async (req, res) => {
     });
 });
 
-
-
-export const deleteActivity = catchAsync(async (req, res) => {
-    const requestId = req.params.id;
-    let data = await Activity.findById({ _id: requestId });
-
-    if (!data) {
-        return next(new AppError("no Activity  found with that ID", 404));
-    }
-
-    const result = await Activity.deleteMany(data);
-    console.log("the Activity is deleted with ID:", data._id);
-    return res.status(202).json({
-        message: "the Activity is deleted with ID",
-        result
-    })
-});
-
-
 export const getActivityById = catchAsync(async (req, res) => {
 
     let requestId = req.params.id;
@@ -270,6 +252,11 @@ export const getActivityBytype = catchAsync(async (req, res) => {
     });
 });
 
+
+
+
+
+
 export const getAllActivity = catchAsync(async (req, res) => {
     let data = await Activity.find();
     console.log("list of all Activity record  is selected !!");
@@ -279,6 +266,9 @@ export const getAllActivity = catchAsync(async (req, res) => {
         data
     })
 });
+
+
+
 
 export const updateActivity = catchAsync(async (req, res) => {
     const requestId = req.params.id;
@@ -292,5 +282,79 @@ export const updateActivity = catchAsync(async (req, res) => {
     console.log("Activity  is updated with ID:", updatedDoc._id);
     return res.json(updatedDoc);
 
+});
+
+// Function to search in all models by ID
+const searchByIdAcrossModels = async (id) => {
+    const models = [
+        Activity,
+        Breeding,
+        Castration,
+        Treatment,
+        Weaning,
+        Sales,
+        Newbirth,
+        DeadActivity,
+        Cow,
+        Purginacy,
+        PromotedToBull,
+    ];
+
+    const foundDocuments = [];
+
+    for (const model of models) {
+        const result = await model.findById(id).lean(); // Use lean() to get a plain JavaScript object
+        if (result) {
+            foundDocuments.push({
+                model: model.modelName,
+                document: result
+            });
+        }
+    }
+
+    return foundDocuments;
+};
+
+export const deleteActivity = catchAsync(async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const foundDocuments = await searchByIdAcrossModels(id);
+
+        if (foundDocuments.length === 0) {
+            return res.status(404).json({ message: 'Document not found with id ' + id });
+        }
+
+        // Delete the found documents
+        const deletionResults = [];
+        for (const { model, document } of foundDocuments) {
+            console.log(`Deleting Document from ${model}:`, document);
+
+            // Check if the model has a deleteOne method
+            const modelInstance = mongoose.model(model);
+            if (modelInstance.deleteOne) {
+                const deletionResult = await modelInstance.deleteOne({ _id: document._id });
+                console.log(`Deletion Result from ${model}:`, deletionResult);
+
+                deletionResults.push({
+                    model,
+                    deletionResult
+                });
+            } else {
+                console.error(`Model ${model} does not have a deleteOne method`);
+            }
+        }
+
+        return res.status(200).json({
+            message: 'Documents deleted successfully',
+            deletionResults
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: 'Internal Server Error',
+            deletionResult
+        });
+    }
 });
 

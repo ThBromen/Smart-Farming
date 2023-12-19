@@ -11,5 +11,8 @@ export const getCowByEarTag = catchAsync(async (req, res, next) => {
     }
 
     console.log("The cow is selected with earTag:", data.earTag);
-    res.status(200).json(data);
+    res.status(200).json({
+        message: "cow Details:",
+        data
+    });
 });
