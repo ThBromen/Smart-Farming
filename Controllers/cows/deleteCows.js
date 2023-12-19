@@ -22,6 +22,7 @@ export const deleteCow = catchAsync(async (req, res, next) => {
             data: result
         });
     } catch (error) {
-        return next(new AppError("Internal Server Error", 500));
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
 });

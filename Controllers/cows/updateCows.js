@@ -26,7 +26,7 @@ export const updateCow = catchAsync(async (req, res, next) => {
         });
 
     } catch (error) {
-        // Handle unexpected errors
-        return next(new AppError("Internal Server Error", 500));
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
 });

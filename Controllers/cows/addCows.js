@@ -75,4 +75,4 @@ export const recordBull = catchAsync(async (req, res) => {
         newBull,
 
     });
-});
+}); 
