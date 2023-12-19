@@ -455,11 +455,11 @@ const cowRouter = express.Router();
  *       - BearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: earTag
  *         schema:
  *           type: string
  *         required: true
- *         description: The cow ID
+ *         description: The cow ear tag
  *     responses:
  *       200:
  *         description: Cow deleted successfully
@@ -487,11 +487,11 @@ const cowRouter = express.Router();
  *       - BearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: earTag
  *         schema:
  *           type: string
  *         required: true
- *         description: The cow ID
+ *         description: The cow ear tag
  *     requestBody:
  *       required: true
  *       content:
