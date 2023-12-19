@@ -447,7 +447,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/createCow/deleteCow/{id}:
+ * /api/v1/createCow/deleteCow/{earTag}:
  *   delete:
  *     summary: Delete cow by ID
  *     tags: [Cow]
@@ -479,7 +479,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/createCow/updateCow/{id}:
+ * /api/v1/createCow/updateCow/{earTag}:
  *   put:
  *     summary: Update cow by ID
  *     tags: [Cow]
