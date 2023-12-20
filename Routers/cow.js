@@ -525,7 +525,7 @@ cowRouter.post("/recordBull/", recordBull);
 cowRouter.get("/getCow/", getAllCow);
 cowRouter.get("/getCowBytype/:type", getCowBytype);
 cowRouter.get("/getCowByEarTag/:earTag", getCowByEarTag);
-cowRouter.delete("/deleteCow/:id", deleteCow);
-cowRouter.put("/updateCow/:id", updateCow);
+cowRouter.delete("/deleteCow/:eartag", deleteCow);
+cowRouter.put("/updateCow/:earTag", updateCow);
 
 export default cowRouter;

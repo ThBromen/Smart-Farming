@@ -15,7 +15,6 @@ export const updateCow = catchAsync(async (req, res, next) => {
             return res.status(404).json({
                 status: "error",
                 message: "No cow found with that earTag",
-                err
             });
         }
 
