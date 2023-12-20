@@ -12,7 +12,11 @@ export const updateCow = catchAsync(async (req, res, next) => {
         );
 
         if (!updatedDoc) {
-            return next(new AppError("No cow found with that earTag", 404));
+            return res.status(404).json({
+                status: "error",
+                message: "No cow found with that earTag",
+                err
+            });
         }
 
         // Log the success
