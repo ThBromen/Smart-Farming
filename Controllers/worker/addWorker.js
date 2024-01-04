@@ -106,7 +106,7 @@ export const getWorkerById = catchAsync(async (req, res) => {
             });
         }
 
-        console.log("Worker with ID selected!!");
+        console.log("Worker with ID selected!!", workerId);
         return res.status(200).json({
             message: "Worker details:",
             data: worker,
