@@ -1,5 +1,5 @@
 import express from "express";
-import { addWorker, getWorker, deleteWorker } from "../Controllers/worker";
+import { addWorker, getWorker, deleteWorker, updateWorker, getWorkerById } from "../Controllers/worker";
 import { verfyToken } from "../Middleware";
 
 const workerRouter = express.Router();
@@ -125,8 +125,81 @@ const workerRouter = express.Router();
  */
 
 
+/**
+ * @swagger
+ * /api/v1/Worker/updateWorker/{id}:
+ *   put:
+ *     summary: Update a worker by ID
+ *     tags: [Worker]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The worker ID to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Worker'
+ *     responses:
+ *       200:
+ *         description: Worker updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Worker'
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Worker not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+
+
+/**
+ * @swagger
+ * /api/v1/Worker/getWorkerById/{id}:
+ *   get:
+ *     summary: Get a worker by ID
+ *     tags: [Worker]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The worker ID to fetch
+ *     responses:
+ *       200:
+ *         description: Worker details
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Worker'
+ *       403:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Worker not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
 workerRouter.post("/addworker", verfyToken, addWorker);
 workerRouter.get("/getworker", verfyToken, getWorker);
 workerRouter.delete("/deleteworker/:id", verfyToken, deleteWorker);
+workerRouter.put("/updateworker/:id", verfyToken, updateWorker);
+workerRouter.get("/getworkerById", verfyToken, getWorkerById);
+
 
 export default workerRouter;
