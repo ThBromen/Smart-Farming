@@ -5,7 +5,7 @@ import {
     deleteContact,
     updateContactById,
     createContact,
-} from '../controllers/contact';
+} from '../Controllers/contact';
 
 const contactRouter = express.Router();
 
