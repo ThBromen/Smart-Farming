@@ -18,11 +18,9 @@ import workerRouter from "./Routers/Worker"
 import contactRouter from "./Routers/contact"
 
 
-
 import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
-import AppError from "./utils/appError";
 import globalErrorHandle from "./Controllers/Error/errorController";
 
 
@@ -73,13 +71,13 @@ app.use("/api/v1/contact", contactRouter);
 
 app.use(globalErrorHandle);
 
-mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
-  console.log("online Database connected");
-});
-
-// mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
-//   console.log(" local Database connected");
+// mongoose.connect(process.env.DB_CONNECTION_PROD).then((res) => {
+//   console.log("online Database connected");
 // });
+
+mongoose.connect(process.env.DB_CONNECTION_DEV).then((res) => {
+  console.log(" local Database connected");
+});
 
 
 app.listen(port, () => {
