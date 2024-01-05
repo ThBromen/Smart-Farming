@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 const salesSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     activityType: { type: String, default: "Sales" },
     SaleDate: String,
@@ -17,6 +17,7 @@ export const Sales = mongoose.model("Sales", salesSchema);
 
 
 const activitySchema = mongoose.Schema({
+    Date: { type: Date, default: Date.now },
 
     earTag: {
         type: String,
@@ -56,7 +57,7 @@ export const Activity = mongoose.model("Activity", activitySchema);
 
 
 const breedingSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     activityType: { type: String, default: "Breeding" },
     breedingDate: String,
@@ -68,7 +69,7 @@ export const Breeding = mongoose.model("Breeding", breedingSchema);
 
 
 const treatmentSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     activityType: { type: String, default: "Treatment" },
     description: String,
     earTag: String,
@@ -85,7 +86,7 @@ export const Treatment = mongoose.model("Treatment", treatmentSchema);
 
 
 const castrationSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     activityType: { type: String, default: "Castration" },
     castrationdDate: String,
@@ -99,7 +100,7 @@ export const Castration = mongoose.model("Castration", castrationSchema);
 
 
 const weaningSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     activityType: { type: String, default: "Weaning" },
     weaningDate: String,
@@ -111,7 +112,7 @@ export const Weaning = mongoose.model("Weaning", weaningSchema);
 
 
 const NewBirthSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     activityType: { type: String, default: "Newbirth" },
     BirthDate: String,
@@ -122,7 +123,7 @@ export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
 
 
 const DeadActivitySchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     deathCouse: { type: String },
     Deathdate: String,
@@ -133,7 +134,7 @@ export const DeadActivity = mongoose.model("DeadActivity", DeadActivitySchema);
 
 // Promote TO Bull: promotion date, note, EarTag
 const PromotedToBullSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     promotionDate: { type: String },
     Notes: String,
@@ -143,7 +144,7 @@ export const PromotedToBull = mongoose.model("PromotedToBull", PromotedToBullSch
 
 // Purginacy check: checkDate, method, result, note
 const PurginacySchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: String,
     checkDate: { type: String },
     method: String,

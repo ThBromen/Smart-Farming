@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 const categorySchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     categoryType: String,
     description: String
 });
@@ -11,7 +11,7 @@ export const Category = mongoose.model("Category", categorySchema);
 
 const breedSchema = mongoose.Schema({
 
-
+    Date: { type: Date, default: Date.now },
     breedType: String,
     description: String
 });
@@ -23,7 +23,7 @@ export const Breed = mongoose.model("Breed", breedSchema);
 
 
 const cowSchema = mongoose.Schema({
-
+    Date: { type: Date, default: Date.now },
     earTag: {
         type: String,
         required: true
