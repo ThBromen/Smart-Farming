@@ -16,7 +16,6 @@ import pastureRouter from "./Routers/Pasture";
 import reportRouter from "./Routers/Report"
 import workerRouter from "./Routers/Worker"
 import contactRouter from "./Routers/contact"
-import logActivity from "./Middleware/winston";
 
 
 import morgan from "morgan";
@@ -54,7 +53,6 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use("/api/v1/History", logActivity);
 app.use("/api/v1/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/financial", financialRouter);
