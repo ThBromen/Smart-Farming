@@ -132,7 +132,7 @@ export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
 const DeadActivitySchema = mongoose.Schema({
     Date: { type: Date, default: Date.now },
     earTag: String,
-    deathCouse: { type: String },
+    deathCause: { type: String },
     DeathDate: String,
     Notes: String,
     activityType: { type: String, default: "DeadCow" },
