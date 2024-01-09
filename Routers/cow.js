@@ -447,7 +447,7 @@ const cowRouter = express.Router();
 
 /**
  * @swagger
- * /api/v1/createCow/deleteCow/{earTag}:
+ * /api/v1/createCow/deleteCow/{id}:
  *   delete:
  *     summary: Delete cow by ID
  *     tags: [Cow]
@@ -455,11 +455,11 @@ const cowRouter = express.Router();
  *       - BearerAuth: []
  *     parameters:
  *       - in: path
- *         name: earTag
+ *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The cow ear tag
+ *         description: The cow ID
  *     responses:
  *       200:
  *         description: Cow deleted successfully
@@ -516,16 +516,14 @@ const cowRouter = express.Router();
  */
 
 
-
-
-cowRouter.post("/recordCow/", recordCow);
-cowRouter.post("/recordHeifers/", recordHeifers);
-cowRouter.post("/recordCalves/", recordCalves);
-cowRouter.post("/recordBull/", recordBull);
-cowRouter.get("/getCow/", getAllCow);
-cowRouter.get("/getCowBytype/:type", getCowBytype);
-cowRouter.get("/getCowByEarTag/:earTag", getCowByEarTag);
-cowRouter.delete("/deleteCow/:eartag", deleteCow);
-cowRouter.put("/updateCow/:earTag", updateCow);
+cowRouter.post("/recordCow/", verfyToken, recordCow);
+cowRouter.post("/recordHeifers/", verfyToken, recordHeifers);
+cowRouter.post("/recordCalves/", verfyToken, recordCalves);
+cowRouter.post("/recordBull/", verfyToken, recordBull);
+cowRouter.get("/getCow/", verfyToken, getAllCow);
+cowRouter.get("/getCowBytype/:type", verfyToken, getCowBytype);
+cowRouter.get("/getCowByEarTag/:earTag", verfyToken, getCowByEarTag);
+cowRouter.delete("/deleteCow/:id", verfyToken, deleteCow);
+cowRouter.put("/updateCow/:earTag", verfyToken, updateCow);
 
 export default cowRouter;

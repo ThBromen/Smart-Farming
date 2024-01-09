@@ -26,7 +26,8 @@ const cowSchema = mongoose.Schema({
     Date: { type: Date, default: Date.now },
     earTag: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     categoryType: {

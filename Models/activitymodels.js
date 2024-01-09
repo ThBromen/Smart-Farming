@@ -17,7 +17,14 @@ export const Sales = mongoose.model("Sales", salesSchema);
 
 
 const activitySchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
 
     earTag: {
         type: String,
