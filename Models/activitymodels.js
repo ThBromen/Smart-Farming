@@ -2,7 +2,14 @@
 import mongoose from "mongoose";
 
 const salesSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     activityType: { type: String, default: "Sales" },
     SaleDate: String,
@@ -25,46 +32,54 @@ const activitySchema = mongoose.Schema({
             year: 'numeric',
         }),
     },
-
-    earTag: {
-        type: String,
-        required: true,
-    },
-
-    activityType: {
-        type: String,
-    },
-    treatmentDate: String,
+    earTag: String,
+    activityType: String,
+    saleDate: String,
+    salePrice: String,
+    soldTo: String,
+    notes: String,
+    breedingDate: String,
+    methodOfBreeding: String,
+    endDate: String,
+    description: String,
     diseaseDiagnosed: String,
     dosageInml: String,
     routeType: String,
     vaccinationDate: String,
     vaccineAdministered: String,
-    castrationdDate: String,
-    CastratedBy: String,
-    castrationdMethod: String,
+    castrationDate: String,
+    castratedBy: String,
+    castrationMethod: String,
     howItWent: { type: String, default: "Successful" },
     weaningDate: String,
-    WeaningWeight: String,
-    breedingDate: String,
-    methodOfBreeding: String,
-    endDate: String,
-    treatmentCost: String,
-    Notes: String,
+    weaningWeight: String,
+    birthDate: String,
+    birthWeight: String,
+    deathCause: String,
+    deathDate: String,
+    notes: String,
     promotionDate: String,
-    checkDate: { type: String },
+    checkDate: String,
     method: String,
     result: String,
-
 });
+
 export const Activity = mongoose.model("Activity", activitySchema);
 
 
 
 
 
+
 const breedingSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     activityType: { type: String, default: "Breeding" },
     breedingDate: String,
@@ -76,7 +91,14 @@ export const Breeding = mongoose.model("Breeding", breedingSchema);
 
 
 const treatmentSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     activityType: { type: String, default: "Treatment" },
     description: String,
     earTag: String,
@@ -93,7 +115,14 @@ export const Treatment = mongoose.model("Treatment", treatmentSchema);
 
 
 const castrationSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     activityType: { type: String, default: "Castration" },
     castrationdDate: String,
@@ -107,7 +136,14 @@ export const Castration = mongoose.model("Castration", castrationSchema);
 
 
 const weaningSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     activityType: { type: String, default: "Weaning" },
     weaningDate: String,
@@ -119,7 +155,14 @@ export const Weaning = mongoose.model("Weaning", weaningSchema);
 
 
 const NewBirthSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     activityType: { type: String, default: "Newbirth" },
     BirthDate: String,
@@ -130,13 +173,21 @@ export const Newbirth = mongoose.model("Newbirth", NewBirthSchema);
 
 
 const DeadActivitySchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     deathCause: { type: String },
     DeathDate: String,
     Notes: String,
-    activityType: { type: String, default: "DeadCow" },
+    activityType: { type: String, default: "Dead Cow" },
 });
+
 
 
 
@@ -145,7 +196,14 @@ export const DeadActivity = mongoose.model("DeadActivity", DeadActivitySchema);
 
 // Promote TO Bull: promotion date, note, EarTag
 const PromotedToBullSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     promotionDate: { type: String },
     Notes: String,
@@ -155,7 +213,14 @@ export const PromotedToBull = mongoose.model("PromotedToBull", PromotedToBullSch
 
 // Purginacy check: checkDate, method, result, note
 const PurginacySchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: String,
     checkDate: { type: String },
     method: String,
@@ -164,6 +229,10 @@ const PurginacySchema = mongoose.Schema({
     activityType: { type: String, default: "Purginacy" },
 });
 export const Purginacy = mongoose.model("Purginacy", PurginacySchema);
+
+
+
+
 
 // Category.find()
 //     .populate("categoryType")

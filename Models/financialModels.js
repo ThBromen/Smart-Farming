@@ -2,7 +2,14 @@
 import mongoose from "mongoose";
 
 const financialSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     sales: String,
     litresSold: String,
     animalEarTag: String,

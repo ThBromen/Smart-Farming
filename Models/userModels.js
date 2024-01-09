@@ -2,7 +2,14 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-  Date: { type: Date, default: Date.now },
+  Date: {
+    type: Date,
+    default: () => new Date().toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    }),
+  },
   email: { type: String, required: true, unique: true },
   fullNames: String,
   password: { type: String, required: true },

@@ -2,7 +2,14 @@
 import mongoose from "mongoose";
 
 const categorySchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     categoryType: String,
     description: String
 });
@@ -11,7 +18,14 @@ export const Category = mongoose.model("Category", categorySchema);
 
 const breedSchema = mongoose.Schema({
 
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     breedType: String,
     description: String
 });
@@ -23,7 +37,14 @@ export const Breed = mongoose.model("Breed", breedSchema);
 
 
 const cowSchema = mongoose.Schema({
-    Date: { type: Date, default: Date.now },
+    Date: {
+        type: Date,
+        default: () => new Date().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+        }),
+    },
     earTag: {
         type: String,
         required: true,
