@@ -133,10 +133,14 @@ const DeadActivitySchema = mongoose.Schema({
     Date: { type: Date, default: Date.now },
     earTag: String,
     deathCouse: { type: String },
-    Deathdate: String,
+    DeathDate: String,
     Notes: String,
     activityType: { type: String, default: "DeadCow" },
 });
+
+
+
+
 export const DeadActivity = mongoose.model("DeadActivity", DeadActivitySchema);
 
 // Promote TO Bull: promotion date, note, EarTag
