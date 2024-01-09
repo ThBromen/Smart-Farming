@@ -1,20 +1,21 @@
 
 import { Cow } from "../../Models";
-import { catchAsync } from "../Error/catchAsync";
 
-export const deleteCow = catchAsync(async (req, res, next) => {
+export const deleteCow = async (req, res) => {
     try {
         const requestEarTag = req.params.earTag;
+
         const data = await Cow.findOne({ earTag: requestEarTag });
 
         if (!data) {
-            return next(new AppError("No cow found with that earTag", 404));
+            return res.status(404).json({
+                status: 'fail',
+                message: 'No cow found with that earTag',
+            });
         }
 
-        // Delete the cow document
         const result = await Cow.deleteOne({ earTag: requestEarTag });
 
-        // Log the success and send the result as a response
         console.log("The cow is deleted with ear tag:", requestEarTag);
         return res.status(200).json({
             status: "success",
@@ -25,4 +26,4 @@ export const deleteCow = catchAsync(async (req, res, next) => {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
-});
+};
