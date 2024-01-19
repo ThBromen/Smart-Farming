@@ -235,10 +235,10 @@ const financialRouter = express.Router();
  */
 
 
-financialRouter.post("/addFinancial", verfyToken, addFinancial);
-financialRouter.get("/getFinancial/", verfyToken, getFinancial);
-financialRouter.get("/financialById/:id", verfyToken, getFinancialById);
-financialRouter.delete("/deleteFinancial/:id", verfyToken, deleteFinancial);
-financialRouter.put("/updateFinancial/:id", verfyToken, updateFinancial);
+financialRouter.post("/addFinancial", addFinancial);
+financialRouter.get("/getFinancial/", getFinancial);
+financialRouter.get("/financialById/:id", getFinancialById);
+financialRouter.delete("/deleteFinancial/:id", deleteFinancial);
+financialRouter.put("/updateFinancial/:id", updateFinancial);
 
 export default financialRouter;

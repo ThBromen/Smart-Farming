@@ -108,6 +108,7 @@ export const Cow = mongoose.model("Cow", cowSchema);
 
 
 
+//earTag,categoryType,breedType,lifeStatus,status,dateOfGivingBirth,calfNumber,lactating,numberOfCalving,litresOfMilkItProduces,dateOfBirth,mothersEarTag
 
 // Category.find()
 //     .populate("categoryType")

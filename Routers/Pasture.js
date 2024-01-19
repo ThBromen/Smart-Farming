@@ -200,10 +200,10 @@ const pastureRouter = express.Router();
  */
 
 
-pastureRouter.post("/addPasture", verfyToken, addPasture);
-pastureRouter.get("/getPasture", verfyToken, getPasture);
-pastureRouter.get("/getPastureById/:id", verfyToken, getPastureById);
-pastureRouter.delete("/deletePasture/:id", verfyToken, deletePasture);
-pastureRouter.put("/updatePasture/:id", verfyToken, updatePasture);
+pastureRouter.post("/addPasture", addPasture);
+pastureRouter.get("/getPasture", getPasture);
+pastureRouter.get("/getPastureById/:id", getPastureById);
+pastureRouter.delete("/deletePasture/:id", deletePasture);
+pastureRouter.put("/updatePasture/:id", updatePasture);
 
 export default pastureRouter;

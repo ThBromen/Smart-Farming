@@ -45,6 +45,8 @@ const activitySchema = mongoose.Schema({
     diseaseDiagnosed: String,
     dosageInml: String,
     routeType: String,
+
+    // Date,earTag,activityType,notes,howItWent,dosageInml,description
     vaccinationDate: String,
     vaccineAdministered: String,
     castrationDate: String,
@@ -57,7 +59,7 @@ const activitySchema = mongoose.Schema({
     birthWeight: String,
     deathCause: String,
     deathDate: String,
-    notes: String,
+    Notes: String,
     promotionDate: String,
     checkDate: String,
     method: String,

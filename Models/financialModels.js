@@ -21,3 +21,5 @@ const financialSchema = mongoose.Schema({
     adminstrator: String
 });
 export const Financial = mongoose.model("Financial", financialSchema);
+
+//

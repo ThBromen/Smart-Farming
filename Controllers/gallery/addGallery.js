@@ -60,7 +60,7 @@ export const deleteGallery = catchAsync(async (req, res) => {
 
 export const getGallery = catchAsync(async (req, res) => {
     let data = await Gallery.find();
-    console.log("list of financial record  is selected !!");
+    console.log("list of Gallery  is selected !!");
 
     const page = req.query.page;
     const limit = req.query.limit;
@@ -87,13 +87,13 @@ export const getGallery = catchAsync(async (req, res) => {
 
     if (page && limit) {
         return res.status(200).json({
-            message: "list of users by pagination !!",
+            message: "list of Gallery by pagination !!",
             results
         });
     }
     else {
         return res.status(200).json({
-            message: "list of users !!",
+            message: "list of Gallery !!",
             data
         });
     }

@@ -195,11 +195,11 @@ const workerRouter = express.Router();
  */
 
 
-workerRouter.post("/addworker", verfyToken, addWorker);
-workerRouter.get("/getworker", verfyToken, getWorker);
-workerRouter.delete("/deleteworker/:id", verfyToken, deleteWorker);
-workerRouter.put("/updateworker/:id", verfyToken, updateWorker);
-workerRouter.get("/getworkerById", verfyToken, getWorkerById);
+workerRouter.post("/addworker", addWorker);
+workerRouter.get("/getworker", getWorker);
+workerRouter.delete("/deleteworker/:id", deleteWorker);
+workerRouter.put("/updateworker/:id", updateWorker);
+workerRouter.get("/getworkerById", getWorkerById);
 
 
 export default workerRouter;

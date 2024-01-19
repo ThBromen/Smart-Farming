@@ -516,14 +516,14 @@ const cowRouter = express.Router();
  */
 
 
-cowRouter.post("/recordCow/", verfyToken, recordCow);
-cowRouter.post("/recordHeifers/", verfyToken, recordHeifers);
-cowRouter.post("/recordCalves/", verfyToken, recordCalves);
-cowRouter.post("/recordBull/", verfyToken, recordBull);
-cowRouter.get("/getCow/", verfyToken, getAllCow);
-cowRouter.get("/getCowBytype/:type", verfyToken, getCowBytype);
-cowRouter.get("/getCowByEarTag/:earTag", verfyToken, getCowByEarTag);
-cowRouter.delete("/deleteCow/:id", verfyToken, deleteCow);
-cowRouter.put("/updateCow/:earTag", verfyToken, updateCow);
+cowRouter.post("/recordCow/", recordCow);
+cowRouter.post("/recordHeifers/", recordHeifers);
+cowRouter.post("/recordCalves/", recordCalves);
+cowRouter.post("/recordBull/", recordBull);
+cowRouter.get("/getCow/", getAllCow);
+cowRouter.get("/getCowBytype/:type", getCowBytype);
+cowRouter.get("/getCowByEarTag/:earTag", getCowByEarTag);
+cowRouter.delete("/deleteCow/:id", deleteCow);
+cowRouter.put("/updateCow/:earTag", updateCow);
 
 export default cowRouter;

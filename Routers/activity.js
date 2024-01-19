@@ -818,21 +818,21 @@ const activityRouter = express.Router();
 
 
 
-activityRouter.post("/recordActivity", verfyToken, recordActivity);
-activityRouter.get("/getAllActivity", verfyToken, getAllActivity);
-activityRouter.get("/getActivityBytype/:activityType", verfyToken, getActivityBytype);
-activityRouter.delete("/deleteActivity/:id", verfyToken, deleteActivity);
-activityRouter.put("/updateActivity/:id", verfyToken, updateActivity);
-activityRouter.get("/getActivityById:id", verfyToken, getActivityById);
-activityRouter.post("/recordTreatment", verfyToken, recordTreatment);
-activityRouter.post("/recordCastration", verfyToken, recordCastration);
-activityRouter.post("/recordWeaning", verfyToken, recordWeaning);
-activityRouter.post("/recordBreeding", verfyToken, recordBreeding);
-activityRouter.post("/recordSales", verfyToken, recordSales);
-activityRouter.post("/recordNewBirth", verfyToken, recordNewbirth);
-activityRouter.post("/recordDeadActivity", verfyToken, recordDead);
-activityRouter.post("/recordPurginacy", verfyToken, recordPurginacy);
-activityRouter.post("/recordPromoted", verfyToken, recordPromoted);
+activityRouter.post("/recordActivity", recordActivity);
+activityRouter.get("/getAllActivity", getAllActivity);
+activityRouter.get("/getActivityBytype/:activityType", getActivityBytype);
+activityRouter.delete("/deleteActivity/:id", deleteActivity);
+activityRouter.put("/updateActivity/:id", updateActivity);
+activityRouter.get("/getActivityById:id", getActivityById);
+activityRouter.post("/recordTreatment", recordTreatment);
+activityRouter.post("/recordCastration", recordCastration);
+activityRouter.post("/recordWeaning", recordWeaning);
+activityRouter.post("/recordBreeding", recordBreeding);
+activityRouter.post("/recordSales", recordSales);
+activityRouter.post("/recordNewBirth", recordNewbirth);
+activityRouter.post("/recordDeadActivity", recordDead);
+activityRouter.post("/recordPurginacy", recordPurginacy);
+activityRouter.post("/recordPromoted", recordPromoted);
 
 
 export default activityRouter;
