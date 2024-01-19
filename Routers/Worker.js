@@ -185,7 +185,7 @@ const workerRouter = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Worker'
+ *               $ref: '#/components/schemas/Worker '
  *       403:
  *         description: Unauthorized access
  *       404:
